@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:44:11 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 17:16:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ typedef struct s_token
 	char			*content;
 }				t_token;
 
-typedef t_deque	t_tokens;
+typedef t_deque			t_tokens;
+typedef t_deque_node	t_tokens_node;
 
 void		free_token(void *token);
 void		free_tokens(t_tokens *tks);
 t_token		*new_token(enum e_token type, char *content);
 t_tokens	*new_tokens();
+int			token_type_cmp(void *a, void *b);
 
 #endif

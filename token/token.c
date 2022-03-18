@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:47:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 16:54:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,14 @@ t_token	*new_token(enum e_token type, char *content)
 t_tokens	*new_tokens()
 {
 	return (new_deque());
+}
+
+int	token_type_cmp(void *a, void *b)
+{
+	t_token	*tk_a;
+	t_token	*tk_b;
+
+	tk_a = (t_token *)a;
+	tk_b = (t_token *)b;
+	return (tk_a->type - tk_b->type);
 }
