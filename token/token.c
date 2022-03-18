@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:01:28 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 16:47:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	free_token(void *token)
 	free(tk);
 }
 
-void		free_tokens(t_tokens *tks)
+void	free_tokens(t_tokens *tks)
 {
 	free_deque(tks, free_token);
 }
 
-t_token		*new_token(enum e_token type, char *content)
+t_token	*new_token(enum e_token type, char *content)
 {
 	t_token	*tk;
 

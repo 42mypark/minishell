@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 15:02:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 16:46:41 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_pt_node
 	struct s_pt_node	*right;
 }				t_pt_node;
 
-t_tokens		divide_tokens_pao();
-t_tokens		divide_tokens_red();
-void			merge_token();
+t_tokens	divide_tokens_pao();
+t_tokens	divide_tokens_red();
+void		merge_token();
 
 #endif
