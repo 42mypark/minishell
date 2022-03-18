@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   parse_tree.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 02:41:02 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:21:46 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/18 15:02:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
-# include "../cir_lst/cir_lst.h"
+#ifndef PARSE_TREE_H
+# define PARSE_TREE_H
+# include "token.h"
 
-typedef t_cir_lst t_stack_node;
-
-typedef struct s_stack
+typedef struct s_pt_node
 {
-	t_stack_node	*top;
-	void			*(*pop)(struct s_stack *);
-	int				(*push)(struct s_stack *, void *);
-}				t_stack;
+	int					parsed;
+	t_tokens			*tokens;
+	struct s_pt_node	*parent;
+	struct s_pt_node	*left;
+	struct s_pt_node	*right;
+}				t_pt_node;
 
-t_stack			*new_stack();
-void			free_stack(t_stack *st, void (*del)(void *));
+t_tokens		divide_tokens_pao();
+t_tokens		divide_tokens_red();
+void			merge_token();
 
 #endif

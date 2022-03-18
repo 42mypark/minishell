@@ -1,61 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue.c                                            :+:      :+:    :+:   */
+/*   new_deque.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:23:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 16:14:27 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "deque.h"
 #include <stdlib.h>
 
-static void	*pop(struct s_queue *q)
+static void	*pop_head(struct s_deque *dq)
 {
-	t_queue_node	*node;
+	t_deque_node	*node;
 	void			*content;
 
-	node = cir_lstpop_front(&q->head);
-	q->tail = q->head->prev;
+	node = cir_lstpop_front(&dq->head);
+	dq->tail = dq->head->prev;
 	content = node->content;
 	free(node);
 	return (content);
 }
 
-static t_queue_node	*new_queue_node(void *content)
+static void	*pop_tail(struct s_deque *dq)
+{
+	t_deque_node	*node;
+	void			*content;
+
+	node = cir_lstpop_back(&dq->head);
+	dq->tail = dq->head->prev;
+	content = node->content;
+	free(node);
+	return (content);
+}
+
+static t_deque_node	*new_deque_node(void *content)
 {
 	return (cir_lstnew(content));
 }
 
-static int	push(t_queue *q, void * content)
+static int	push(t_deque *dq, void *content)
 {
-	t_queue_node	*new;
+	t_deque_node	*new;
 	
-	new = new_queue_node(content);
-	if (new == 0)
+	new = new_deque_node(content);
+	if (new == NULL)
 		return (0);
-	cir_lstadd_back(q->head, new);
-	q->tail = q->head->prev;
+	cir_lstadd_back(dq->head, new);
+	dq->tail = dq->head->prev;
 	return (1);
 }
 
-t_queue	*new_queue()
+t_deque	*new_deque()
 {
-	t_queue	*q;
+	t_deque	*dq;
 
-	q = malloc(sizeof(t_queue));
-	if (q == NULL)
+	dq = malloc(sizeof(t_deque));
+	if (dq == NULL)
 		return (NULL);
-	q->pop = pop;
-	q->push = push;
-	return (q);
-}
-
-void	free_queue(t_queue *q, void (*del)(void *))
-{
-	cir_lstclear(&q->head, del);
-	free(q);
+	dq->pop_head = pop_head;
+	dq->pop_tail = pop_tail;
+	dq->push = push;
+	return (dq);
 }

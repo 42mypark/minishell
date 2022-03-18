@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"libft.h": "c",
-		"cir_lst.h": "c"
+		"cir_lst.h": "c",
+		"queue.h": "c"
 	}
 }

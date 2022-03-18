@@ -6,26 +6,38 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/15 16:58:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 16:23:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include <stdlib.h>
 
-static t_stack_node	*pop(struct s_stack *st)
+static void	*pop(struct s_stack *st)
 {
-	return (cir_lstpop_front(&st->top));
+	t_stack_node	*node;
+	void			*content;
+
+	node = cir_lstpop_front(&st->top);
+	content = node->content;
+	free(node);
+	return (content);
 }
 
-static void	push(t_stack *st, t_stack_node *new)
-{
-	cir_lstadd_front(&st->top, new);
-}
-
-t_stack_node	*new_stack_node(void *content)
+static t_stack_node	*new_stack_node(void *content)
 {
 	return (cir_lstnew(content));
+}
+
+static int	push(t_stack *st, void *content)
+{
+	t_stack_node	*new;
+
+	new = new_stack_node(content);
+	if (new == NULL)
+		return (0);
+	cir_lstadd_front(&st->top, new);
+	return (1);
 }
 
 t_stack	*new_stack()

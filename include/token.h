@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 02:41:02 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:21:46 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/18 15:57:17 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
-# include "../cir_lst/cir_lst.h"
+#ifndef TOKEN_H
+# define TOKEN_H
+# include "libft.h"
 
-typedef t_cir_lst t_stack_node;
-
-typedef struct s_stack
+enum e_token
 {
-	t_stack_node	*top;
-	void			*(*pop)(struct s_stack *);
-	int				(*push)(struct s_stack *, void *);
-}				t_stack;
+	STR,
+	IRD,
+	ORD,
+	HRD,
+	ARD,
+	PIPE,
+	AND,
+	OR,
+	LPT,
+	RPT
+};
 
-t_stack			*new_stack();
-void			free_stack(t_stack *st, void (*del)(void *));
+typedef struct s_token
+{
+	enum e_token	type;
+	char			*content;
+}				t_token;
+
+typedef t_deque t_tokens;
+
+void		free_token(void *token);
+void		free_tokens(t_tokens *tks);
+t_token		*new_token(enum e_token type, char *content);
+t_tokens	*new_tokens();
 
 #endif
