@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:54:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 18:22:16 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_token	*new_token(enum e_token type, char *content)
 
 t_tokens	*new_tokens()
 {
+	//need :  null check && error catch !!
 	return (new_deque());
 }
 
