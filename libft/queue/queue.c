@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:23:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 17:48:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	push(t_queue *q, void * content)
 	new = new_queue_node(content);
 	if (new == 0)
 		return (0);
-	cir_lstadd_back(q->head, new);
+	cir_lstadd_back(&q->head, new);
 	q->tail = q->head->prev;
 	return (1);
 }
@@ -47,6 +47,8 @@ t_queue	*new_queue()
 	t_queue	*q;
 
 	q = malloc(sizeof(t_queue));
+	q->head = NULL;
+	q->tail = NULL;
 	if (q == NULL)
 		return (NULL);
 	q->pop = pop;

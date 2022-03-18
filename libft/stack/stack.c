@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:23:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 17:48:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_stack	*new_stack()
 	t_stack	*st;
 
 	st = malloc(sizeof(t_stack));
+	st->top = NULL;
 	if (st == NULL)
 		return (NULL);
 	st->pop = pop;

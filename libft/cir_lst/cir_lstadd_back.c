@@ -12,15 +12,20 @@
 
 #include "cir_lst.h"
 
-void	cir_lstadd_back(t_cir_lst *head, t_cir_lst *new)
+void	cir_lstadd_back(t_cir_lst **head, t_cir_lst *new)
 {
 	t_cir_lst	*tail;
 
 	if (head == 0 || new == 0)
 		return ;
-	tail = head->prev;
-	new->next = head;
-	new->prev = tail;
-	head->prev = new;
-	tail->next = new;
+	if (*head == 0)
+		*head = new;
+	else
+	{
+		tail = (*head)->prev;
+		new->next = (*head);
+		new->prev = tail;
+		(*head)->prev = new;
+		tail->next = new;
+	}
 }

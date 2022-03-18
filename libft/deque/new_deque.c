@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 17:29:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/18 17:46:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	push_tail(t_deque *dq, void *content)
 	new = new_deque_node(content);
 	if (new == NULL)
 		return (0);
-	cir_lstadd_back(dq->head, new);
+	cir_lstadd_back(&dq->head, new);
 	dq->tail = dq->head->prev;
 	return (1);
 }
@@ -73,6 +73,8 @@ t_deque	*new_deque()
 	dq = malloc(sizeof(t_deque));
 	if (dq == NULL)
 		return (NULL);
+	dq->head = NULL;
+	dq->tail = NULL;
 	dq->pop_head = pop_head;
 	dq->pop_tail = pop_tail;
 	dq->push_head = push_head;
