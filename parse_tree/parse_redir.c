@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 15:26:36 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/21 23:35:40 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	parse_redir(t_parsetree_node *pt_node)
 	t_tokens		*new;
 
 	tks = pt_node->tokens;
-	curr = tks->tail;
-	while (curr != tks->head)
+	curr = tks->head;
+	while (curr != tks->tail)
 	{
 		pass_parenthesis(curr);
 		tk = curr->content;
@@ -46,8 +46,8 @@ int	parse_redir(t_parsetree_node *pt_node)
 			pt_node->parsed = 1;
 			return (1);
 		}
-		curr = curr->prev;
+		curr = curr->next;
 	}
-	syntax_error_check(tks->head);
+	syntax_error_check(tks->tail);
 	return (0);
 }

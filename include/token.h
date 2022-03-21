@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 17:03:23 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 01:55:29 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ enum e_token
 	AND,
 	OR,
 	LPT,
-	RPT
+	RPT,
+	INVTK
 };
 
 typedef struct s_token

@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 18:22:16 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 01:55:52 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
+#include "libft.h"
 #include <stdlib.h>
 
 void	free_token(void *token)
 {
 	t_token	*tk;
-	
+
 	tk = (t_token *)token;
 	free(tk->content);
 	free(tk);
