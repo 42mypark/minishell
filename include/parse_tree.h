@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 15:42:23 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/21 16:58:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_parsetree_node
 }				t_parsetree_node;
 
 t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent);
-int					parse_redir(t_parsetree_node *pt_node); // pass prth
+int					parse_redir(t_parsetree_node *pt_node);
 int					parse_bool(t_parsetree_node *pt_node);
 int					parse_pipe(t_parsetree_node *pt_node);
 void				remove_parenthesis(t_parsetree_node *pt_node);
