@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 17:46:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/21 13:27:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void	*pop_head(struct s_deque *dq)
 	void			*content;
 
 	node = cir_lstpop_front(&dq->head);
-	dq->tail = dq->head->prev;
+	if (dq->head)
+		dq->tail = dq->head->prev;
+	else
+		dq->tail = NULL;
 	content = node->content;
 	free(node);
 	return (content);
@@ -31,7 +34,10 @@ static void	*pop_tail(struct s_deque *dq)
 	void			*content;
 
 	node = cir_lstpop_back(&dq->head);
-	dq->tail = dq->head->prev;
+	if (dq->head)
+		dq->tail = dq->head->prev;
+	else
+		dq->tail = NULL;
 	content = node->content;
 	free(node);
 	return (content);

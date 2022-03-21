@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tree.c                                       :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:55:44 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 14:49:00 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/21 16:06:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_tree.h"
 
-t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent)
+static void	parse_node(t_parsetree_node *node)
 {
-	t_parsetree_node	*new;
+	if (node->parsed)
+		return ;
+	remove_parenthesis(node);
+	if (parse_bool(node) || pares_pipe(node))
+	{
+		parse_node(node->right);
+		parse_node(node->left);
+	}
+	else if (parse_redir(node))
+		parse_node(node->left);
+	node->parsed = 1;
+}
 
-	new = malloc(sizeof(t_parsetree_node));
-	if (new == NULL)
-		return (NULL);
-	new->left = NULL;
-	new->right = NULL;
-	new->parent = parent;
-	new->tokens = tks;
-	new->parsed = 0;
-	return (new);
+t_parsetree_node	*parse_script(t_tokens	*tks)
+{
+	t_parsetree_node	*head;
+
+	head = new_parsetree_node(tks, NULL);
+	parse_node(head);
+	return (head);
 }

@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tree.c                                       :+:      :+:    :+:   */
+/*   remove_parenthesis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:55:44 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 14:49:00 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/21 13:31:39 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/21 15:27:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_tree.h"
 
-t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent)
+void	remove_parenthesis(t_parsetree_node *pt_node)
 {
-	t_parsetree_node	*new;
+	t_token		*first;
+	t_token		*last;
+	t_token		*tk;
+	t_tokens	*tks;
 
-	new = malloc(sizeof(t_parsetree_node));
-	if (new == NULL)
-		return (NULL);
-	new->left = NULL;
-	new->right = NULL;
-	new->parent = parent;
-	new->tokens = tks;
-	new->parsed = 0;
-	return (new);
+	tks = pt_node->tokens;
+	first = tks->head->content;
+	last = tks->tail->content;
+	if (first->type == LPT && last->type == RPT)
+	{
+		tk = tks->pop_head(tks);
+		free_token(tk);
+		tk = tks->pop_tail(tks);
+		free_token(tk);
+	}
 }

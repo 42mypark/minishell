@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tree.c                                       :+:      :+:    :+:   */
+/*   merge_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:55:44 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 14:49:00 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/21 13:16:38 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/21 13:29:13 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_tree.h"
+#include "token.h"
 
-t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent)
+t_tokens	*merge_tokens(t_tokens *tks1, t_tokens *tks2)
 {
-	t_parsetree_node	*new;
-
-	new = malloc(sizeof(t_parsetree_node));
-	if (new == NULL)
-		return (NULL);
-	new->left = NULL;
-	new->right = NULL;
-	new->parent = parent;
-	new->tokens = tks;
-	new->parsed = 0;
-	return (new);
+	t_token	*tk;
+	
+	while (tks2->head)
+	{
+		tk = tks2->pop_head(tks2);
+		tks1->push_tail(tks1, tk);
+	}
+	free_tokens(tks2);
+	return (tks1);
 }

@@ -6,13 +6,13 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:16:25 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 18:22:41 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/21 14:34:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 
-t_tokens	*cut_tokens_backward(t_tokens *tks, t_tokens_node *curr)
+t_tokens	*cut_tokens_back(t_tokens *tks, t_tokens_node *curr)
 {
 	t_tokens	*new;
 	t_token		*tk;
@@ -28,7 +28,7 @@ t_tokens	*cut_tokens_backward(t_tokens *tks, t_tokens_node *curr)
 	return (new);
 }
 
-t_tokens	*cut_tokens_forward(t_tokens *tks, t_tokens_node *curr)
+t_tokens	*cut_tokens_front(t_tokens *tks, t_tokens_node *curr)
 {
 	t_tokens	*new;
 	t_token		*tk;
