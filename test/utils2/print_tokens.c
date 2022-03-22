@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 13:23:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 14:45:37 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,15 @@ void	print_tokens(t_tokens *tks)
 	t_tokens_node	*curr;
 	t_token			*tk;
 
-	while (curr)
+	curr = tks->head;
+	while (curr != tks->tail)
 	{
 		tk = curr->content;
 		printf("token type : %s \t", enum_token_to_str(tk->type));
 		printf("token content : %s \n", tk->content);
 		curr = curr->next;
 	}
+	tk = curr->content;
+	printf("token type : %s \t", enum_token_to_str(tk->type));
+	printf("token content : %s \n", tk->content);
 }

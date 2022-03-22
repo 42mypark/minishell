@@ -5,13 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 01:09:36 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 14:31:11 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/22 15:44:06 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/22 16:37:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
-#include "tokenizer_utils.h"
+
+int	is_blank(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
+}
+
+int	is_parenthesis(char c)
+{
+	if (c == '(' || c == ')')
+		return (1);
+	return (0);
+}
 
 int	is_meta(char c)
 {
@@ -44,83 +57,4 @@ enum e_token	to_enum_token(char *str)
 	if (ft_strncmp(str, "&", -1) == 0)
 		return (INVALID);
 	return (STR);
-}
-
-enum e_tokenizer_state	tokenizer_chars(t_tokens *tks, \
-										char *buf, int *len, char input)
-{
-	if (input == ' ' || input == '\t')
-	{
-		tks->push_tail(tks, new_token(STR, buf));
-		*len = 0;
-		buf[0] = '\0';
-		return (BLANK);
-	}
-	if (is_meta(input))
-	{
-		tks->push_tail(tks, new_token(STR, buf));
-		buf[0] = input;
-		buf[1] = '\0';
-		*len = 1;
-		return (SINGLE_META);
-	}
-	buf[(*len)++] = input;
-	buf[(*len)] = '\0';
-	if (input == '\'')
-		return (SINGLE_QUOTE);
-	if (input == '\"')
-		return (DOUBLE_QUOTE);
-	return (CHARS);
-}
-
-enum e_tokenizer_state	tokenizer_single_meta(t_tokens *tks, \
-										char *buf, int *len, char input)
-{
-	if (input == ' ' || input == '\t')
-	{
-		tks->push_tail(tks, new_token(to_enum_token(buf), buf));
-		*len = 0;
-		buf[0] = '\0';
-		return (BLANK);
-	}
-	if (input != '(' && input != ')' && input == buf[0])
-	{
-		buf[(*len)++] = input;
-		buf[(*len)] = '\0';
-		return (DOUBLE_META);
-	}
-	tks->push_tail(tks, new_token(to_enum_token(buf), buf));
-	buf[0] = input;
-	buf[1] = '\0';
-	*len = 1;
-	if (is_meta(input));
-		return (SINGLE_META);
-	if (input == '\'')
-		return (SINGLE_QUOTE);
-	if (input == '\"')
-		return (DOUBLE_QUOTE);
-	return (CHARS);
-}
-
-enum e_tokenizer_state	tokenizer_double_meta(t_tokens *tks, \
-										char *buf, int *len, char input)
-{
-	if (input == ' ' || input == '\t')
-	{
-		tks->push_tail(tks, new_token(to_enum_token(buf), buf));
-		*len = 0;
-		buf[0] = '\0';
-		return (BLANK);
-	}
-	tks->push_tail(tks, new_token(to_enum_token(buf), buf));
-	buf[0] = input;
-	buf[1] = '\0';
-	*len = 1;
-	if (is_meta(input));
-		return (SINGLE_META);
-	if (input == '\'')
-		return (SINGLE_QUOTE);
-	if (input == '\"')
-		return (DOUBLE_QUOTE);
-	return (CHARS);
 }

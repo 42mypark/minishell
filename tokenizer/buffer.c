@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 14:33:32 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/22 18:19:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include "token.h"
-# include "tokenizer_utils.h"
+#include "tokenizer_utils.h"
 
-void	print_tokens(t_tokens *tks);
+static void	init_buffer(char *buf, int *len)
+{
+	*len = 0;
+	buf[(*len)] = '\0';
+}
 
-#endif
+void	push_buffer(char *buf, char input, int *len)
+{
+	buf[(*len)++] = input;
+	buf[(*len)] = '\0';
+}
+
+void	issue_token(t_tokens *tks, char *buf, int *len)
+{
+	tks->push_tail(tks, new_token(to_enum_token(buf), buf));
+	init_buffer(buf, len);
+}

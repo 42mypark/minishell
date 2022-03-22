@@ -3,46 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 01:53:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 17:03:39 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "tokenizer_utils.h"
+#include "test.h"
 
-static enum e_tokenizer_state	tokenizer_single_quote(t_tokens *tks, \
-												char *buf, int *len, char input)
+static t_tokenizer_state	tokenizer_blank(t_tokens *tks, \
+											char *buf, int *len, char input)
 {
-	tks;
-	buf[(*len)++] = input;
-	buf[(*len)] = '\0';
-	if (input == '\'')
-		return (CHARS);
-	return (SINGLE_QUOTE);
-}
+	t_tokens_node	*curr;
 
-static enum e_tokenizer_state	tokenizer_double_quote(t_tokens *tks, \
-												char *buf, int *len, char input)
-{
-	tks;
-	buf[(*len)++] = input;
-	buf[(*len)] = '\0';
-	if (input == '\"')
-		return (CHARS);
-	return (DOUBLE_QUOTE);
-}
-
-static enum e_tokenizer_state	tokenizer_blank(t_tokens *tks, \
-												char *buf, int *len, char input)
-{
-	tks;
-	if (input == ' ' || input == '\t')
+	curr = tks->head;
+	if (is_blank(input))
 		return (BLANK);
-	buf[(*len)++] = input;
-	buf[(*len)] = '\0';
+	push_buffer(buf, input, len);
 	if (is_meta(input))
 		return (SINGLE_META);
 	if (input == '\'')
@@ -52,31 +32,42 @@ static enum e_tokenizer_state	tokenizer_blank(t_tokens *tks, \
 	return (CHARS);
 }
 
+void	tokenizer_init(\
+	t_tokenizer_state (*behav[6])(t_tokens *, char *, int *, char), \
+	int *buf_len, int *buf_cnt, char **buf)
+{
+	behav[0] = tokenizer_blank;
+	behav[1] = tokenizer_single_quote;
+	behav[2] = tokenizer_double_quote;
+	behav[3] = tokenizer_chars;
+	behav[4] = tokenizer_single_meta;
+	behav[5] = tokenizer_double_meta;
+	*buf_len = 0;
+	*buf_cnt = 0;
+	*buf = ft_calloc(1, 1);
+}
+
 int	tokenizer(t_tokens *tks, char *readline)
 {
-	char					*buf;
-	enum e_tokenizer_state	s;
-	enum e_tokenizer_state	(*tokenizer_behavior[6])(t_tokens *tks, char *, int *, char);
-	int						buf_len;
-	int						buf_cnt;
+	char				*buf;
+	int					buf_len;
+	int					buf_cnt;
+	t_tokenizer_state	s;
+	t_tokenizer_state	(*behavior[6])(t_tokens *, char *, int *, char);
 
-	tokenizer_behavior[0] = tokenizer_blank;
-	tokenizer_behavior[1] = tokenizer_single_quote;
-	tokenizer_behavior[2] = tokenizer_double_quote;
-	tokenizer_behavior[3] = tokenizer_chars;
-	tokenizer_behavior[4] = tokenizer_single_meta;
-	tokenizer_behavior[5] = tokenizer_double_meta;
-	buf_len = 0;
-	buf_cnt = 0;
+	tokenizer_init(behavior, &buf_len, &buf_cnt, &buf);
 	s = BLANK;
-	while (readline)
+	while (*readline)
 	{
-		if (buf_len == 1024 * buf_cnt)
-			buf = ft_realloc(buf, (++buf_cnt) * 1024);
+		if (buf_len == buf_cnt * BUFFER_SIZE)
+			buf = ft_realloc(buf, (++buf_cnt) * BUFFER_SIZE);
 		if (buf == NULL)
-			return (0); // ERROR
-		s = tokenizer_behavior[s](tks, buf, &buf_len, *readline);
+			return (0);
+		s = behavior[s](tks, buf, &buf_len, *readline);
 		readline++;
 	}
+	if (buf_len)
+		tks->push_tail(tks, new_token(to_enum_token(buf), buf));
+	free(buf);
 	return (1);
 }

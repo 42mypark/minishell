@@ -6,12 +6,12 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/03/22 13:57:24 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/22 16:55:21 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -31,7 +31,9 @@ SRCS =	test_tokenizer.c\
 		cut_tokens.c\
 		find_token_forward.c\
 		merge_tokens.c\
-		print_tokens.c
+		print_tokens.c\
+		buffer.c\
+		behavior.c
 
 INCS = test.h
 OBJ_DIR = ./obj

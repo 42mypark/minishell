@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:47:37 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 14:18:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:04:27 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ int	main(void)
 	
 	while (1)
 	{
+		tks = new_tokens();
 		input = readline("msh ^ㅁ^/ $$ ");
 		tokenizer(tks, input);
 		print_tokens(tks);
+		free_tokens(tks);
+		free(input);
 	}
 }
