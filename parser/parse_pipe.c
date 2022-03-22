@@ -6,11 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 15:29:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 18:52:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_tree.h"
+#include "parser_utils.h"
 
 int	parse_pipe(t_parsetree_node *pt_node)
 {
@@ -24,11 +24,10 @@ int	parse_pipe(t_parsetree_node *pt_node)
 	curr = tks->tail;
 	while (curr != tks->head)
 	{
-		pass_parenthesis(curr);
+		pass_parenthesis_forward(curr);
 		tk = curr->content;
 		if (tk->type == PIPE)
 		{
-			syntax_error_check(curr);
 			r_tks = cut_tokens_back(tks, curr);
 			l_tks = cut_tokens_front(tks, curr);
 			pt_node->right = new_parsetree_node(r_tks, pt_node);
@@ -38,6 +37,5 @@ int	parse_pipe(t_parsetree_node *pt_node)
 		}
 		curr = curr->prev;
 	}
-	syntax_error_check(tks->head);
 	return (0);
 }

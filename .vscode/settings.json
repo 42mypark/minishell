@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"parse_tree.h": "c",
+		"parser_utils.h": "c",
+		"parser.h": "c",
+		"token.h": "c"
+	}
+}

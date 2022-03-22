@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 16:54:11 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 21:26:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void				push_buffer(char *buf, char input, int *len);
 int					is_meta(char c);
 int					is_blank(char c);
 int					is_parenthesis(char c);
+int					is_bool(char c);
 enum e_token		to_enum_token(char *str);
 t_tokenizer_state	tokenizer_chars(t_tokens *tks, char *buf, int *len, char input);
 t_tokenizer_state	tokenizer_single_meta(t_tokens *tks, char *buf, int *len, char input);

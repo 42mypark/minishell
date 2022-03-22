@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/03/22 16:55:21 by mypark           ###   ########.fr        #
+#    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
+#    Updated: 2022/03/22 20:57:05 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -24,7 +24,18 @@ RL_DIR = $(shell brew --prefix readline)#/usr/include
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
-SRCS =	test_tokenizer.c\
+# SRCS =	test_tokenizer.c\
+# 		tokenizer.c\
+# 		tokenizer_utils.c\
+# 		token.c\
+# 		cut_tokens.c\
+# 		find_token_forward.c\
+# 		merge_tokens.c\
+# 		print_tokens.c\
+# 		buffer.c\
+# 		behavior.c
+
+SRCS =	test_parser.c\
 		tokenizer.c\
 		tokenizer_utils.c\
 		token.c\
@@ -33,7 +44,17 @@ SRCS =	test_tokenizer.c\
 		merge_tokens.c\
 		print_tokens.c\
 		buffer.c\
-		behavior.c
+		behavior.c\
+		parse_bool.c\
+		parse_pipe.c\
+		parse_redir.c\
+		parse.c\
+		pass_parenthesis.c\
+		remove_parenthesis.c\
+		parse_tree.c\
+		syntax_error.c\
+		syntax_unexpected_token.c\
+		syntax_error_print.c
 
 INCS = test.h
 OBJ_DIR = ./obj

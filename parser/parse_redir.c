@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/21 23:35:40 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 19:58:13 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_tree.h"
+#include "parser_utils.h"
 
 static t_tokens	*extract_tokens(t_tokens *tks, t_tokens_node *curr)
 {
@@ -34,12 +34,11 @@ int	parse_redir(t_parsetree_node *pt_node)
 	curr = tks->head;
 	while (curr != tks->tail)
 	{
-		pass_parenthesis(curr);
+		pass_parenthesis_backward(curr);
 		tk = curr->content;
 		if (tk->type == IRD || tk->type == ORD \
 			|| tk->type == ARD || tk->type == HRD)
 		{
-			syntax_error_check(curr);
 			new = extract_tokens(tks, curr);
 			pt_node->right = new_parsetree_node(new, pt_node);
 			pt_node->left = new_parsetree_node(tks, pt_node);
@@ -48,6 +47,5 @@ int	parse_redir(t_parsetree_node *pt_node)
 		}
 		curr = curr->next;
 	}
-	syntax_error_check(tks->tail);
 	return (0);
 }
