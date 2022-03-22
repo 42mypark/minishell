@@ -6,12 +6,12 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/22 20:57:05 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/22 22:39:15 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = #-fsanitize=address#-Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -54,7 +54,8 @@ SRCS =	test_parser.c\
 		parse_tree.c\
 		syntax_error.c\
 		syntax_unexpected_token.c\
-		syntax_error_print.c
+		syntax_error_print.c\
+		print_parsetree.c\
 
 INCS = test.h
 OBJ_DIR = ./obj

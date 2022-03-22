@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 14:45:37 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 22:35:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,13 @@ void	print_tokens(t_tokens *tks)
 	t_tokens_node	*curr;
 	t_token			*tk;
 
+	if (tks == NULL)
+	{
+		printf("TOKENS NULL\n");
+		return ;
+	}
 	curr = tks->head;
+	printf("%p\t%p\n",tks->head, tks->tail);
 	while (curr != tks->tail)
 	{
 		tk = curr->content;

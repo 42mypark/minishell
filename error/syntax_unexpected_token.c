@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 21:26:16 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 22:10:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,15 @@ static int	**get_syntax_table(void)
 static void	free_syntax_table(int **syn_tb)
 {
 	int	i;
-	while (i < 12)
+	
+	i = 0;
+	while (i < 11)
 		free(syn_tb[i++]);
 	free(syn_tb);
 }
 
-void	set_token(t_tokens_node *curr, t_token **tk_curr, \
-					t_token **tk_prev, t_token **tk_next)
+void	set_token(t_tokens_node *curr, t_token **tk_prev, \
+					t_token **tk_curr, t_token **tk_next)
 {
 	*tk_curr = curr->content;
 	*tk_next = curr->next->content;
@@ -77,12 +79,12 @@ void	syntax_unexpected_token(t_tokens *tks)
 	int				**syn_tb;
 
 	syn_tb = get_syntax_table();
-	tk_curr = tks->tail->content;
-	if (is_meta(tk_curr->content[0]))
-		print_unexpected_token("newline");
 	tk_curr = tks->head->content;
 	if (is_bool(tk_curr->content[0]))
 		print_unexpected_token(tk_curr->content);
+	tk_curr = tks->tail->content;
+	if (is_meta(tk_curr->content[0]))
+		print_unexpected_token("newline");
 	curr = tks->head->next;
 	while (curr != tks->tail)
 	{

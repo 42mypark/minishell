@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 19:17:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 22:13:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	main(void)
 		tokenizer(tks, input);
 		print_tokens(tks);
 		syntax_error_check(tks);
-		// pt_head = parse_script(tks);
+		pt_head = parse_script(tks);
+		//print_parsetree(pt_head);
 		free_tokens(tks);
 		free(input);
 	}
