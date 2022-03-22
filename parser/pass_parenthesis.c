@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass_parenthesis.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 18:52:27 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 00:33:21 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_tokens_node	*pass_parenthesis_forward(t_tokens_node *curr)
 	int		cnt;
 
 	tk = curr->content;
-	cnt = tk->type == RPT;
+	cnt = (tk->type == RPT);
 	while (cnt)
 	{
 		curr = curr->prev;

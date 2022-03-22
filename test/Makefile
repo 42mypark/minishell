@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/22 22:39:15 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/23 01:38:43 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = #-fsanitize=address#-Wall -Wextra -Werror
+CFLAGS = -fsanitize=address#-Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -20,7 +20,7 @@ LIBFT_DIR = ../libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = $(shell brew --prefix readline)#/usr/include
+RL_DIR = /usr/include#$(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -54,8 +54,11 @@ SRCS =	test_parser.c\
 		parse_tree.c\
 		syntax_error.c\
 		syntax_unexpected_token.c\
+		syntax_incorrect_pairs.c\
 		syntax_error_print.c\
 		print_parsetree.c\
+		is_chars.c
+
 
 INCS = test.h
 OBJ_DIR = ./obj

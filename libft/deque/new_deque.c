@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_deque.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 22:44:02 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 01:03:13 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_deque_node	*new_deque_node(void *content)
 static int	push_tail(t_deque *dq, void *content)
 {
 	t_deque_node	*new;
-	
+
 	new = new_deque_node(content);
 	if (new == NULL)
 		return (0);
@@ -63,7 +63,7 @@ static int	push_tail(t_deque *dq, void *content)
 static int	push_head(t_deque *dq, void *content)
 {
 	t_deque_node	*new;
-	
+
 	new = new_deque_node(content);
 	if (new == NULL)
 		return (0);

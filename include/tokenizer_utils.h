@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 21:26:25 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 00:58:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int					is_meta(char c);
 int					is_blank(char c);
 int					is_parenthesis(char c);
 int					is_bool(char c);
+int					is_redir(char c);
 enum e_token		to_enum_token(char *str);
 t_tokenizer_state	tokenizer_chars(t_tokens *tks, char *buf, int *len, char input);
 t_tokenizer_state	tokenizer_single_meta(t_tokens *tks, char *buf, int *len, char input);

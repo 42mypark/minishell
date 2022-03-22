@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 22:19:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 23:41:35 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ static void	parse_node(t_parsetree_node *node)
 	remove_parenthesis(node);
 	if (parse_bool(node) || parse_pipe(node))
 	{
-		printf("%p\n", node);
 		parse_node(node->right);
 		parse_node(node->left);
 	}
 	else if (parse_redir(node))
 	{
-		printf("%p\n", node);
 		parse_node(node->left);
 	}
 	node->parsed = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 19:58:13 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 00:32:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	parse_redir(t_parsetree_node *pt_node)
 	curr = tks->head;
 	while (curr != tks->tail)
 	{
-		pass_parenthesis_backward(curr);
 		tk = curr->content;
 		if (tk->type == IRD || tk->type == ORD \
 			|| tk->type == ARD || tk->type == HRD)
@@ -46,6 +45,7 @@ int	parse_redir(t_parsetree_node *pt_node)
 			return (1);
 		}
 		curr = curr->next;
+		curr = pass_parenthesis_backward(curr);
 	}
 	return (0);
 }

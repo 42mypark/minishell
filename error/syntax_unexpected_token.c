@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_unexpected_token.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 22:10:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 01:14:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,31 @@ static int	**get_syntax_table(void)
 									{0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0},
 									{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 									};
-	
+
 	return (copy_table(table));
 }
 
 static void	free_syntax_table(int **syn_tb)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < 11)
 		free(syn_tb[i++]);
 	free(syn_tb);
 }
 
-void	set_token(t_tokens_node *curr, t_token **tk_prev, \
-					t_token **tk_curr, t_token **tk_next)
+void	check_head_tail(t_tokens *tks)
 {
-	*tk_curr = curr->content;
-	*tk_next = curr->next->content;
-	*tk_prev = curr->prev->content;
+	t_token	*tk_curr;
+
+	tk_curr = tks->head->content;
+	if (is_bool(tk_curr->content[0]))
+		print_unexpected_token(tk_curr->content);
+	tk_curr = tks->tail->content;
+	if (is_bool(tk_curr->content[0]) \
+		|| is_redir(tk_curr->content[0]))
+		print_unexpected_token("newline");
 }
 
 void	syntax_unexpected_token(t_tokens *tks)
@@ -79,19 +84,16 @@ void	syntax_unexpected_token(t_tokens *tks)
 	int				**syn_tb;
 
 	syn_tb = get_syntax_table();
-	tk_curr = tks->head->content;
-	if (is_bool(tk_curr->content[0]))
-		print_unexpected_token(tk_curr->content);
-	tk_curr = tks->tail->content;
-	if (is_meta(tk_curr->content[0]))
-		print_unexpected_token("newline");
-	curr = tks->head->next;
+	check_head_tail(tks);
+	curr = tks->head;
 	while (curr != tks->tail)
 	{
-		set_token(curr, &tk_prev, &tk_curr, &tk_next);
+		tk_curr = curr->content;
+		tk_next = curr->next->content;
+		tk_prev = curr->prev->content;
 		if (syn_tb[tk_curr->type][tk_next->type] == 0)
 			print_unexpected_token(tk_next->content);
-		if (syn_tb[tk_prev->type][tk_curr->type] == 0)
+		if (curr != tks->head && syn_tb[tk_prev->type][tk_curr->type] == 0)
 			print_unexpected_token(tk_curr->content);
 		curr = curr->next;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 22:35:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 23:59:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	print_tokens(t_tokens *tks)
 		return ;
 	}
 	curr = tks->head;
-	printf("%p\t%p\n",tks->head, tks->tail);
 	while (curr != tks->tail)
 	{
 		tk = curr->content;
