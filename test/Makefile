@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/03/22 01:58:34 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/22 13:57:24 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ../libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = /usr/include#$(shell brew --prefix readline)
+RL_DIR = $(shell brew --prefix readline)#/usr/include
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -30,7 +30,8 @@ SRCS =	test_tokenizer.c\
 		token.c\
 		cut_tokens.c\
 		find_token_forward.c\
-		merge_tokens.c
+		merge_tokens.c\
+		print_tokens.c
 
 INCS = test.h
 OBJ_DIR = ./obj
@@ -63,7 +64,7 @@ rr : wclean all
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -I $(LIBFT_DIR) -I $(RL_INC) -I$(INC_DIR) -c $< -o $@ -g
+	@$(CC) $(CFLAGS) -I $(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) -c $< -o $@ -g
 
 .PHONY : all clean fclean wclean re rr \
 	$(LIBFT_NAME)_clean $(LIBFT_NAME)_fclean

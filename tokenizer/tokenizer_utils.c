@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:09:36 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 01:40:22 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/22 14:31:11 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ enum e_token	to_enum_token(char *str)
 		return (LPT);
 	if (ft_strncmp(str, ")", -1) == 0)
 		return (RPT);
-	return (INVTK);
+	if (ft_strncmp(str, "&", -1) == 0)
+		return (INVALID);
+	return (STR);
 }
 
 enum e_tokenizer_state	tokenizer_chars(t_tokens *tks, \
