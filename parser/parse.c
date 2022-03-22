@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 23:41:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 02:42:35 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	parse_node(t_parsetree_node *node)
 {
-	if (node == NULL || node->parsed)
+	if (node == NULL || node->parsed || node->tokens == NULL)
 		return ;
 	remove_parenthesis(node);
 	if (parse_bool(node) || parse_pipe(node))

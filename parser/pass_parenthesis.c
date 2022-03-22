@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 00:33:21 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 02:15:04 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_tokens_node	*pass_parenthesis_backward(t_tokens_node *curr)
 	int		cnt;
 
 	tk = curr->content;
-	cnt = tk->type == LPT;
+	cnt = (tk->type == LPT);
 	while (cnt)
 	{
 		curr = curr->next;

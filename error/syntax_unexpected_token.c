@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 01:14:55 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 03:00:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ static void	free_syntax_table(int **syn_tb)
 	free(syn_tb);
 }
 
-void	check_head_tail(t_tokens *tks)
+static void	check_head_tail(t_tokens *tks)
 {
 	t_token	*tk_curr;
 
 	tk_curr = tks->head->content;
 	if (is_bool(tk_curr->content[0]))
-		print_unexpected_token(tk_curr->content);
+		print_unexpected_token(tks, tk_curr->content);
 	tk_curr = tks->tail->content;
 	if (is_bool(tk_curr->content[0]) \
 		|| is_redir(tk_curr->content[0]))
-		print_unexpected_token("newline");
+		print_unexpected_token(tks, "newline");
 }
 
 void	syntax_unexpected_token(t_tokens *tks)
@@ -92,9 +92,9 @@ void	syntax_unexpected_token(t_tokens *tks)
 		tk_next = curr->next->content;
 		tk_prev = curr->prev->content;
 		if (syn_tb[tk_curr->type][tk_next->type] == 0)
-			print_unexpected_token(tk_next->content);
+			print_unexpected_token(tks, tk_next->content);
 		if (curr != tks->head && syn_tb[tk_prev->type][tk_curr->type] == 0)
-			print_unexpected_token(tk_curr->content);
+			print_unexpected_token(tks, tk_curr->content);
 		curr = curr->next;
 	}
 	free_syntax_table(syn_tb);

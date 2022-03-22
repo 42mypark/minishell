@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:27:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 01:52:06 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 02:47:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	is_correct_quotes(t_tokens *tks)
 void	syntax_incorrect_pairs(t_tokens *tks)
 {
 	if (!is_correct_parenthese(tks))
-		print_incorrect_pairs("parenthese");
+		print_incorrect_pairs(tks, "parenthese");
 	if (!is_correct_quotes(tks))
-		print_incorrect_pairs("quotes");
+		print_incorrect_pairs(tks, "quotes");
 }

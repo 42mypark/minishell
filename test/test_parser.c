@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 01:51:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 02:49:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	main(void)
 		cnt = 0;
 		tks = new_tokens();
 		input = readline("msh ^ㅁ^/ $$ ");
+		if (input[0] == '\0')
+			continue;
 		pid = fork();
 		if (pid == 0)
 		{
