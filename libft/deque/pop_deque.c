@@ -6,11 +6,12 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 16:17:23 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:30:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "deque.h"
+#include <stdlib.h>
 
 void	*pop_head(struct s_deque *dq)
 {

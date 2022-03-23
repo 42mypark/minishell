@@ -6,11 +6,12 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:11:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 16:17:29 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:31:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "deque.h"
+#include "deque_utils.h"
 
 int	push_tail(t_deque *dq, void *content)
 {

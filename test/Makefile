@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/23 01:38:43 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/23 16:34:45 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,8 +99,14 @@ $(OBJ_DIR)/%.o : %.c
 $(LIBFT) :
 	@make bonus -C $(LIBFT_DIR)
 
+$(LIBFT_NAME)_re :
+	@make fclean bonus -C $(LIBFT_DIR)
+
+$(LIBFT_NAME)_reclean :
+	@make fclean bonus -C $(LIBFT_DIR) && make clean -C $(LIBFT_DIR)
+
 $(LIBFT_NAME)_clean :
-	@make -C $(LIBFT_DIR) clean
+	@make clean -C $(LIBFT_DIR)
 
 $(LIBFT_NAME)_fclean :
-	@make -C $(LIBFT_DIR) fclean
+	@make fclean -C $(LIBFT_DIR)
