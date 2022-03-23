@@ -6,13 +6,14 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 17:03:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 21:04:26 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "tokenizer_utils.h"
 #include "test.h"
+#include "error.h"
 
 static t_tokenizer_state	tokenizer_blank(t_tokens *tks, \
 											char *buf, int *len, char input)
@@ -45,6 +46,8 @@ void	tokenizer_init(\
 	*buf_len = 0;
 	*buf_cnt = 0;
 	*buf = ft_calloc(1, 1);
+	if (*buf == NULL)
+		print_malloc_error();
 }
 
 int	tokenizer(t_tokens *tks, char *readline)
@@ -62,12 +65,12 @@ int	tokenizer(t_tokens *tks, char *readline)
 		if (buf_len == buf_cnt * BUFFER_SIZE)
 			buf = ft_realloc(buf, (++buf_cnt) * BUFFER_SIZE);
 		if (buf == NULL)
-			return (0);
+			print_malloc_error();
 		s = behavior[s](tks, buf, &buf_len, *readline);
 		readline++;
 	}
 	if (buf_len)
-		tks->push_tail(tks, new_token(to_enum_token(buf), buf));
+		issue_token(tks, buf, &buf_len);
 	free(buf);
 	return (1);
 }

@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"parser_utils.h": "c",
-		"parse_tree.h": "c"
+		"parse_tree.h": "c",
+		"libft.h": "c"
 	}
 }

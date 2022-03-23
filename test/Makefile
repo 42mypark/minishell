@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/23 16:34:45 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/23 20:56:45 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,29 +35,31 @@ RL_LIB = $(RL_DIR)/lib
 # 		buffer.c\
 # 		behavior.c
 
-SRCS =	test_parser.c\
-		tokenizer.c\
-		tokenizer_utils.c\
-		token.c\
-		cut_tokens.c\
-		find_token_forward.c\
-		merge_tokens.c\
-		print_tokens.c\
-		buffer.c\
-		behavior.c\
-		parse_bool.c\
-		parse_pipe.c\
-		parse_redir.c\
-		parse.c\
-		pass_parenthesis.c\
-		remove_parenthesis.c\
-		parse_tree.c\
-		syntax_error.c\
-		syntax_unexpected_token.c\
-		syntax_incorrect_pairs.c\
-		syntax_error_print.c\
-		print_parsetree.c\
-		is_chars.c
+# SRCS =	test_parser.c\
+# 		tokenizer.c\
+# 		tokenizer_utils.c\
+# 		token.c\
+# 		cut_tokens.c\
+# 		find_token_forward.c\
+# 		merge_tokens.c\
+# 		print_tokens.c\
+# 		buffer.c\
+# 		behavior.c\
+# 		parse_bool.c\
+# 		parse_pipe.c\
+# 		parse_redir.c\
+# 		parse.c\
+# 		pass_parenthesis.c\
+# 		remove_parenthesis.c\
+# 		parse_tree.c\
+# 		syntax_error.c\
+# 		syntax_unexpected_token.c\
+# 		syntax_incorrect_pairs.c\
+# 		print_syntax_error.c\
+# 		print_parsetree.c\
+# 		is_chars.c
+
+SRCS = test_getenv.c
 
 
 INCS = test.h
