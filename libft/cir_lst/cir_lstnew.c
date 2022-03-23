@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cir_lstnew.c                                        :+:      :+:    :+:   */
+/*   cir_lstnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 23:16:44 by dha               #+#    #+#             */
-/*   Updated: 2022/03/15 00:56:37 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/23 16:07:47 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/23 16:08:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cir_lst.h"
-#include "../libft.h"
 #include <stdlib.h>
 
 t_cir_lst	*cir_lstnew(void *content)

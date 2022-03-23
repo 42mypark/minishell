@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:45:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 17:27:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:15:53 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define DEQUE_H
 # include "../cir_lst/cir_lst.h"
 
-typedef t_cir_lst t_deque_node;
+typedef t_cir_lst	t_deque_node;
 
 typedef struct s_deque
 {
@@ -26,7 +26,7 @@ typedef struct s_deque
 	void			*(*pop_head)(struct s_deque *);
 }				t_deque;
 
-t_deque			*new_deque();
+t_deque			*new_deque(void);
 void			free_deque(t_deque *dq, void (*del)(void *));
 
 #endif

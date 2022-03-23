@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cir_lstfind_backward.c                             :+:      :+:    :+:   */
+/*   push_deque.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 16:06:32 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 16:06:52 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/23 16:11:29 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/23 16:17:29 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cir_lst.h"
+#include "deque.h"
 
-t_cir_lst	*cir_lstfind_backward(t_cir_lst *curr, void *target, \
-								int (*cmp)(void *, void *))
+int	push_tail(t_deque *dq, void *content)
 {
-	t_cir_lst	*memo;
+	t_deque_node	*new;
 
-	if (curr == 0 || target == 0)
+	new = new_deque_node(content);
+	if (new == 0)
 		return (0);
-	if (cmp(target, curr->content) == 0)
-		return (curr);
-	memo = curr;
-	curr = curr->next;
-	while (curr != memo)
-	{
-		if (cmp(target, curr->content) == 0)
-			return (curr);
-		curr = curr->next;
-	}
-	return (0);
+	cir_lstadd_back(&dq->head, new);
+	dq->tail = dq->head->prev;
+	return (1);
+}
+
+int	push_head(t_deque *dq, void *content)
+{
+	t_deque_node	*new;
+
+	new = new_deque_node(content);
+	if (new == 0)
+		return (0);
+	cir_lstadd_front(&dq->head, new);
+	dq->tail = dq->head->prev;
+	return (1);
 }

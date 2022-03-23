@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 17:48:54 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:18:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	push(t_stack *st, void *content)
 	return (1);
 }
 
-t_stack	*new_stack()
+t_stack	*new_stack(void)
 {
 	t_stack	*st;
 

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   remove_parenthesis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:31:39 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 01:56:32 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 14:42:02 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_utils.h"
-#include "test.h"
 
 void	remove_parenthesis(t_parsetree_node *pt_node)
 {

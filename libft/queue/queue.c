@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:48:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 17:48:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:18:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static t_queue_node	*new_queue_node(void *content)
 	return (cir_lstnew(content));
 }
 
-static int	push(t_queue *q, void * content)
+static int	push(t_queue *q, void *content)
 {
 	t_queue_node	*new;
-	
+
 	new = new_queue_node(content);
 	if (new == 0)
 		return (0);
@@ -42,7 +42,7 @@ static int	push(t_queue *q, void * content)
 	return (1);
 }
 
-t_queue	*new_queue()
+t_queue	*new_queue(void)
 {
 	t_queue	*q;
 

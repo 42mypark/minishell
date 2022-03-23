@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cir_lstfind_backward.c                             :+:      :+:    :+:   */
+/*   deque_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 16:06:32 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 16:06:52 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/15 16:45:50 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/23 16:15:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cir_lst.h"
+#ifndef DEQUE_UTILS_H
+# define DEQUE_UTILS_H
+# include "deque.h"
 
-t_cir_lst	*cir_lstfind_backward(t_cir_lst *curr, void *target, \
-								int (*cmp)(void *, void *))
-{
-	t_cir_lst	*memo;
+void			*pop_head(t_deque *dq);
+void			*pop_tail(t_deque *dq);
+int				push_tail(t_deque *dq, void *content);
+int				push_head(t_deque *dq, void *content);
+t_deque_node	*new_deque_node(void *content);
 
-	if (curr == 0 || target == 0)
-		return (0);
-	if (cmp(target, curr->content) == 0)
-		return (curr);
-	memo = curr;
-	curr = curr->next;
-	while (curr != memo)
-	{
-		if (cmp(target, curr->content) == 0)
-			return (curr);
-		curr = curr->next;
-	}
-	return (0);
-}
+#endif

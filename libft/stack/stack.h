@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 02:41:02 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 16:21:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:19:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STACK_H
 # include "../cir_lst/cir_lst.h"
 
-typedef t_cir_lst t_stack_node;
+typedef t_cir_lst	t_stack_node;
 
 typedef struct s_stack
 {
@@ -23,7 +23,7 @@ typedef struct s_stack
 	int				(*push)(struct s_stack *, void *);
 }				t_stack;
 
-t_stack			*new_stack();
+t_stack			*new_stack(void);
 void			free_stack(t_stack *st, void (*del)(void *));
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 01:55:52 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:03:08 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_token	*new_token(enum e_token type, char *content)
 	return (tk);
 }
 
-t_tokens	*new_tokens()
+t_tokens	*new_tokens(void)
 {
 	//need :  null check && error catch !!
 	return (new_deque());

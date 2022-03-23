@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cir_lstfind_forwrad.c                               :+:      :+:    :+:   */
+/*   cir_lstfind_forward.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 00:11:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/15 00:56:37 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/23 16:07:02 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/23 16:07:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cir_lst.h"
 
-t_cir_lst	*cir_lstfind_forward(t_cir_lst *curr, void *target, int (*cmp)(void *, void *))
+t_cir_lst	*cir_lstfind_forward(t_cir_lst *curr, void *target, \
+								int (*cmp)(void *, void *))
 {
 	t_cir_lst	*memo;
 
@@ -30,4 +31,3 @@ t_cir_lst	*cir_lstfind_forward(t_cir_lst *curr, void *target, int (*cmp)(void *,
 	}
 	return (0);
 }
-

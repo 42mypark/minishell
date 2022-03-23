@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_lstfind_backwrad.c                              :+:      :+:    :+:   */
+/*   bi_lstfind_backward.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 00:11:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/15 00:50:21 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:05:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bi_lst.h"
 
-t_bi_lst	*bi_lstfind_backward(t_bi_lst *curr, void *target, int (*cmp)(void *, void *))
+t_bi_lst	*bi_lstfind_backward(t_bi_lst *curr, void *target, \
+								int (*cmp)(void *, void *))
 {
 	if (curr == 0 || target == 0)
 		return (0);
@@ -24,4 +25,3 @@ t_bi_lst	*bi_lstfind_backward(t_bi_lst *curr, void *target, int (*cmp)(void *, v
 	}
 	return (curr);
 }
-

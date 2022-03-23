@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_parsetree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 00:09:44 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 15:59:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	print_parsetree_node(t_parsetree_node *node, int *cnt)
 {
-	printf("= %d ========================================================\n", (*cnt)++);
+	printf("= %02d =======================================================\n", (*cnt)++);
 	printf("myaddr : %p \n", node);
 	printf("parent : %p \n", node->parent);
 	printf("left   : %p \t", node->left);

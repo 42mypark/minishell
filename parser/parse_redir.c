@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 02:48:01 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/23 16:02:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_utils.h"
 #include "test.h"
 
-static t_tokens	*extract_tokens(t_tokens *tks, t_tokens **rem, t_tokens_node *curr)
+static t_tokens	*extract_tokens(t_tokens *tks, t_tokens **rem, \
+								t_tokens_node *curr)
 {
 	t_tokens	*back;
 	t_tokens	*front;
 	t_tokens	*one;
 
-	back = cut_tokens_back(tks, curr->next); // can be optimized
+	back = cut_tokens_back(tks, curr->next);
 	one = cut_tokens_back(tks, curr);
 	front = cut_tokens_front(tks, curr);
 	*rem = merge_tokens(front, back);
-	print_tokens(*rem);
 	return (one);
 }
 
