@@ -6,12 +6,12 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 03:00:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 01:50:59 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
-#include "tokenizer_utils.h"
+#include "utils.h"
 #include "error_utils.h"
 #include "test.h"
 

@@ -6,14 +6,13 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 00:58:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 01:44:32 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_UTILS_H
 # define TOKENIZER_UTILS_H
 # include "token.h"
-# define BUFFER_SIZE 1024
 
 typedef enum e_tokenizer_state
 {
@@ -25,13 +24,6 @@ typedef enum e_tokenizer_state
 	DOUBLE_META
 }			t_tokenizer_state;
 
-void				issue_token(t_tokens *tks, char *buf, int *len);
-void				push_buffer(char *buf, char input, int *len);
-int					is_meta(char c);
-int					is_blank(char c);
-int					is_parenthesis(char c);
-int					is_bool(char c);
-int					is_redir(char c);
 enum e_token		to_enum_token(char *str);
 t_tokenizer_state	tokenizer_chars(t_tokens *tks, char *buf, int *len, char input);
 t_tokenizer_state	tokenizer_single_meta(t_tokens *tks, char *buf, int *len, char input);

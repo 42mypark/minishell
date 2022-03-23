@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   behavior.c                                         :+:      :+:    :+:   */
+/*   tokenizer_behavior.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:09:36 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 17:03:25 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 01:49:21 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
 #include "tokenizer_utils.h"
+#include "token.h"
 
 t_tokenizer_state	tokenizer_chars(t_tokens *tks, \
 									char *buf, int *len, char input)
