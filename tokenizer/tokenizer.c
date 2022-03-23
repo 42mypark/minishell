@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 04:10:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 04:15:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ void	tokenizer(t_tokens *tks, char *readline)
 	}
 	if (buf.len)
 		issue_token(tks, &buf);
-	free(buf.space);
+	reset_buffer(&buf);
 }

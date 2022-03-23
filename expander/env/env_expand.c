@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 04:13:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 04:15:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	env_expander(t_tokens *tks, char *str, char **envp)
 	}
 	if (buf.len)
 		issue_token(tks, &buf);
-	free(buf.space);
-	return (1);
+	reset_buffer(&buf);
 }
 
 void expand_env(t_parsetree_node *head, char **envp)
