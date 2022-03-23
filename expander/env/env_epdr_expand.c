@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 03:58:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 04:03:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 									char input, char **envp)
 {
 	static t_buffer	env_name;
-	static int		buf_cnt;
 	char			*env;
 
-	expand_buffer(&env_name, &buf_cnt);
+	expand_buffer(&env_name);
 	if (ft_isalnum(input))
 		push_buffer(&env_name, input);
 	else
@@ -30,7 +29,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 		while (*env)
 			push_buffer(buf, *(env++));
 		free(env);
-		reset_buffer(&env_name, &buf_cnt);
+		reset_buffer(&env_name);
 		push_buffer(buf, input);
 		if (input == '\"')
 			return (E_CHARS);
@@ -54,11 +53,10 @@ t_env_epdr_state	env_epdr_expand(t_tokens *tks, t_buffer *buf, \
 									char input, char **envp)
 {
 	static t_buffer	env_name;
-	static int		buf_cnt;
 	char			*env;
 	int				i;
 
-	expand_buffer(&env_name, &buf_cnt);
+	expand_buffer(&env_name);
 	if (ft_isalnum(input))
 		push_buffer(&env_name, input);
 	else
@@ -76,7 +74,7 @@ t_env_epdr_state	env_epdr_expand(t_tokens *tks, t_buffer *buf, \
 				push_buffer(buf, env[i++]);
 		}
 		free(env);
-		reset_buffer(&env_name, &buf_cnt);
+		reset_buffer(&env_name);
 		push_buffer(buf, input);
 		if (input == '\"')
 			return (E_CHARS);

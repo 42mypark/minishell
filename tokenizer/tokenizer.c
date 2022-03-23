@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 03:54:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 04:10:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_tokenizer_state	tokenizer_blank(t_tokens *tks, \
 
 void	tokenizer_init(\
 	t_tokenizer_state (*behav[6])(t_tokens *, t_buffer *, char), \
-	t_buffer *buf, int *buf_cnt)
+	t_buffer *buf)
 {
 	behav[0] = tokenizer_blank;
 	behav[1] = tokenizer_single_quote;
@@ -45,7 +45,7 @@ void	tokenizer_init(\
 	behav[3] = tokenizer_chars;
 	behav[4] = tokenizer_single_meta;
 	behav[5] = tokenizer_double_meta;
-	*buf_cnt = 0;
+	buf->cnt = 0;
 	buf->len = 0;
 	buf->space = 0;
 }
@@ -53,20 +53,18 @@ void	tokenizer_init(\
 void	tokenizer(t_tokens *tks, char *readline)
 {
 	t_buffer			buf;
-	int					buf_cnt;
 	t_tokenizer_state	s;
 	t_tokenizer_state	(*behavior[6])(t_tokens *, t_buffer *, char);
 
-	tokenizer_init(behavior, &buf, &buf_cnt);
+	tokenizer_init(behavior, &buf);
 	s = T_BLANK;
 	while (*readline)
 	{
-		expand_buffer(&buf, &buf_cnt);
+		expand_buffer(&buf);
 		s = behavior[s](tks, &buf, *readline);
 		readline++;
 	}
 	if (buf.len)
 		issue_token(tks, &buf);
 	free(buf.space);
-	return (1);
 }
