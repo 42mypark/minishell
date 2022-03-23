@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 04:15:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 04:18:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include "env_expander_utils.h"
 
-void	env_epdr_init(\
+static void	env_epdr_init(\
 	t_env_epdr_state (*behav[5])(t_tokens *, t_buffer *, char), \
 	t_buffer *buf)
 {
