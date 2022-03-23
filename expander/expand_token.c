@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   issue_token.c                                      :+:      :+:    :+:   */
+/*   expand_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 03:36:40 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/24 02:14:52 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/24 02:31:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer_utils.h"
 #include "token.h"
-#include "utils.h"
 
-void	issue_token(t_tokens *tks, t_buffer *buf)
+t_tokens	*expand_token(t_token *tk, void (*todo)(t_tokens *, char *, char **), char **envp)
 {
-	tks->push_tail(tks, new_token(to_enum_token(buf->space), buf->space));
-	clear_buffer(buf);
+	t_tokens	*tks;
+	char		*str;
+
+	str = tk->content;
+	free(tk);
+	tks = new_tokens();
+	todo(tks, str, envp);
+	return (tks);
 }

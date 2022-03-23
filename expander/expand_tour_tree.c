@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   issue_token.c                                      :+:      :+:    :+:   */
+/*   expand_tour_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 03:36:40 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/24 02:00:47 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/24 02:31:52 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer_utils.h"
-#include "token.h"
-#include "utils.h"
+#include "parse_tree.h"
 
-void	issue_token(t_tokens *tks, t_buffer *buf)
+void	expand_tour_tree(t_parsetree_node *node, void (*todo)(t_tokens *, char *, char **), char **envp)
 {
-	tks->push_tail(tks, new_token(to_enum_token(buf->space), buf->space));
-	clear_buffer(buf);
+	t_token	*tk;
+
+	if(node == NULL)
+		return ;
+	tk = node->tokens->head->content;
+	if(tk->type == STR)
+	 	expand_tokens(node->tokens, todo);
+	tour_tree(node->left, todo);
+	tour_tree(node->right, todo);
 }

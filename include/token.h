@@ -6,13 +6,14 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 01:44:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 02:43:52 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 # include "libft.h"
+# include "utils.h"
 
 enum e_token
 {
@@ -46,6 +47,6 @@ t_tokens	*new_tokens();
 t_tokens	*cut_tokens_back(t_tokens *tks, t_tokens_node *curr);
 t_tokens	*cut_tokens_front(t_tokens *tks, t_tokens_node *curr);
 t_tokens	*merge_tokens(t_tokens *tks1, t_tokens *tks2);
-void		issue_token(t_tokens *tks, char *buf, int *len);
+void		issue_token(t_tokens *tks, t_buffer *buf);
 
 #endif
