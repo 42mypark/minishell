@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 04:05:18 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 04:13:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	env_epdr_init(\
 	behav[4] = env_epdr_dq_expand;
 	buf->cnt = 0;
 	buf->len = 0;
-	buf->space = ft_calloc(1, 1);
-	if (buf->space == NULL)
-		print_malloc_error();
+	buf->space = 0;
 }
 
 void	env_expander(t_tokens *tks, char *str, char **envp)
@@ -40,10 +38,7 @@ void	env_expander(t_tokens *tks, char *str, char **envp)
 	s = E_CHARS;
 	while (*str)
 	{
-		if (buf.len == buf.cnt * BUFFER_SIZE)
-			buf.space = ft_realloc(buf.space, (++buf.cnt) * BUFFER_SIZE);
-		if (buf.space == NULL)
-			print_malloc_error();
+		expand_buffer(&buf);
 		s = behavior[s](tks, &buf, *str, envp);
 		str++;
 	}
