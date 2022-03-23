@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/23 20:56:45 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/24 00:01:18 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ RL_LIB = $(RL_DIR)/lib
 # 		print_parsetree.c\
 # 		is_chars.c
 
-SRCS = test_getenv.c
+SRCS = test_dupenv.c
 
 
 INCS = test.h
