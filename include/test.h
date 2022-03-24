@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 00:11:13 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 19:04:52 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include "token.h"
 # include "tokenizer_utils.h"
 # include "parse_tree.h"
+# include "parser.h"
+# include "error.h"
+# include "tokenizer.h"
+# include "expander.h"
 
 void	print_tokens(t_tokens *tks);
 void	print_parsetree(t_parsetree_node *node, int *cnt);

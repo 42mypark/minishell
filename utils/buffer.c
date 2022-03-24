@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 04:11:26 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 19:35:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	clear_buffer(t_buffer *buf)
 
 void	push_buffer(t_buffer *buf, char input)
 {
+	if (input == '\0')
+		return ;
 	buf->space[buf->len++] = input;
 	buf->space[buf->len] = '\0';
 }

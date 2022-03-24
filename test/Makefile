@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/24 01:52:39 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/24 19:54:40 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,33 @@ RL_LIB = $(RL_DIR)/lib
 # 		buffer.c\
 # 		behavior.c
 
-SRCS =	test_parser.c\
+# SRCS =	test_parser.c\
+# 		tokenizer.c\
+# 		tokenizer_utils.c\
+# 		token.c\
+# 		cut_tokens.c\
+# 		find_token_forward.c\
+# 		merge_tokens.c\
+# 		buffer.c\
+# 		tokenizer_behavior.c\
+# 		parse_bool.c\
+# 		parse_pipe.c\
+# 		parse_redir.c\
+# 		parse.c\
+# 		pass_parenthesis.c\
+# 		remove_parenthesis.c\
+# 		parse_tree.c\
+# 		syntax_error.c\
+# 		syntax_unexpected_token.c\
+# 		syntax_incorrect_pairs.c\
+# 		print_tokens.c\
+# 		print_syntax_error.c\
+# 		print_malloc_error.c\
+# 		print_parsetree.c\
+# 		is_chars.c\
+# 		issue_token.c
+
+SRCS =	test_asterisk_epdr.c\
 		tokenizer.c\
 		tokenizer_utils.c\
 		token.c\
@@ -60,9 +86,16 @@ SRCS =	test_parser.c\
 		print_parsetree.c\
 		is_chars.c\
 		issue_token.c\
-
-# SRCS = test_dupenv.c
-
+		dupenv.c\
+		env_epdr_behavior.c\
+		env_epdr_expand.c\
+		env_expand.c\
+		expand.c\
+		dup_filenames.c\
+		asterisk_expand.c\
+		asterisk_check_format.c\
+		asterisk_epdr_behavior.c\
+		print_strerror.c
 
 INCS = test.h
 OBJ_DIR = ./obj

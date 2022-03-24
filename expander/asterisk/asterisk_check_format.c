@@ -6,30 +6,31 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 14:39:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 21:53:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "asterisk_expander_utils.h"
+#include "test.h"
 
 static void	asterisk_epdr_init(\
-	t_asterisk_epdr_state (*behav[4])(char **, char *, int *, int *))
+	t_asterisk_epdr_state (*behav[2])(char **, char *, int *, int *))
 {
-	behav[0] = 0;
-	behav[1] = 0;
-	behav[2] = asterisk_epdr_asterisk;
-	behav[3] = asterisk_epdr_compare;
+	behav[0] = asterisk_epdr_asterisk;
+	behav[1] = asterisk_epdr_compare;
 }
 
-static int	is_success(char *format, char *file, int fi)
+static int	is_success(char *format, char *file, int fi, char *last_format)
 {
-	int	last;
+	int	last_char;
 
-	last = ft_strlen(format) - 1;
-	if (format[last] == '*' || fi == ft_strlen(file))
-		return (A_SUCCESS);
-	return (A_REJECT);
+	last_char = ft_strlen(format) - 1;
+	if (last_format == NULL && format[last_char] == '*')
+		return (1);
+	if (last_format == NULL && fi == ft_strlen(file))
+		return (1);
+	return (0);
 }
 
 int	asterisk_check_format(char *file, char *format)
@@ -40,6 +41,7 @@ int	asterisk_check_format(char *file, char *format)
 	t_asterisk_epdr_state	s;
 	t_asterisk_epdr_state	(*behav[4])(char **, char *, int *, int *);
 
+	asterisk_epdr_init(behav);
 	splited_format = ft_split(format, '*');
 	if (splited_format == NULL)
 		print_malloc_error();
@@ -50,16 +52,18 @@ int	asterisk_check_format(char *file, char *format)
 	fi = 0;
 	while (file[fi] && splited_format[wc])
 	{
+		s = behav[s](splited_format, file, &wc, &fi);
 		if (s == A_REJECT)
 		{
 			ft_free_splited(splited_format);
-			return (A_REJECT);
+			return (0);
 		}
-		s = behav[s](splited_format, file, &wc, &fi);	
-		fi++;
+	}
+	if (is_success(format, file, fi, splited_format[wc]))
+	{
+		ft_free_splited(splited_format);
+		return (1);
 	}
 	ft_free_splited(splited_format);
-	if (is_success(format, file, fi))
-		return (A_SUCCESS);
-	return (A_REJECT);
+	return (0);
 }

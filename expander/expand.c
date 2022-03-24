@@ -6,22 +6,25 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:14:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 17:13:44 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 22:03:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "parse_tree.h"
+#include "test.h"
 
 static t_tokens	*expand_token(t_token *tk, void (*todo)(t_tokens *, char *, char **), char **envp)
 {
 	t_tokens	*tks;
 	char		*str;
 
-	str = tk->content;
-	free(tk);
 	tks = new_tokens();
-	todo(tks, str, envp);
+	todo(tks, tk->content, envp);
+	if (tks->head == NULL)
+		tks->push_tail(tks, tk);
+	else
+		free_token(tk);
 	return (tks);
 }
 

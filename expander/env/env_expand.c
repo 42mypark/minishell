@@ -6,16 +6,17 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 17:15:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 19:34:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_tree.h"
 #include "utils.h"
 #include "env_expander_utils.h"
+#include "test.h"
 
 static void	env_epdr_init(\
-	t_env_epdr_state (*behav[5])(t_tokens *, t_buffer *, char), \
+	t_env_epdr_state (*behav[5])(t_tokens *, t_buffer *, char, char **), \
 	t_buffer *buf)
 {
 	behav[0] = env_epdr_chars;
@@ -41,6 +42,10 @@ void	env_expander(t_tokens *tks, char *str, char **envp)
 		expand_buffer(&buf);
 		s = behavior[s](tks, &buf, *str, envp);
 		str++;
+	}
+	if (s == E_EXPAND)
+	{
+		behavior[E_EXPAND](tks, &buf, '\0', envp);
 	}
 	if (buf.len)
 		issue_token(tks, &buf);

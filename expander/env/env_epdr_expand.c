@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   env_epdr_expand.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 04:03:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 19:29:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_expander_utils.h"
 #include "token.h"
 #include "utils.h"
+#include "test.h"
 
 t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 									char input, char **envp)
 {
 	static t_buffer	env_name;
 	char			*env;
+	int				i;
 
 	expand_buffer(&env_name);
 	if (ft_isalnum(input))
@@ -26,8 +28,9 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 	else
 	{
 		env = dupenv(env_name.space, envp);
-		while (*env)
-			push_buffer(buf, *(env++));
+		i = 0;
+		while (env[i])
+			push_buffer(buf, env[i++]);
 		free(env);
 		reset_buffer(&env_name);
 		push_buffer(buf, input);
@@ -35,6 +38,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 			return (E_CHARS);
 		return (E_DOUBLE_QUOTE);
 	}
+	return (E_DQ_EXPAND);
 }
 
 static int	pass_blank(char *str, int i)
@@ -80,4 +84,5 @@ t_env_epdr_state	env_epdr_expand(t_tokens *tks, t_buffer *buf, \
 			return (E_CHARS);
 		return (E_DOUBLE_QUOTE);
 	}
+	return (E_EXPAND);
 }
