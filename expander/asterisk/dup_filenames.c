@@ -6,11 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:45:08 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 17:07:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 17:10:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft"
+#include "libft.h"
 #include "error.h"
 #include <unistd.h>
 #include <dirent.h>
