@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:14:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:05:55 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:49:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,14 @@
 #include "parse_tree.h"
 #include "test.h"
 
-// static t_tokens	*expand_token(t_token *tk, void (*todo)(t_tokens *, char *, char **), char **envp)
-// {
-// 	t_tokens	*tks;
-// 	char		*str;
-
-// 	tks = new_tokens();
-// 	todo(tks, tk->content, envp);
-// 	if (tks->head == NULL)
-// 		tks->push_tail(tks, tk);
-// 	else
-// 		free_token(tk);
-// 	return (tks);
-// }
-
 static void expand_tokens(t_tokens *tks, t_tokens *(*todo)(t_token *, char **), char **envp)
 {
 	t_tokens		*ep_tks;
 	t_tokens_node	*last;
 	t_token			*tk;
 
+	if (tks->head == NULL)
+		return ;
 	last = tks->tail;
 	while(tks->head != last)
 	{
@@ -50,7 +38,7 @@ void	expand_tour_tree(t_parsetree_node *node, t_tokens *(*todo)(t_token *, char 
 {
 	t_token	*tk;
 
-	if(node == NULL)
+	if(node == NULL || node->tokens == NULL || node->tokens->head == NULL)
 		return ;
 	tk = node->tokens->head->content;
 	if(tk->type == STR)

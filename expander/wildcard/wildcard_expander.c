@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asterisk_expander.c                                :+:      :+:    :+:   */
+/*   wildcard_expander.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:36:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:56:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "token.h"
 
-void	wildcard_expander(t_tokens *tks, char *format, char **envp)
+static void	wildcard_expander(t_tokens *tks, char *format, char **envp)
 {
 	int			i;
 	char		**files;

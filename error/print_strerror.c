@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   print_strerror.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 20:57:10 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 17:03:00 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:46:00 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <errno.h>
 
 void	print_strerror(char *msg)
 {

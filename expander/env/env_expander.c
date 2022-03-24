@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:32:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:07:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ t_tokens	*expand_token_env(t_token *tk, char **envp)
 
 	tks = new_tokens();
 	env_expander(tks, tk->content, envp);
-	if (tks->head == NULL)
-		tks->push_tail(tks, tk);
-	else
-		free_token(tk);
+	free_token(tk);
 	return (tks);
 }
 

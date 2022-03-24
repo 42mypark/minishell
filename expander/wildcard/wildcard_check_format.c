@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asterisk_check_format.c                            :+:      :+:    :+:   */
+/*   wildcard_check_format.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:36:54 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:55:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 #include "test.h"
 
 static void	wildcard_epdr_init(\
-	t_wildcard_epdr_state (*actions[2])(char **, char *, int *, int *))
+	t_wildcard_epdr_state *s, \
+	t_wildcard_epdr_state (*actions[2])(char **, char *, int *, int *), \
+	char *format, char ***splited_format)
 {
+	if (format[0] == '*')
+		*s = A_WILDCARD;
+	else
+		*s = A_COMPARE;
 	actions[0] = wildcard_epdr_wildcard;
 	actions[1] = wildcard_epdr_compare;
+	*splited_format = ft_split(format, '*');
+	if (*splited_format == NULL)
+		print_malloc_error();
 }
 
 static int	is_success(char *format, char *file, int fi, char *last_format)
@@ -41,13 +50,7 @@ int	wildcard_check_format(char *file, char *format)
 	t_wildcard_epdr_state	s;
 	t_wildcard_epdr_state	(*actions[4])(char **, char *, int *, int *);
 
-	wildcard_epdr_init(actions);
-	splited_format = ft_split(format, '*');
-	if (splited_format == NULL)
-		print_malloc_error();
-	s = A_COMPARE;
-	if (format[0] == '*')
-		s = A_WILDCARD;
+	wildcard_epdr_init(&s, actions, format, &splited_format);
 	wc = 0;
 	fi = 0;
 	while (file[fi] && splited_format[wc])
