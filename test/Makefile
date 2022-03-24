@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/25 01:36:35 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/25 01:40:19 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ RL_LIB = $(RL_DIR)/lib
 # 		merge_tokens.c\
 # 		print_tokens.c\
 # 		buffer.c\
-# 		behavior.c
+# 		actions.c
 
 # SRCS =	test_parser.c\
 # 		tokenizer.c\
@@ -43,7 +43,7 @@ RL_LIB = $(RL_DIR)/lib
 # 		find_token_forward.c\
 # 		merge_tokens.c\
 # 		buffer.c\
-# 		tokenizer_behavior.c\
+# 		tokenizer_actions.c\
 # 		parse_bool.c\
 # 		parse_pipe.c\
 # 		parse_redir.c\
@@ -69,7 +69,7 @@ SRCS =	test_wildcard_epdr.c\
 		find_token_forward.c\
 		merge_tokens.c\
 		buffer.c\
-		tokenizer_behavior.c\
+		tokenizer_actions.c\
 		parse_bool.c\
 		parse_pipe.c\
 		parse_redir.c\
@@ -87,14 +87,14 @@ SRCS =	test_wildcard_epdr.c\
 		is_chars.c\
 		issue_token.c\
 		dupenv.c\
-		env_epdr_behavior.c\
+		env_epdr_actions.c\
 		env_epdr_expand.c\
 		env_expander.c\
 		expand.c\
 		dup_filenames.c\
 		wildcard_expander.c\
 		wildcard_check_format.c\
-		wildcard_epdr_behavior.c\
+		wildcard_epdr_actions.c\
 		print_strerror.c
 
 INCS = test.h

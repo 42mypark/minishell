@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 04:15:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:40:46 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	tokenizer(t_tokens *tks, char *readline)
 {
 	t_buffer			buf;
 	t_tokenizer_state	s;
-	t_tokenizer_state	(*behavior[6])(t_tokens *, t_buffer *, char);
+	t_tokenizer_state	(*actions[6])(t_tokens *, t_buffer *, char);
 
-	tokenizer_init(behavior, &buf);
+	tokenizer_init(actions, &buf);
 	s = T_BLANK;
 	while (*readline)
 	{
 		expand_buffer(&buf);
-		s = behavior[s](tks, &buf, *readline);
+		s = actions[s](tks, &buf, *readline);
 		readline++;
 	}
 	if (buf.len)
