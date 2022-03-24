@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_asterisk_epdr.c                               :+:      :+:    :+:   */
+/*   test_wildcard_epdr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:36:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:15:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv, char **envp)
 			syntax_error_check(tks);
 			pt_head = parse_script(tks);
 			expand_env(pt_head, envp);
+			print_parsetree(pt_head, &cnt);
 			expand_wildcard(pt_head, envp);
 			print_parsetree(pt_head, &cnt);
 			//free_parsetree(pt_head);

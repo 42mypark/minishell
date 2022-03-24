@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 23:59:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:16:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	print_tokens(t_tokens *tks)
 	if (tks == NULL)
 	{
 		printf("TOKENS NULL\n");
+		return ;
+	}
+	if (tks->head == NULL)
+	{
+		printf("TOKENS HEAD NULL\n");
 		return ;
 	}
 	curr = tks->head;
