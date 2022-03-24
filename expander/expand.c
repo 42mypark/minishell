@@ -1,16 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_tour_tree.c                                 :+:      :+:    :+:   */
+/*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 02:00:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 13:07:16 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/24 02:14:52 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/24 17:13:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "token.h"
 #include "parse_tree.h"
+
+static t_tokens	*expand_token(t_token *tk, void (*todo)(t_tokens *, char *, char **), char **envp)
+{
+	t_tokens	*tks;
+	char		*str;
+
+	str = tk->content;
+	free(tk);
+	tks = new_tokens();
+	todo(tks, str, envp);
+	return (tks);
+}
+
+static void expand_tokens(t_tokens *tks, void (*todo)(t_tokens *, char *, char **), char **envp)
+{
+	t_tokens		*ep_tks;
+	t_tokens_node	*last;
+	t_token			*tk;
+
+	last = tks->tail;
+	while(tks->head != last)
+	{
+		tk = tks->pop_head(tks);
+		ep_tks = expand_token(tk, todo, envp);
+		merge_tokens(tks, ep_tks);
+	}
+	tk = tks->pop_head(tks);
+	ep_tks = expand_token(tk, todo, envp);
+	merge_tokens(tks, ep_tks);
+}
 
 void	expand_tour_tree(t_parsetree_node *node, void (*todo)(t_tokens *, char *, char **), char **envp)
 {

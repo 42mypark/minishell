@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 16:58:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 17:15:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	asterisk_expander(t_tokens *tks, char *format, char **envp)
 	ft_free_splited(files);
 }
 
-void expand_asterisk(t_parsetree_node *head, char **envp)
+void	expand_asterisk(t_parsetree_node *head, char **envp)
 {
 	expand_tour_tree(head, asterisk_expander, envp);
 }
