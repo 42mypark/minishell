@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_expand.c                                       :+:      :+:    :+:   */
+/*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 19:34:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:00:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	env_epdr_init(\
 	buf->space = 0;
 }
 
-void	env_expander(t_tokens *tks, char *str, char **envp)
+static void	env_expander(t_tokens *tks, char *str, char **envp)
 {
 	t_buffer			buf;
 	t_env_epdr_state	s;
@@ -44,15 +44,27 @@ void	env_expander(t_tokens *tks, char *str, char **envp)
 		str++;
 	}
 	if (s == E_EXPAND)
-	{
 		behavior[E_EXPAND](tks, &buf, '\0', envp);
-	}
 	if (buf.len)
 		issue_token(tks, &buf);
 	reset_buffer(&buf);
 }
 
+t_tokens	*expand_token_env(t_token *tk, char **envp)
+{
+	t_tokens	*tks;
+	char		*str;
+
+	tks = new_tokens();
+	env_expander(tks, tk->content, envp);
+	if (tks->head == NULL)
+		tks->push_tail(tks, tk);
+	else
+		free_token(tk);
+	return (tks);
+}
+
 void	expand_env(t_parsetree_node *head, char **envp)
 {
-	expand_tour_tree(head, env_expander, envp);
+	expand_tour_tree(head, expand_token_env, envp);
 }

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 00:39:16 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:22:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **envp)
 			syntax_error_check(tks);
 			pt_head = parse_script(tks);
 			expand_env(pt_head, envp);
-			//expand_asterisk(pt_head, envp);
+			expand_asterisk(pt_head, envp);
 			print_parsetree(pt_head, &cnt);
 			//free_parsetree(pt_head);
 		}
