@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 19:29:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 22:43:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 	int				i;
 
 	expand_buffer(&env_name);
-	if (ft_isalnum(input))
+	if (input == '_' || ft_isalnum(input))
 		push_buffer(&env_name, input);
 	else
 	{
@@ -61,7 +61,7 @@ t_env_epdr_state	env_epdr_expand(t_tokens *tks, t_buffer *buf, \
 	int				i;
 
 	expand_buffer(&env_name);
-	if (ft_isalnum(input))
+	if (input == '_' || ft_isalnum(input))
 		push_buffer(&env_name, input);
 	else
 	{
