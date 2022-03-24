@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dupenv.c                                           :+:      :+:    :+:   */
+/*   ft_free_splited.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 19:20:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 13:07:25 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/24 14:20:32 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/24 14:42:46 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-char	*dupenv(char *target, char **envp)
+void	ft_free_splited(char **words)
 {
-	int	ei;
-	int	len;
+	int	wi;
 
-	if(target == NULL || envp == NULL)
-		return (ft_strdup(""));
-	ei = 0;
-	len = ft_strlen(target);
-	while (envp[ei])
-	{
-		if (ft_strncmp(target, envp[ei], len) == 0)
-			return (ft_strdup(&envp[ei][len + 1]));
-		ei++;
-	}
-	return (ft_strdup(""));
+	wi = 0;
+	while (words[wi])
+		free(words[wi++]);
+	free(words[wi]);
+	free(words);
 }

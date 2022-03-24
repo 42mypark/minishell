@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dupenv.c                                           :+:      :+:    :+:   */
+/*   print_strerror.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 19:20:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 13:07:25 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/23 20:57:10 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/24 17:03:00 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*dupenv(char *target, char **envp)
+void	print_strerror(char *msg)
 {
-	int	ei;
-	int	len;
-
-	if(target == NULL || envp == NULL)
-		return (ft_strdup(""));
-	ei = 0;
-	len = ft_strlen(target);
-	while (envp[ei])
-	{
-		if (ft_strncmp(target, envp[ei], len) == 0)
-			return (ft_strdup(&envp[ei][len + 1]));
-		ei++;
-	}
-	return (ft_strdup(""));
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+	exit(1);
 }

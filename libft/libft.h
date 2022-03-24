@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:45:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/18 17:50:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/24 14:21:52 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 char	*ft_realloc(char *original, int desired);
 void	ft_strtoupper(char *s);
+void	ft_free_splited(char **words);
 
 #endif
