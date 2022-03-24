@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   asterisk_check_format.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 21:53:55 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:36:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
-#include "asterisk_expander_utils.h"
+#include "wildcard_expander_utils.h"
 #include "test.h"
 
-static void	asterisk_epdr_init(\
-	t_asterisk_epdr_state (*behav[2])(char **, char *, int *, int *))
+static void	wildcard_epdr_init(\
+	t_wildcard_epdr_state (*actions[2])(char **, char *, int *, int *))
 {
-	behav[0] = asterisk_epdr_asterisk;
-	behav[1] = asterisk_epdr_compare;
+	actions[0] = wildcard_epdr_wildcard;
+	actions[1] = wildcard_epdr_compare;
 }
 
 static int	is_success(char *format, char *file, int fi, char *last_format)
@@ -33,26 +33,26 @@ static int	is_success(char *format, char *file, int fi, char *last_format)
 	return (0);
 }
 
-int	asterisk_check_format(char *file, char *format)
+int	wildcard_check_format(char *file, char *format)
 {
 	char					**splited_format;
 	int						fi;
 	int						wc;
-	t_asterisk_epdr_state	s;
-	t_asterisk_epdr_state	(*behav[4])(char **, char *, int *, int *);
+	t_wildcard_epdr_state	s;
+	t_wildcard_epdr_state	(*actions[4])(char **, char *, int *, int *);
 
-	asterisk_epdr_init(behav);
+	wildcard_epdr_init(actions);
 	splited_format = ft_split(format, '*');
 	if (splited_format == NULL)
 		print_malloc_error();
 	s = A_COMPARE;
 	if (format[0] == '*')
-		s = A_ASTERISK;
+		s = A_WILDCARD;
 	wc = 0;
 	fi = 0;
 	while (file[fi] && splited_format[wc])
 	{
-		s = behav[s](splited_format, file, &wc, &fi);
+		s = actions[s](splited_format, file, &wc, &fi);
 		if (s == A_REJECT)
 		{
 			ft_free_splited(splited_format);

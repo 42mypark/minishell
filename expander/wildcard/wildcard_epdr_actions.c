@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asterisk_epdr_behavior.c                           :+:      :+:    :+:   */
+/*   asterisk_epdr_actions.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 21:01:20 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:36:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asterisk_expander_utils.h"
+#include "wildcard_expander_utils.h"
 #include "utils.h"
 #include "test.h"
 
-t_asterisk_epdr_state	asterisk_epdr_compare(char **splited_format, char *file, int *wc, int *fi)
+t_wildcard_epdr_state	wildcard_epdr_compare(char **splited_format, char *file, int *wc, int *fi)
 {
 	int	len;
 
@@ -23,13 +23,13 @@ t_asterisk_epdr_state	asterisk_epdr_compare(char **splited_format, char *file, i
 	{
 		(*fi) += len;
 		(*wc)++;
-		return (A_ASTERISK);
+		return (A_WILDCARD);
 	}
 	else
 		return (A_REJECT);
 }
 
-t_asterisk_epdr_state	asterisk_epdr_asterisk(char **splited_format, char *file, int *wc, int *fi)
+t_wildcard_epdr_state	wildcard_epdr_wildcard(char **splited_format, char *file, int *wc, int *fi)
 {
 	char	escape_char;
 
@@ -39,6 +39,6 @@ t_asterisk_epdr_state	asterisk_epdr_asterisk(char **splited_format, char *file, 
 	else
 	{
 		(*fi)++;
-		return (A_ASTERISK);
+		return (A_WILDCARD);
 	}
 }

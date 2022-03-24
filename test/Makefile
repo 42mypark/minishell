@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/25 00:30:48 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/25 01:36:35 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ RL_LIB = $(RL_DIR)/lib
 # 		is_chars.c\
 # 		issue_token.c
 
-SRCS =	test_asterisk_epdr.c\
+SRCS =	test_wildcard_epdr.c\
 		tokenizer.c\
 		tokenizer_utils.c\
 		token.c\
@@ -92,9 +92,9 @@ SRCS =	test_asterisk_epdr.c\
 		env_expander.c\
 		expand.c\
 		dup_filenames.c\
-		asterisk_expander.c\
-		asterisk_check_format.c\
-		asterisk_epdr_behavior.c\
+		wildcard_expander.c\
+		wildcard_check_format.c\
+		wildcard_epdr_behavior.c\
 		print_strerror.c
 
 INCS = test.h

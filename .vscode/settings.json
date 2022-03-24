@@ -5,7 +5,7 @@
 		"libft.h": "c",
 		"tokenizer_utils.h": "c",
 		"env_expander_utils.h": "c",
-		"asterisk_expander_utils.h": "c",
+		"wildcard_expander_utils.h": "c",
 		"token.h": "c",
 		"test.h": "c"
 	}
