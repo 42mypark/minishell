@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_filenames.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:45:08 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 17:10:36 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 00:51:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ char	**dup_filenames()
 	DIR		*dir_ptr;
 	int		file_cnt;
 	char	**files;
-	
+
 	dir_name = getcwd(NULL, 0);
 	dir_ptr = opendir(dir_name);
 	if (dir_ptr == NULL)
 		print_strerror("cannot be accessed");
 	file_cnt = count_files(dir_ptr);
-	dir_ptr->__dd_loc = 0;
+	closedir(dir_ptr);
+	dir_ptr = opendir(dir_name);
 	files = put_on_files(dir_name, dir_ptr, file_cnt);
 	closedir(dir_ptr);
 	free(dir_name);

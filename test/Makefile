@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/24 19:54:40 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/25 00:30:48 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,10 +89,10 @@ SRCS =	test_asterisk_epdr.c\
 		dupenv.c\
 		env_epdr_behavior.c\
 		env_epdr_expand.c\
-		env_expand.c\
+		env_expander.c\
 		expand.c\
 		dup_filenames.c\
-		asterisk_expand.c\
+		asterisk_expander.c\
 		asterisk_check_format.c\
 		asterisk_epdr_behavior.c\
 		print_strerror.c
