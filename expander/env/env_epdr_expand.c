@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_epdr_expand.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 02:14:01 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 21:13:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 	{
 		env = dupenv(env_name.space, envp);
 		i = 0;
+		buf->ep_start = buf->len - 1;
 		while (env[i])
 			push_buffer(buf, env[i++]);
+		buf->ep_end = buf->len;
 		free(env);
 		reset_buffer(&env_name);
 		push_buffer(buf, input);
@@ -55,7 +57,8 @@ static int	pass_blank(char *str, int i)
 
 static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 {
-	int	i;
+	int		i;
+	t_token	*tk_tail;
 
 	i = 0;
 	if (is_blank(env[0]))
@@ -64,6 +67,7 @@ static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 	{
 		if (is_blank(env[i]))
 		{
+			buf->ep_end = buf->len;
 			issue_token(tks, buf);
 			i = pass_blank(env, i);
 		}

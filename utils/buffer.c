@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 19:35:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 19:47:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,25 @@ void	reset_buffer(t_buffer *buf)
 	buf->space = 0;
 	buf->len = 0;
 	buf->cnt = 0;
+	buf->ep_end = 0;
+	buf->ep_start = 0;
+}
+
+void	init_buffer(t_buffer *buf)
+{
+	buf->space = 0;
+	buf->len = 0;
+	buf->cnt = 0;
+	buf->ep_end = 0;
+	buf->ep_start = 0;
 }
 
 void	clear_buffer(t_buffer *buf)
 {
 	buf->len = 0;
 	buf->space[buf->len] = '\0';
+	buf->ep_end = 0;
+	buf->ep_start = 0;
 }
 
 void	push_buffer(t_buffer *buf, char input)

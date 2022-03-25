@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 16:03:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 19:53:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_token	*new_token(enum e_token type, char *content)
 		return (NULL);
 	tk->content = ft_strdup(content);
 	tk->type = type;
+	tk->ep_end = 0;
+	tk->ep_start = 0;
 	return (tk);
 }
 

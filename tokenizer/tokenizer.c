@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:40:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 20:55:29 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	tokenizer_init(\
 	behav[3] = tokenizer_chars;
 	behav[4] = tokenizer_single_meta;
 	behav[5] = tokenizer_double_meta;
-	buf->cnt = 0;
-	buf->len = 0;
-	buf->space = 0;
+	init_buffer(buf);
 }
 
 void	tokenizer(t_tokens *tks, char *readline)

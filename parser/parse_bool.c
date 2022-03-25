@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bool.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 00:52:01 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 17:50:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	parse_bool(t_parsetree_node *pt_node)
 			pt_node->right = new_parsetree_node(r_tks, pt_node);
 			pt_node->left = new_parsetree_node(l_tks, pt_node);
 			pt_node->parsed = 1;
+			pt_node->type = to_enum_parsetree_node(tk->type);
 			return (1);
 		}
 		curr = curr->prev;

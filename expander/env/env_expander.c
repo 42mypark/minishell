@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 02:07:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 20:55:09 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ static void	env_epdr_init(\
 	actions[2] = env_epdr_double_quote;
 	actions[3] = env_epdr_expand;
 	actions[4] = env_epdr_dq_expand;
-	buf->cnt = 0;
-	buf->len = 0;
-	buf->space = 0;
+	init_buffer(buf);
 }
 
 static void	env_expander(t_tokens *tks, char *str, char **envp)
 {
+	t_token				*tk_tail;
 	t_buffer			buf;
 	t_env_epdr_state	s;
 	t_env_epdr_state	(*actions[5])(t_tokens *, t_buffer *, char, char **);
@@ -46,7 +45,10 @@ static void	env_expander(t_tokens *tks, char *str, char **envp)
 	if (s == E_EXPAND)
 		actions[E_EXPAND](tks, &buf, '\0', envp);
 	if (buf.len)
+	{
 		issue_token(tks, &buf);
+		tk_tail = tks->tail->content;
+	}
 	reset_buffer(&buf);
 }
 

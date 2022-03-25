@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 02:16:28 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/25 20:58:59 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*enum_token_to_str(enum e_token type)
 		return ("LPT");
 	if (type == RPT)
 		return ("RPT");
+	if (type == EXPANDED_STR)
+		return ("EXPANDED_STR");
 	return ("INVALID");
 }
 
@@ -43,14 +45,9 @@ void	print_tokens(t_tokens *tks)
 	t_tokens_node	*curr;
 	t_token			*tk;
 
-	if (tks == NULL)
+	if (tks == NULL || tks->head == NULL)
 	{
-		printf("TOKENS NULL\n");
-		return ;
-	}
-	if (tks->head == NULL)
-	{
-		printf("TOKENS HEAD NULL\n");
+		printf("TOKENS NULL or TOKENS HEAD NULL\n");
 		return ;
 	}
 	curr = tks->head;
@@ -58,10 +55,16 @@ void	print_tokens(t_tokens *tks)
 	{
 		tk = curr->content;
 		printf("token type : %s \t", enum_token_to_str(tk->type));
-		printf("token content : %s \n", tk->content);
+		printf("token content : %s ", tk->content);
+		if (tk->ep_end)
+			printf("\t ep_start : %d \t ep_end : %d ", tk->ep_start, tk->ep_end);
+		printf("\n");
 		curr = curr->next;
 	}
 	tk = curr->content;
 	printf("token type : %s \t", enum_token_to_str(tk->type));
-	printf("token content : %s \n", tk->content);
+	printf("token content : %s ", tk->content);
+	if (tk->ep_end)
+			printf("\t ep_start : %d \t ep_end : %d ", tk->ep_start, tk->ep_end);
+	printf("\n");
 }
