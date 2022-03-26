@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander_utils.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:12:16 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 20:03:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ENV_EXPANDER_UTILS_H
 # include "token.h"
 # include "parse_tree.h"
+# include "ep_rec.h"
 
 typedef enum e_env_epdr_state
 {

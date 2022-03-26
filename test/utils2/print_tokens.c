@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 20:58:59 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 19:10:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ void	print_tokens(t_tokens *tks)
 	while (curr != tks->tail)
 	{
 		tk = curr->content;
-		printf("token type : %s \t", enum_token_to_str(tk->type));
-		printf("token content : %s ", tk->content);
+		printf("token type : %-10s \t", enum_token_to_str(tk->type));
+		printf("token content : %-20s ", tk->content);
 		if (tk->ep_end)
 			printf("\t ep_start : %d \t ep_end : %d ", tk->ep_start, tk->ep_end);
 		printf("\n");
 		curr = curr->next;
 	}
 	tk = curr->content;
-	printf("token type : %s \t", enum_token_to_str(tk->type));
-	printf("token content : %s ", tk->content);
+	printf("token type : %-10s \t", enum_token_to_str(tk->type));
+	printf("token content : %-20s ", tk->content);
 	if (tk->ep_end)
-			printf("\t ep_start : %d \t ep_end : %d ", tk->ep_start, tk->ep_end);
+		printf("\t ep_start : %d \t ep_end : %d ", tk->ep_start, tk->ep_end);
 	printf("\n");
 }

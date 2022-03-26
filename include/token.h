@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 19:38:54 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 19:42:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ typedef struct s_token
 {
 	enum e_token	type;
 	char			*content;
-	int				ep_start;
-	int				ep_end;
+	t_list			*ep_rec;
 }				t_token;
 
 typedef t_deque			t_tokens;

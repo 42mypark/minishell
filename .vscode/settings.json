@@ -8,6 +8,7 @@
 		"wildcard_expander_utils.h": "c",
 		"token.h": "c",
 		"test.h": "c",
-		"utils.h": "c"
+		"utils.h": "c",
+		"quote_remover_utils.h": "c"
 	}
 }

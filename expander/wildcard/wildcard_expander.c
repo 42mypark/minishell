@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 21:19:45 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 20:46:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	wildcard_expander(t_tokens *tks, char *format, char **envp)
 		{
 			buf.space = files[i];
 			buf.len = ft_strlen(buf.space);
-			buf.ep_end = buf.len;
+			add_ep_rec_back(&buf.ep_rec, new_ep_range(0, buf.len));
 			issue_token(tks, &buf);
 		}
 		i++;

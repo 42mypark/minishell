@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:14:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 02:49:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 19:34:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "parse_tree.h"
-#include "test.h"
 
 static void expand_tokens(t_tokens *tks, t_tokens *(*todo)(t_token *, char **), char **envp)
 {
@@ -36,12 +35,9 @@ static void expand_tokens(t_tokens *tks, t_tokens *(*todo)(t_token *, char **), 
 
 void	expand_tour_tree(t_parsetree_node *node, t_tokens *(*todo)(t_token *, char **), char **envp)
 {
-	t_token	*tk;
-
 	if(node == NULL || node->tokens == NULL || node->tokens->head == NULL)
 		return ;
-	tk = node->tokens->head->content;
-	if(tk->type == STR)
+	if(node->type == TOKENS)
 	 	expand_tokens(node->tokens, todo, envp);
 	expand_tour_tree(node->left, todo, envp);
 	expand_tour_tree(node->right, todo, envp);

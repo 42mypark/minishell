@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.h                                         :+:      :+:    :+:   */
+/*   ep_rec.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 01:46:22 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 16:50:46 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/26 20:02:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANDER_H
-# define EXPANDER_H
-# include "parse_tree.h"
+#ifndef EP_REC_H
+# define EP_REC_H
+# include "libft.h"
 
-void	expand_wildcard(t_parsetree_node *head, char **envp);
-void	expand_env(t_parsetree_node *head, char **envp);
-void	remove_quote(t_parsetree_node *node, char **envp);
+typedef t_list	t_ep_rec;
+
+typedef struct s_ep_range
+{
+	int	start;
+	int	end;
+}				t_ep_range;
+
+t_ep_range	*new_ep_range(int s, int e);
+void		free_ep_range(void *ep_range);
+void		add_ep_rec_back(t_ep_rec **ep_rec, t_ep_range *content);
+void		free_ep_rec(t_ep_rec **ep_rec);
 
 #endif

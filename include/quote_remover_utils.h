@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   quote_remover_utils.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 19:40:44 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 16:59:02 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
-# define BUFFER_SIZE 128
+#ifndef ENV_EXPANDER_UTILS_H
+# define ENV_EXPANDER_UTILS_H
+# include "utils.h"
+# include "token.h"
+# include "parse_tree.h"
 
-typedef struct s_buf
+typedef enum e_quote_remover_state
 {
-	char	*space;
-	int		len;
-	int		cnt;
-	t_list	*ep_rec;
-}				t_buffer;
+	Q_CHARS,
+	Q_DOUBLE_QUOTE,
+	Q_SINGLE_QUOTE
+}			t_quote_remover_state;
 
-void	clear_buffer(t_buffer *buf);
-void	push_buffer(t_buffer *buf, char input);
-void	expand_buffer(t_buffer *buf);
-void	reset_buffer(t_buffer *buf);
-void	init_buffer(t_buffer *buf);
-int		is_meta(char c);
-int		is_blank(char c);
-int		is_parenthesis(char c);
-int		is_bool(char c);
-int		is_redir(char c);
+t_quote_remover_state	quote_remover_chars(t_buffer *buf, char input);
+t_quote_remover_state	quote_remover_double_quote(t_buffer *buf, char input);
+t_quote_remover_state	quote_remover_single_quote(t_buffer *buf, char input);
+void					expand_tour_tree(t_parsetree_node *node, t_tokens *(*todo)(t_token *, char **),char **envp);
 
 #endif

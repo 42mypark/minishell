@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_epdr_expand.c                                  :+:      :+:    :+:   */
+/*   env_epdr_actions_expand.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 21:13:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 20:46:17 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 	static t_buffer	env_name;
 	char			*env;
 	int				i;
+	int				start;
 
 	expand_buffer(&env_name);
 	if (input == '_' || ft_isalnum(input))
@@ -29,12 +30,14 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 	{
 		env = dupenv(env_name.space, envp);
 		i = 0;
-		buf->ep_start = buf->len - 1;
+		start = buf->len - 1;
 		while (env[i])
 			push_buffer(buf, env[i++]);
-		buf->ep_end = buf->len;
+		add_ep_rec_back(&buf->ep_rec, new_ep_range(start, buf->len));
 		free(env);
 		reset_buffer(&env_name);
+		if (input == '$')
+			return (E_DQ_EXPAND);
 		push_buffer(buf, input);
 		if (input == '\"')
 			return (E_CHARS);
@@ -67,7 +70,7 @@ static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 	{
 		if (is_blank(env[i]))
 		{
-			buf->ep_end = buf->len;
+			add_ep_rec_back(&buf->ep_rec, new_ep_range(0, buf->len));
 			issue_token(tks, buf);
 			i = pass_blank(env, i);
 		}
@@ -91,10 +94,14 @@ t_env_epdr_state	env_epdr_expand(t_tokens *tks, t_buffer *buf, \
 		env_to_token(tks, buf, env);
 		free(env);
 		reset_buffer(&env_name);
+		if (input == '$')
+			return (E_EXPAND);
 		push_buffer(buf, input);
 		if (input == '\"')
-			return (E_CHARS);
-		return (E_DOUBLE_QUOTE);
+			return (E_DOUBLE_QUOTE);
+		if (input == '\'')
+			return (E_SINGLE_QUOTE);
+		return (E_CHARS);
 	}
 	return (E_EXPAND);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/25 01:40:19 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/26 16:54:32 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,20 @@ RL_LIB = $(RL_DIR)/lib
 # 		is_chars.c\
 # 		issue_token.c
 
-SRCS =	test_wildcard_epdr.c\
+SRCS_EXPANDER =	quote_remover_actions.c\
+				quote_remover.c\
+				env_epdr_actions.c\
+				env_epdr_actions_expand.c\
+				env_expander.c\
+				dupenv.c\
+				wildcard_check_format.c\
+				wildcard_epdr_actions.c\
+				wildcard_expander.c\
+				dup_filenames.c\
+				expand.c
+
+
+SRCS =	test_quote_remover.c\
 		tokenizer.c\
 		tokenizer_utils.c\
 		token.c\
@@ -86,16 +99,8 @@ SRCS =	test_wildcard_epdr.c\
 		print_parsetree.c\
 		is_chars.c\
 		issue_token.c\
-		dupenv.c\
-		env_epdr_actions.c\
-		env_epdr_expand.c\
-		env_expander.c\
-		expand.c\
-		dup_filenames.c\
-		wildcard_expander.c\
-		wildcard_check_format.c\
-		wildcard_epdr_actions.c\
-		print_strerror.c
+		print_strerror.c\
+		$(SRCS_EXPANDER)
 
 INCS = test.h
 OBJ_DIR = ./obj

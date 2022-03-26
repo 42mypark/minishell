@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 20:55:09 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 20:36:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,18 @@ static void	env_expander(t_tokens *tks, char *str, char **envp)
 		str++;
 	}
 	if (s == E_EXPAND)
-		actions[E_EXPAND](tks, &buf, '\0', envp);
-	if (buf.len)
 	{
-		issue_token(tks, &buf);
-		tk_tail = tks->tail->content;
+		actions[E_EXPAND](tks, &buf, '\0', envp);
+		add_ep_rec_back(&buf.ep_rec, new_ep_range(0, buf.len));
 	}
+	if (buf.len)
+		issue_token(tks, &buf);
 	reset_buffer(&buf);
 }
 
 t_tokens	*expand_token_env(t_token *tk, char **envp)
 {
 	t_tokens	*tks;
-	char		*str;
 
 	tks = new_tokens();
 	env_expander(tks, tk->content, envp);

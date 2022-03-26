@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_quote.c                                     :+:      :+:    :+:   */
+/*   ft_lstdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 20:34:59 by mypark           ###   ########.fr       */
+/*   Created: 2021/12/01 21:40:33 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/26 21:09:16 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_tree.h"
+#include "libft.h"
 
-void	quote_removal(t_tokens *tks)
+t_list	*ft_lstdup(t_list *lst, void *(*dup)(void *))
 {
-	if (tks == NULL || tks->head == NULL)
-		return ;
-	
-}
+	t_list	*new;
 
-void	remove_quote(t_parsetree_node *node)
-{
-	if (node->type == TOKENS)
-		quote_removal(node->tokens);
-	remove_quote(node->left);
-	remove_quote(node->right);
+	if (lst == NULL)
+		return (NULL);
+	new = NULL;
+	while (lst)
+	{
+		ft_lstadd_back(&new, dup(lst->content));
+		lst = lst->next;
+	}
+	return (new);
 }
