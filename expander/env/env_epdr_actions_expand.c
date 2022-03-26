@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 20:46:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 21:17:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 		start = buf->len - 1;
 		while (env[i])
 			push_buffer(buf, env[i++]);
-		add_ep_rec_back(&buf->ep_rec, new_ep_range(start, buf->len));
+		ep_rec_add_back(&buf->ep_rec, new_ep_range(start, buf->len));
 		free(env);
 		reset_buffer(&env_name);
 		if (input == '$')
@@ -70,7 +70,7 @@ static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 	{
 		if (is_blank(env[i]))
 		{
-			add_ep_rec_back(&buf->ep_rec, new_ep_range(0, buf->len));
+			ep_rec_add_back(&buf->ep_rec, new_ep_range(0, buf->len));
 			issue_token(tks, buf);
 			i = pass_blank(env, i);
 		}

@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/26 16:54:32 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/26 21:19:28 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ SRCS_EXPANDER =	quote_remover_actions.c\
 				wildcard_epdr_actions.c\
 				wildcard_expander.c\
 				dup_filenames.c\
-				expand.c
+				expand.c\
+				ep_rec.c
 
 
 SRCS =	test_quote_remover.c\

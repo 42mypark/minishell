@@ -48,6 +48,7 @@ SRCS_BONUS =	ft_lstadd_back.c\
 				ft_lstmap.c\
 				ft_lstnew.c\
 				ft_lstsize.c\
+				ft_lstdup.c\
 				bi_lstadd_back.c\
 				bi_lstadd_front.c\
 				bi_lstdelone.c\

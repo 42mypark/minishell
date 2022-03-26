@@ -6,28 +6,39 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 17:24:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 22:05:00 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "parse_tree.h"
 #include "quote_remover_utils.h"
+#include "ep_rec.h"
 
 static int	jump_expanded(t_buffer *buf, int i, t_token *tk)
 {
-	int		start;
-	int		end;
-	char	*str;
+	int				start;
+	int				end;
+	char			*str;
+	t_ep_range		*ep_range;
+	static t_ep_rec	*curr = NULL;
 
-	start = tk->ep_start;
-	end = tk->ep_end;
-	if (i != start)
+	if (tk->ep_rec == NULL || tk->ep_rec->content == NULL)
+		return (i);
+	if (curr != NULL)
+		ep_range = curr->content;
+	else
+	{
+		ep_range = tk->ep_rec->content;
+		curr = tk->ep_rec;
+	}
+	if (i != ep_range->start)
 		return (i);
 	str = tk->content;
 	i += (str[i] == '\"');
-	while (i < end)
+	while (i < ep_range->end)
 		push_buffer(buf, str[i++]);
+	curr = curr->next;
 	return (end);
 }
 

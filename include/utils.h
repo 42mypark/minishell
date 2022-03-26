@@ -6,13 +6,14 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 19:40:44 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 21:16:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 # define BUFFER_SIZE 128
+# include "libft.h"
 
 typedef struct s_buf
 {

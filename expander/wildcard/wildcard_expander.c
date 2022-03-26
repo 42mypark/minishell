@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 20:46:22 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/26 21:18:09 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "wildcard_expander_utils.h"
 #include "libft.h"
 #include "token.h"
+#include "ep_rec.h"
 
 static void	wildcard_expander(t_tokens *tks, char *format, char **envp)
 {
@@ -31,7 +32,7 @@ static void	wildcard_expander(t_tokens *tks, char *format, char **envp)
 		{
 			buf.space = files[i];
 			buf.len = ft_strlen(buf.space);
-			add_ep_rec_back(&buf.ep_rec, new_ep_range(0, buf.len));
+			ep_rec_add_back(&buf.ep_rec, new_ep_range(0, buf.len));
 			issue_token(tks, &buf);
 		}
 		i++;
