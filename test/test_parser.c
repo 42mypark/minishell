@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 16:35:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:03:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(void)
 		tks = new_tokens();
 		input = readline("msh ^ㅁ^/ $$ ");
 		if (input[0] == '\0')
-			continue;
+			continue ;
 		pid = fork();
 		if (pid == 0)
 		{

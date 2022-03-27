@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:53:01 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:20:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	wildcard_check_format(char *file, char *format)
 	int						fi;
 	int						wc;
 	t_wildcard_epdr_state	s;
-	t_wildcard_epdr_state	(*actions[4])(char **, char *, int *, int *);
+	t_wildcard_epdr_state	(*actions[2])(char **, char *, int *, int *);
 
 	wildcard_epdr_init(&s, actions, format, &splited_format);
 	wc = 0;

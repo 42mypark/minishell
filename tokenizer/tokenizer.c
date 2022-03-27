@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:48:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:34:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	tokenizer(t_tokens *tks, char *readline)
 		expand_buffer(&buf);
 		if (s == T_BLANK)
 			s = tokenizer_blank(&buf, *readline);
-		if (s == T_SINGLE_QUOTE)
+		else if (s == T_SINGLE_QUOTE)
 			s = tokenizer_single_quote(&buf, *readline);
-		if (s == T_DOUBLE_QUOTE)
+		else if (s == T_DOUBLE_QUOTE)
 			s = tokenizer_double_quote(&buf, *readline);
-		if (s == T_CHARS)
+		else if (s == T_CHARS)
 			s = tokenizer_chars(tks, &buf, *readline);
-		if (s == T_SINGLE_META)
+		else if (s == T_SINGLE_META)
 			s = tokenizer_single_meta(tks, &buf, *readline);
-		if (s == T_DOUBLE_META)
+		else if (s == T_DOUBLE_META)
 			s = tokenizer_double_meta(tks, &buf, *readline);
 		readline++;
 	}

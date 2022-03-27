@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ep_rec.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 20:01:45 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 22:24:57 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:56:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_ep_range	*new_ep_range(int start, int end)
 
 void	free_ep_range(void *ep_range)
 {
-	t_ep_range *rec;
+	t_ep_range	*rec;
 
 	rec = (t_ep_range *)ep_range;
 	free(rec);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_tokenizer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:47:37 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 18:22:21 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:10:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 {
 	t_tokens	*tks;
 	char		*input;
-	
+
 	while (1)
 	{
 		tks = new_tokens();

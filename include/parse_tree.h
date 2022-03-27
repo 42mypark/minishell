@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tree.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 16:15:26 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:07:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct s_parsetree_node
 	struct s_parsetree_node	*right;
 }				t_parsetree_node;
 
-t_parsetree_node		*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent);
+t_parsetree_node		*new_parsetree_node(t_tokens *tks, \
+											t_parsetree_node *parent);
 void					free_parsetree_node(t_parsetree_node *node);
 enum e_parsetree_node	to_enum_parsetree_node(enum e_token tk_type);
 

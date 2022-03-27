@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_ep_rec.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/27 14:09:38 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/27 14:09:56 by mypark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "test.h"
 
-void print_ep_range(t_ep_range *range)
+void	print_ep_range(t_ep_range *range)
 {
 	if (range == NULL)
 	{
@@ -18,9 +30,9 @@ void	print_ep_rec(t_ep_rec *rec)
 	if (curr == NULL)
 	{
 		printf("curr_rec : %p\n", curr);
-		return;
+		return ;
 	}
-	while(curr)
+	while (curr)
 	{
 		printf("curr_rec : %p\n", curr);
 		print_ep_range(curr->content);

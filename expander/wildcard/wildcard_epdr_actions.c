@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asterisk_epdr_actions.c                            :+:      :+:    :+:   */
+/*   wildcard_epdr_actions.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:36:54 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:59:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "utils.h"
 #include "test.h"
 
-t_wildcard_epdr_state	wildcard_epdr_compare(char **splited_format, char *file, int *wc, int *fi)
+t_wildcard_epdr_state	wildcard_epdr_compare(char **splited_format, \
+											char *file, int *wc, int *fi)
 {
 	int	len;
 
@@ -29,7 +30,8 @@ t_wildcard_epdr_state	wildcard_epdr_compare(char **splited_format, char *file, i
 		return (A_REJECT);
 }
 
-t_wildcard_epdr_state	wildcard_epdr_wildcard(char **splited_format, char *file, int *wc, int *fi)
+t_wildcard_epdr_state	wildcard_epdr_wildcard(char **splited_format, \
+											char *file, int *wc, int *fi)
 {
 	char	escape_char;
 

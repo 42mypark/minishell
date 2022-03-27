@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_env_epdr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 19:05:09 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:10:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **envp)
 		tks = new_tokens();
 		input = readline("msh ^ㅁ^/ $$ ");
 		if (input[0] == '\0')
-			continue;
+			continue ;
 		pid = fork();
 		if (pid == 0)
 		{

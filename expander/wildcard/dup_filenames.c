@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:45:08 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:53:47 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:58:41 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	**put_on_files(DIR *dir_ptr, int file_cnt)
 	return (files);
 }
 
-char	**dup_filenames()
+char	**dup_filenames(void)
 {
 	char	*dir_name;
 	DIR		*dir_ptr;

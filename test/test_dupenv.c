@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_dupenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 17:32:10 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 19:19:12 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:02:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_dupenv(char *target, char **envp)
 	int	ei;
 	int	len;
 
-	if(target == NULL || envp == NULL)
+	if (target == NULL || envp == NULL)
 		return (ft_strdup(""));
 	ei = 0;
 	len = ft_strlen(target);
@@ -33,7 +33,9 @@ char	*ft_dupenv(char *target, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char *path = ft_dupenv("PATH", envp);
+	char	*path;
+
+	path = ft_dupenv("PATH", envp);
 	ft_putendl_fd(path, 1);
 	free(path);
 }

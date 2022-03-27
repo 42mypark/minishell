@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:49:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:09:21 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*enum_token_to_str(enum e_token type)
 		return ("EXPANDED_STR");
 	return ("INVALID");
 }
-
 
 void	print_tokens(t_tokens *tks)
 {

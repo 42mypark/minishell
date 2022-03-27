@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:06:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:34:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:09:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	while(1)
+	while (1)
 	{
 		sleep(3);
 		system("leaks minishell");

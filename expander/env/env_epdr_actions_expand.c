@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:52:26 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 14:18:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,25 @@
 #include "utils.h"
 #include "test.h"
 
+static void	push_env_to_buffer(t_buffer *env_name, t_buffer *buf, char **envp)
+{
+	char	*env;
+	int		i;
+	int		start;
+
+	env = dupenv(env_name->space, envp);
+	i = 0;
+	start = buf->len;
+	while (env[i])
+		push_buffer(buf, env[i++]);
+	ep_rec_add_back(&buf->ep_rec, new_ep_range(start, buf->len));
+	free(env);
+}
+
 t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 									char input, char **envp)
 {
 	static t_buffer	env_name;
-	char			*env;
-	int				i;
-	int				start;
 
 	tks++;
 	expand_buffer(&env_name);
@@ -29,13 +41,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 		push_buffer(&env_name, input);
 	else
 	{
-		env = dupenv(env_name.space, envp);
-		i = 0;
-		start = buf->len;
-		while (env[i])
-			push_buffer(buf, env[i++]);
-		ep_rec_add_back(&buf->ep_rec, new_ep_range(start, buf->len));
-		free(env);
+		push_env_to_buffer(&env_name, buf, envp);
 		reset_buffer(&env_name);
 		if (input == '$')
 			return (E_DQ_EXPAND);
@@ -50,10 +56,10 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 static int	pass_blank(char *str, int i)
 {
 	i++;
-	while(str[i])
+	while (str[i])
 	{
 		if (!is_blank(str[i]))
-			break;
+			break ;
 		i++;
 	}
 	return (i);
