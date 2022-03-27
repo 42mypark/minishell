@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/26 21:19:28 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/27 13:37:13 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -fsanitize=address#-Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -101,7 +101,8 @@ SRCS =	test_quote_remover.c\
 		is_chars.c\
 		issue_token.c\
 		print_strerror.c\
-		$(SRCS_EXPANDER)
+		$(SRCS_EXPANDER) \
+		print_ep_rec.c
 
 INCS = test.h
 OBJ_DIR = ./obj

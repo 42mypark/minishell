@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 21:17:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:52:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	env_epdr_init(\
 
 static void	env_expander(t_tokens *tks, char *str, char **envp)
 {
-	t_token				*tk_tail;
 	t_buffer			buf;
 	t_env_epdr_state	s;
 	t_env_epdr_state	(*actions[5])(t_tokens *, t_buffer *, char, char **);

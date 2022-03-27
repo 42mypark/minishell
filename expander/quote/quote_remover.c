@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_remover.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 22:05:00 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:50:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,30 @@
 #include "parse_tree.h"
 #include "quote_remover_utils.h"
 #include "ep_rec.h"
+#include "test.h"
 
 static int	jump_expanded(t_buffer *buf, int i, t_token *tk)
 {
-	int				start;
-	int				end;
-	char			*str;
-	t_ep_range		*ep_range;
-	static t_ep_rec	*curr = NULL;
+	char		*str;
+	t_ep_range	*ep_range;
+	t_ep_rec	*curr;
 
-	if (tk->ep_rec == NULL || tk->ep_rec->content == NULL)
+	if (tk->ep_rec == NULL)
 		return (i);
-	if (curr != NULL)
-		ep_range = curr->content;
-	else
+	curr = tk->ep_rec;
+	while (curr)
 	{
-		ep_range = tk->ep_rec->content;
-		curr = tk->ep_rec;
+		ep_range = curr->content;
+		if (ep_range->start == i)
+		{
+			str = tk->content;
+			while (i < ep_range->end)
+				push_buffer(buf, str[i++]);
+			return (jump_expanded(buf, i, tk));
+		}
+		curr = curr->next;
 	}
-	if (i != ep_range->start)
-		return (i);
-	str = tk->content;
-	i += (str[i] == '\"');
-	while (i < ep_range->end)
-		push_buffer(buf, str[i++]);
-	curr = curr->next;
-	return (end);
+	return (i);
 }
 
 static void	quote_remover(t_tokens *tks, t_token *tk)
@@ -75,7 +73,7 @@ t_tokens	*expand_token_quote(t_token *tk, char **envp)
 {
 	t_tokens	*tks;
 
-	envp = NULL;
+	envp++;
 	tks = new_tokens();
 	quote_remover(tks, tk);
 	free_token(tk);

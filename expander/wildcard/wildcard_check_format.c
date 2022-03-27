@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 01:55:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:53:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	is_success(char *format, char *file, int fi, char *last_format)
 	last_char = ft_strlen(format) - 1;
 	if (last_format == NULL && format[last_char] == '*')
 		return (1);
-	if (last_format == NULL && fi == ft_strlen(file))
+	if (last_format == NULL && fi == (int)ft_strlen(file))
 		return (1);
 	return (0);
 }

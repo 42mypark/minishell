@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:40:33 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 22:21:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 12:05:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*ft_lstdup(t_list *lst, void *(*dup)(void *))
 	new_lst = NULL;
 	while (lst)
 	{
-		ft_lstadd_back(&new_lst, dup(lst->content));
+		ft_lstadd_back(&new_lst, ft_lstnew(dup(lst->content)));
 		lst = lst->next;
 	}
 	return (new_lst);

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:45:08 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 02:54:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:53:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	count_files(DIR *dir_ptr)
 	return (cnt);
 }
 
-static char	**put_on_files(char *dir_name, DIR *dir_ptr, int file_cnt)
+static char	**put_on_files(DIR *dir_ptr, int file_cnt)
 {
 	char			**files;
 	struct dirent	*dp;
@@ -63,7 +63,7 @@ char	**dup_filenames()
 	file_cnt = count_files(dir_ptr);
 	closedir(dir_ptr);
 	dir_ptr = opendir(dir_name);
-	files = put_on_files(dir_name, dir_ptr, file_cnt);
+	files = put_on_files(dir_ptr, file_cnt);
 	closedir(dir_ptr);
 	free(dir_name);
 	return (files);

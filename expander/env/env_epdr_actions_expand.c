@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_epdr_actions_expand.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 21:17:22 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:52:26 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 	int				i;
 	int				start;
 
+	tks++;
 	expand_buffer(&env_name);
 	if (input == '_' || ft_isalnum(input))
 		push_buffer(&env_name, input);
@@ -30,7 +31,7 @@ t_env_epdr_state	env_epdr_dq_expand(t_tokens *tks, t_buffer *buf, \
 	{
 		env = dupenv(env_name.space, envp);
 		i = 0;
-		start = buf->len - 1;
+		start = buf->len;
 		while (env[i])
 			push_buffer(buf, env[i++]);
 		ep_rec_add_back(&buf->ep_rec, new_ep_range(start, buf->len));
@@ -61,17 +62,19 @@ static int	pass_blank(char *str, int i)
 static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 {
 	int		i;
-	t_token	*tk_tail;
+	int		start;
 
 	i = 0;
 	if (is_blank(env[0]))
 		i = pass_blank(env, i);
+	start = buf->len;
 	while (env[i])
 	{
 		if (is_blank(env[i]))
 		{
-			ep_rec_add_back(&buf->ep_rec, new_ep_range(0, buf->len));
+			ep_rec_add_back(&buf->ep_rec, new_ep_range(start, buf->len));
 			issue_token(tks, buf);
+			start = 0;
 			i = pass_blank(env, i);
 		}
 		else

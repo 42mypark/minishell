@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:27:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 02:47:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:49:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ static int	is_correct_quotes(t_tokens *tks)
 {
 	t_tokens_node	*curr;
 	t_token			*tk;
-	int				cnt;
 
 	curr = tks->head;
-	cnt = 0;
 	while (curr != tks->tail)
 	{
 		tk = curr->content;

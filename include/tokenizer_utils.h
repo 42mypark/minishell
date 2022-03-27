@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 02:58:40 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:46:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ enum e_token		to_enum_token(char *str);
 t_tokenizer_state	tokenizer_chars(t_tokens *tks, t_buffer *buf, char input);
 t_tokenizer_state	tokenizer_single_meta(t_tokens *tks, t_buffer *buf, char input);
 t_tokenizer_state	tokenizer_double_meta(t_tokens *tks, t_buffer *buf, char input);
-t_tokenizer_state	tokenizer_double_quote(t_tokens *tks, t_buffer *buf, char input);
-t_tokenizer_state	tokenizer_single_quote(t_tokens *tks, t_buffer *buf, char input);
+t_tokenizer_state	tokenizer_double_quote(t_buffer *buf, char input);
+t_tokenizer_state	tokenizer_single_quote(t_buffer *buf, char input);
 
 #endif

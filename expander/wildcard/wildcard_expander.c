@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_expander.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 21:18:09 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:53:18 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	wildcard_expander(t_tokens *tks, char *format, char **envp)
 	char		**files;
 	t_buffer	buf;
 
+	envp++;
 	init_buffer(&buf);
 	files = dup_filenames();
 	i = 0;
@@ -43,7 +44,6 @@ static void	wildcard_expander(t_tokens *tks, char *format, char **envp)
 t_tokens	*expand_token_wildcard(t_token *tk, char **envp)
 {
 	t_tokens	*tks;
-	char		*str;
 
 	tks = new_tokens();
 	wildcard_expander(tks, tk->content, envp);

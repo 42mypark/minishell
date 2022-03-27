@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_behavior.c                               :+:      :+:    :+:   */
+/*   tokenizer_actions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:09:36 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 02:53:21 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:46:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,16 @@ t_tokenizer_state	tokenizer_double_meta(t_tokens *tks, \
 	return (T_CHARS);
 }
 
-t_tokenizer_state	tokenizer_single_quote(t_tokens *tks, \
-											t_buffer *buf, char input)
+t_tokenizer_state	tokenizer_single_quote(t_buffer *buf, char input)
 {
-	t_tokens_node	*curr;
-
-	curr = tks->head;
 	push_buffer(buf, input);
 	if (input == '\'')
 		return (T_CHARS);
 	return (T_SINGLE_QUOTE);
 }
 
-t_tokenizer_state	tokenizer_double_quote(t_tokens *tks, \
-											t_buffer *buf, char input)
+t_tokenizer_state	tokenizer_double_quote(t_buffer *buf, char input)
 {
-	t_tokens_node	*curr;
-
-	curr = tks->head;
 	push_buffer(buf, input);
 	if (input == '\"')
 		return (T_CHARS);

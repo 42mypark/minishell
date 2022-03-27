@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_epdr_actions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 17:29:55 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:52:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 t_env_epdr_state	env_epdr_chars(t_tokens *tks, t_buffer *buf, \
 									char input, char **envp)
 {
+	tks++;
+	envp++;
 	if (input == '$')
 		return (E_EXPAND);
 	push_buffer(buf, input);
@@ -30,6 +32,8 @@ t_env_epdr_state	env_epdr_chars(t_tokens *tks, t_buffer *buf, \
 t_env_epdr_state	env_epdr_double_quote(t_tokens *tks, t_buffer *buf, \
 									char input, char **envp)
 {
+	tks++;
+	envp++;
 	if (input == '$')
 		return (E_DQ_EXPAND);
 	push_buffer(buf, input);
@@ -41,6 +45,8 @@ t_env_epdr_state	env_epdr_double_quote(t_tokens *tks, t_buffer *buf, \
 t_env_epdr_state	env_epdr_single_quote(t_tokens *tks, t_buffer *buf, \
 									char input, char **envp)
 {
+	tks++;
+	envp++;
 	push_buffer(buf, input);
 	if (input == '\'')
 		return (E_CHARS);
