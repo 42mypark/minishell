@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_check_format.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/28 22:05:20 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 00:56:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 #include "wildcard_expander_utils.h"
 #include "test.h"
 
-static void	wildcard_epdr_init(\
-	t_wildcard_epdr_state *s, \
-	t_wildcard_epdr_state (*actions[2])(char **, char *, int *, int *), \
+static void	wildcard_matcher_init(\
+	t_wildcard_matcher_state *s, \
+	t_wildcard_matcher_state (*actions[2])(char **, char *, int *, int *), \
 	t_token *tk)
 {
 	char	*format;
 
 	format = tk->content;
 	if (format[0] == '*')
-		*s = A_WILDCARD;
+		*s = WM_WILDCARD;
 	else
-		*s = A_COMPARE;
-	actions[0] = wildcard_epdr_wildcard;
-	actions[1] = wildcard_epdr_compare;
+		*s = WM_COMPARE;
+	actions[0] = wildcard_matcher_wildcard;
+	actions[1] = wildcard_matcher_compare;
 }
 
 static int	is_success(char *format, char *file, int fi, char *last_format)
@@ -44,18 +44,18 @@ static int	is_success(char *format, char *file, int fi, char *last_format)
 
 int	wildcard_check_format(char *file, t_token *tk, char **formats)
 {
-	int						fi;
-	int						wc;
-	t_wildcard_epdr_state	s;
-	t_wildcard_epdr_state	(*actions[2])(char **formats, char *file, int *wc, int *fi);
+	int							fi;
+	int							wc;
+	t_wildcard_matcher_state	s;
+	t_wildcard_matcher_state	(*actions[2])(char **formats, char *file, int *wc, int *fi);
 
-	wildcard_epdr_init(&s, actions, tk);
+	wildcard_matcher_init(&s, actions, tk);
 	wc = 0;
 	fi = 0;
 	while (file[fi] && formats[wc])
 	{
 		s = actions[s](formats, file, &wc, &fi);
-		if (s == A_REJECT)
+		if (s == WM_REJECT)
 			return (0);
 	}
 	if (is_success(tk->content, file, fi, formats[wc]))

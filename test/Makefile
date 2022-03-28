@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/28 20:56:36 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/29 01:43:58 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ SRCS_EXPANDER =	quote_remover_actions.c\
 				env_expander.c\
 				dupenv.c\
 				wildcard_check_format.c\
-				wildcard_epdr_actions.c\
+				wildcard_matcher_actions.c\
+				wildcard_spliter_actions.c\
 				wildcard_expander.c\
 				wildcard_split.c\
 				dup_filenames.c\

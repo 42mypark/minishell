@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 01:50:59 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 02:29:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ static int	**copy_table(const char (*table)[11])
 	int	**syn_tb;
 
 	syn_tb = malloc(sizeof(int *) * 11);
+	if (syn_tb == NULL)
+		print_malloc_error();
 	i = -1;
 	while (++i < 11)
 	{
 		syn_tb[i] = malloc(sizeof(int) * 11);
+		if (syn_tb[i] == NULL)
+			print_malloc_error();
 		j = -1;
 		while (++j < 11)
 			syn_tb[i][j] = (int) table[i][j];

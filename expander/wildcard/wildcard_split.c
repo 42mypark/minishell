@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:06 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/28 22:25:52 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 01:52:09 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,137 +14,90 @@
 #include "libft.h"
 #include "ep_rec.h"
 #include "test.h"
+#include "wildcard_expander_utils.h"
 
-static int	is_first_of_format(char const *init, const char *s)
+
+static int	get_counts(t_tokens *tks)
 {
-	char	curr;
-	char	prev;
+	int				cnt;
+	t_tokens_node	*curr;
 
-	if (s == init)
+	if (tks == NULL || tks->head == NULL)
+		return (0);
+	cnt = 1;
+	curr = tks->head;
+	while(curr != tks->tail)
 	{
-		if (*s != '*')
-			return (1);
-		else
-			return (0);
-	}
-	curr = *s;
-	prev = *(s - 1);
-	if (curr != '*' && prev == '*')
-		return (1);
-	return (0);
-}
-
-static int	is_last_of_format(const char *s)
-{
-	char	curr;
-	char	next;
-
-	curr = *s;
-	next = *(s + 1);
-	if (curr != '*' && (next == '*' || next == '\0'))
-		return (1);
-	return (0);
-}
-
-static int	is_outer_double_quote(t_token *tk, int i)
-{
-	t_ep_range	*range;
-	t_ep_rec	*curr;
-
-	curr = tk->ep_rec;
-	while(curr)
-	{
-		range = curr->content;
-		if (i >= range->start && i < range->end)
-			return (0);
+		cnt++;
 		curr = curr->next;
 	}
-	return (1);
+	return (cnt);
 }
 
-static void	*_free_wilds(char **formats, int wc)
+static char	**tokens_to_splited(t_tokens *tks)
 {
-	while (wc-- > 0)
-	{
-		free(formats[wc]);
-	}
-	free(formats);
-	return (NULL);
-}
+	char			**splited;
+	int				wc;
+	t_tokens_node	*curr;
+	t_token			*tk;
 
-static int	jump_quote(t_token *tk, int i)
-{
-	char	*str;
-
-	str = tk->content;
-	i++;
-	while(str[i])
-	{
-		if (str[i] == '\"' && is_outer_double_quote(tk, i))
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
-static char	**formats_alloc(t_token *tk)
-{
-	char	**formats;
-	char	*str;
-	int		wc;
-	int		dq;
-	int		i;
-
+	wc = get_counts(tks);
+	splited = malloc(sizeof(char *) * (wc + 1));
+	if (splited == NULL)
+		print_malloc_error();
+	splited[wc] = NULL;
+	curr = tks->head;
 	wc = 0;
-	dq = 0;
+	while(curr != tks->tail)
+	{
+		tk = curr->content;
+		splited[wc++] = ft_strdup(tk->content);
+		curr = curr->next;
+	}
+	if (tks->tail != NULL)
+	{
+		tk = tks->tail->content;
+		splited[wc++] = ft_strdup(tk->content);
+	}
+	return (splited);
+}
+
+static void	wildcard_spliter(t_tokens *tks, t_token *origin)
+{
+	t_buffer					buf;
+	char						*str;
+	int							i;
+	t_wildcard_spliter_state	s;
+
+	init_buffer(&buf);
+	str = origin->content;
+	s = WS_CHARS;
 	i = 0;
-	str = tk->content;
 	while (str[i])
 	{
-		if (str[i] == '\"' && is_outer_double_quote(tk, i))
-			i = jump_quote(tk, i);
-		else if (is_last_of_format(str + i))
-			wc++;
+		expand_buffer(&buf);
+		if (s == WS_CHARS)
+			s = wildcard_spliter_chars(tks, &buf, origin, i);
+		else if (s == WS_DOUBLE_QUOTE)
+			s = wildcard_spliter_double_quote(&buf, origin, i);
+		else if (s == WS_SINGLE_QUOTE)
+			s = wildcard_spliter_single_quote(&buf, origin, i);
 		i++;
 	}
-	formats = malloc(sizeof(char *) * (wc + 1));
-	if (formats == NULL)
-		return (NULL);
-	formats[wc] = NULL;
-	return (formats);
+	if (buf.len)
+		issue_token(tks, &buf);
+	reset_buffer(&buf);
 }
 
-char	**wildcard_split(t_token *tk)
+char	**wildcard_split(t_token *origin)
 {
-	char	**formats;
-	int		wc;
-	int		start;
-	int		i;
-	char	*str;
+	t_tokens		*tks;
+	char			**formats;
 
-	formats = formats_alloc(tk);
-	if (formats == NULL)
-		return (NULL);
-	i = 0;
-	wc = 0;
-	str = tk->content;
-	while (str[i])
-	{
-		if (str[i] == '\"' && is_outer_double_quote(tk, i))
-			i = jump_quote(tk, i);
-		else
-		{
-			if (is_first_of_format(str, str + i))
-				start = i;
-			if (is_last_of_format(str + i))
-			{
-				formats[wc] = malloc(sizeof(char) * ((i - start + 1) + 1));
-				if (formats[wc] == NULL)
-					return (_free_wilds(formats, wc));
-				ft_strlcpy(formats[wc++], str + start, (i - start + 1) + 1);
-			}
-		}
-		i++;
-	}
+	tks = new_tokens();
+	wildcard_spliter(tks, origin);
+	print_tokens(tks);
+	formats = tokens_to_splited(tks);
+	free_tokens(tks);
 	return (formats);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wildcard_epdr_actions.c                            :+:      :+:    :+:   */
+/*   wildcard_matcher_actions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:59:44 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/29 00:18:12 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/29 00:56:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include "test.h"
 
-t_wildcard_epdr_state	wildcard_epdr_compare(char **splited_format, \
+t_wildcard_matcher_state	wildcard_matcher_compare(char **splited_format, \
 											char *file, int *wc, int *fi)
 {
 	int	len;
@@ -24,23 +24,23 @@ t_wildcard_epdr_state	wildcard_epdr_compare(char **splited_format, \
 	{
 		(*fi) += len;
 		(*wc)++;
-		return (A_WILDCARD);
+		return (WM_WILDCARD);
 	}
 	else
-		return (A_REJECT);
+		return (WM_REJECT);
 }
 
-t_wildcard_epdr_state	wildcard_epdr_wildcard(char **splited_format, \
+t_wildcard_matcher_state	wildcard_matcher_wildcard(char **splited_format, \
 											char *file, int *wc, int *fi)
 {
 	char	escape_char;
 
 	escape_char = splited_format[*wc][0];
 	if (file[*fi] == escape_char)
-		return (A_COMPARE);
+		return (WM_COMPARE);
 	else
 	{
 		(*fi)++;
-		return (A_WILDCARD);
+		return (WM_WILDCARD);
 	}
 }
