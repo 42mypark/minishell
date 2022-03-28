@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 14:08:26 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/27 15:04:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,4 @@ t_tokenizer_state	tokenizer_single_meta(t_tokens *tks, t_buffer *buf, \
 										char input);
 t_tokenizer_state	tokenizer_double_meta(t_tokens *tks, t_buffer *buf, \
 										char input);
-
 #endif
