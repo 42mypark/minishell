@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_check_format.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 22:13:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/28 22:05:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 static void	wildcard_epdr_init(\
 	t_wildcard_epdr_state *s, \
 	t_wildcard_epdr_state (*actions[2])(char **, char *, int *, int *), \
-	char *format, char ***splited_format)
+	t_token *tk)
 {
+	char	*format;
+
+	format = tk->content;
 	if (format[0] == '*')
 		*s = A_WILDCARD;
 	else
 		*s = A_COMPARE;
 	actions[0] = wildcard_epdr_wildcard;
 	actions[1] = wildcard_epdr_compare;
-	*splited_format = ft_split(format, '*');
-	if (*splited_format == NULL)
-		print_malloc_error();
 }
 
 static int	is_success(char *format, char *file, int fi, char *last_format)
@@ -42,31 +42,23 @@ static int	is_success(char *format, char *file, int fi, char *last_format)
 	return (0);
 }
 
-int	wildcard_check_format(char *file, char *format)
+int	wildcard_check_format(char *file, t_token *tk, char **formats)
 {
-	char					**splited_format;
 	int						fi;
 	int						wc;
 	t_wildcard_epdr_state	s;
-	t_wildcard_epdr_state	(*actions[2])(char **splited_format, char *file, int *wc, int *fi);
+	t_wildcard_epdr_state	(*actions[2])(char **formats, char *file, int *wc, int *fi);
 
-	wildcard_epdr_init(&s, actions, format, &splited_format);
+	wildcard_epdr_init(&s, actions, tk);
 	wc = 0;
 	fi = 0;
-	while (file[fi] && splited_format[wc])
+	while (file[fi] && formats[wc])
 	{
-		s = actions[s](splited_format, file, &wc, &fi);
+		s = actions[s](formats, file, &wc, &fi);
 		if (s == A_REJECT)
-		{
-			ft_free_splited(splited_format);
 			return (0);
-		}
 	}
-	if (is_success(format, file, fi, splited_format[wc]))
-	{
-		ft_free_splited(splited_format);
+	if (is_success(tk->content, file, fi, formats[wc]))
 		return (1);
-	}
-	ft_free_splited(splited_format);
 	return (0);
 }
