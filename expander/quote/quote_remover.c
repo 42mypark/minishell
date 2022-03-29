@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_remover.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:50:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 18:04:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ static void	quote_remover(t_tokens *tks, t_token *tk)
 	{
 		if (s == Q_CHARS)
 			s = quote_remover_chars(&buf, str[i]);
-		if (s == Q_DOUBLE_QUOTE)
+		else if (s == Q_DOUBLE_QUOTE)
 			s = quote_remover_double_quote(&buf, str[i]);
-		if (s == Q_SINGLE_QUOTE)
+		else if (s == Q_SINGLE_QUOTE)
 			s = quote_remover_single_quote(&buf, str[i]);
+		if (s != Q_CHARS)
+			buf.quoted = 1;
 		i = jump_expanded(&buf, ++i, tk);
 		expand_buffer(&buf);
 	}

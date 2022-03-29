@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_quote_remover.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 02:24:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 16:58:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv, char **envp)
 			remove_quote(pt_head, envp);
 			print_parsetree(pt_head, &cnt); // 3
 			//free_parsetree(pt_head);
+			exit(0);
 		}
 		else
 			waitpid(pid, &exit_status, 0);

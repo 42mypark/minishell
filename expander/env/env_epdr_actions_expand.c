@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_epdr_actions_expand.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 14:18:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 19:21:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,17 @@ static int	pass_blank(char *str, int i)
 static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 {
 	int		i;
-	int		start;
 
 	i = 0;
 	if (is_blank(env[0]))
 		i = pass_blank(env, i);
-	start = buf->len;
+	buf->start = buf->len; //?
 	while (env[i])
 	{
 		if (is_blank(env[i]))
 		{
-			ep_rec_add_back(&buf->ep_rec, new_ep_range(start, buf->len));
+			ep_rec_add_back(&buf->ep_rec, new_ep_range(buf->start, buf->len));
 			issue_token(tks, buf);
-			start = 0;
 			i = pass_blank(env, i);
 		}
 		else
