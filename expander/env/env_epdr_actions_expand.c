@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:59:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 19:21:25 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 19:27:41 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 	i = 0;
 	if (is_blank(env[0]))
 		i = pass_blank(env, i);
-	buf->start = buf->len; //?
+	buf->start = buf->len;
 	while (env[i])
 	{
 		if (is_blank(env[i]))
