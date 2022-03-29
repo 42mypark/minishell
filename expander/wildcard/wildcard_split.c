@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:06 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 19:34:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/30 02:21:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "test.h"
 #include "wildcard_expander_utils.h"
 
-static int	token_counts(t_tokens *tks)
+static int	count_token(t_tokens *tks)
 {
 	int				cnt;
 	t_tokens_node	*curr;
@@ -40,7 +40,7 @@ static char	**tokens_to_splited(t_tokens *tks)
 	t_tokens_node	*curr;
 	t_token			*tk;
 
-	wc = token_counts(tks);
+	wc = count_token(tks);
 	splited = malloc(sizeof(char *) * (wc + 1));
 	if (splited == NULL)
 		print_malloc_error();
@@ -95,7 +95,6 @@ char	**wildcard_split(t_token *origin)
 
 	tks = new_tokens();
 	wildcard_spliter(tks, origin);
-	print_tokens(tks);
 	formats = tokens_to_splited(tks);
 	free_tokens(tks);
 	return (formats);

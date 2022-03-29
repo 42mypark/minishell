@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:55:44 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/25 21:09:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/30 02:25:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent)
 	t_parsetree_node	*new;
 	t_token				*tk;
 
+	if (tks == NULL)
+		return (NULL);
 	new = malloc(sizeof(t_parsetree_node));
-	if (new == NULL || tks == NULL)
+	if (new == NULL)
 		return (NULL);
 	new->left = NULL;
 	new->right = NULL;
@@ -57,4 +59,15 @@ void	free_parsetree_node(t_parsetree_node *node)
 {
 	free_tokens(node->tokens);
 	free(node);
+}
+
+void	free_parsetree(t_parsetree_node *node)
+{
+	if (node == NULL)
+		return ;
+	free_parsetree(node->left);
+	free_parsetree(node->right);
+	node->left = NULL;
+	node->right = NULL;
+	free_parsetree_node(node);
 }
