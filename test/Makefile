@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/30 20:41:15 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/31 02:11:28 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,10 +78,28 @@ SRCS_EXPANDER =	quote_remover_actions.c\
 				tokens_to_splited.c\
 				count_token.c
 
-SRCS_REDIRECTION =	parse_to_exe.c\
-					exe_tree.c\
-					cmd_info.c\
-					err_info.c
+SRCS_REDIRECTION =	make_exetree.c\
+					listen_heredoc_quoted.c\
+					make_cmd.c\
+					meet_redir.c
+
+SRCS_INFO =	cmd_info.c\
+			err_info.c\
+			exe_info.c
+
+SRCS_TREE =	exe_tree.c\
+			parse_tree.c
+
+SRCS_PRINT =	print_syntax_error.c\
+				print_malloc_error.c\
+				print_strerror.c
+
+SRCS_TEST_PRINT =	print_tokens.c\
+					print_parsetree.c\
+					print_exetree.c\
+					print_ep_rec.c\
+					print_splited.c\
+					print_exe_info.c
 
 SRCS =	test_to_exetree.c\
 		tokenizer.c\
@@ -98,22 +116,17 @@ SRCS =	test_to_exetree.c\
 		parse.c\
 		pass_parenthesis.c\
 		remove_parenthesis.c\
-		parse_tree.c\
 		syntax_error.c\
 		syntax_unexpected_token.c\
 		syntax_incorrect_pairs.c\
-		print_tokens.c\
-		print_syntax_error.c\
-		print_malloc_error.c\
-		print_parsetree.c\
 		is_chars.c\
 		issue_token.c\
-		print_strerror.c\
 		$(SRCS_EXPANDER) \
-		print_ep_rec.c\
 		$(SRCS_REDIRECTION)\
-		print_exetree.c\
-		print_splited.c
+		$(SRCS_INFO)\
+		$(SRCS_TREE)\
+		$(SRCS_TEST_PRINT)\
+		$(SRCS_PRINT)
 
 INCS = test.h
 OBJ_DIR = ./obj

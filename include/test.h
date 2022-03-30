@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 20:37:37 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 02:18:26 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "ep_rec.h"
 # include "exe_tree.h"
 # include "redirection.h"
+# include "info.h"
 
 void	print_tokens(t_tokens *tks);
 void	print_parsetree(t_parsetree_node *node, int *cnt);
@@ -37,5 +38,6 @@ void	print_exetree(t_exetree_node *node, int *cnt);
 void	print_exetree_node(t_exetree_node *node, int *cnt);
 void	print_cmd_info(t_cmd_info *info);
 void	print_err_info(t_err_info *info);
+void	print_exe_info(t_exe_info *info);
 
 #endif
