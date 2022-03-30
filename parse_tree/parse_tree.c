@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:55:44 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 02:25:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/30 15:33:57 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent)
 	new->right = NULL;
 	new->parent = parent;
 	new->tokens = tks;
-	new->parsed = 0;
 	new->type = TOKENS;
 	if (tks->head)
 	{

@@ -1,19 +1,19 @@
-total 600
+total 608
 -rw-r--r--   1 mypark  2021_seoul       0 Mar 26 18:53 ""b
 -rw-r--r--   1 mypark  2021_seoul       0 Mar 28 22:28 "*"
 -rw-r--r--   1 mypark  2021_seoul       0 Mar 29 16:51 "a"
 -rw-r--r--   1 mypark  2021_seoul       0 Mar 28 22:27 "asdf"
 -rw-r--r--   1 mypark  2021_seoul       0 Mar 29 16:51 '*'
 -rw-r--r--   1 mypark  2021_seoul       0 Mar 29 16:51 'a'
-drwxr-xr-x  26 mypark  2021_seoul     884 Mar 29 20:29 .
+drwxr-xr-x  26 mypark  2021_seoul     884 Mar 29 21:54 .
 drwxr-xr-x  16 mypark  2021_seoul     544 Mar 24 13:04 ..
 -rw-r--r--   1 mypark  2021_seoul    3793 Mar 29 18:01 Makefile
--rw-r--r--   1 mypark  2021_seoul       0 Mar 29 20:39 a
+-rw-r--r--   1 mypark  2021_seoul       0 Mar 29 21:55 a
 -rwxr-xr-x   1 mypark  2021_seoul   49736 Mar 24 16:48 a.out
 -rwxr-xr-x   1 mypark  2021_seoul   49424 Mar 26 17:18 argcnt
 -rw-r--r--   1 mypark  2021_seoul     971 Mar 28 14:34 argcnt.c
--rw-r--r--   1 mypark  2021_seoul       0 Mar 29 20:39 b
--rw-r--r--   1 mypark  2021_seoul    1600 Mar 29 20:30 c
+-rw-r--r--   1 mypark  2021_seoul     424 Mar 29 21:54 b
+-rw-r--r--   1 mypark  2021_seoul    1657 Mar 29 20:45 c
 -rwxr-xr-x   1 mypark  2021_seoul   16744 Mar 28 14:34 leakcheck
 -rwxr-xr-x   1 mypark  2021_seoul  136672 Mar 29 19:21 minishell
 drwxr-xr-x  43 mypark  2021_seoul    1462 Mar 29 19:21 obj

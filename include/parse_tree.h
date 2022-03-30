@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 17:56:52 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/29 21:42:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ enum e_parsetree_node
 typedef struct s_parsetree_node
 {
 	enum e_parsetree_node	type;
-	int						parsed;
-	int						executed;
 	t_tokens				*tokens;
 	struct s_parsetree_node	*parent;
 	struct s_parsetree_node	*left;
