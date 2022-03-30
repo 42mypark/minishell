@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/29 18:01:58 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/30 20:41:15 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,10 +74,16 @@ SRCS_EXPANDER =	quote_remover_actions.c\
 				wildcard_split.c\
 				dup_filenames.c\
 				expand.c\
-				ep_rec.c
+				ep_rec.c\
+				tokens_to_splited.c\
+				count_token.c
 
+SRCS_REDIRECTION =	parse_to_exe.c\
+					exe_tree.c\
+					cmd_info.c\
+					err_info.c
 
-SRCS =	test_quote_remover.c\
+SRCS =	test_to_exetree.c\
 		tokenizer.c\
 		tokenizer_utils.c\
 		token.c\
@@ -104,7 +110,10 @@ SRCS =	test_quote_remover.c\
 		issue_token.c\
 		print_strerror.c\
 		$(SRCS_EXPANDER) \
-		print_ep_rec.c
+		print_ep_rec.c\
+		$(SRCS_REDIRECTION)\
+		print_exetree.c\
+		print_splited.c
 
 INCS = test.h
 OBJ_DIR = ./obj

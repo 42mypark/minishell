@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 18:05:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/30 17:29:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		is_blank(char c);
 int		is_parenthesis(char c);
 int		is_bool(char c);
 int		is_redir(char c);
+char	*dupenv(char *target, char **envp);
 
 #endif

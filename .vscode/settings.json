@@ -10,6 +10,7 @@
 		"test.h": "c",
 		"utils.h": "c",
 		"quote_remover_utils.h": "c",
-		"error.h": "c"
+		"error.h": "c",
+		"exe_tree.h": "c"
 	}
 }

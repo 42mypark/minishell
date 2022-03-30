@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dupenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:20:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 14:01:26 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/30 17:29:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "test.h"
 
 char	*dupenv(char *target, char **envp)
 {

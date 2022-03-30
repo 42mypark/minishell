@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 18:07:52 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/30 16:45:29 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ t_tokens	*cut_tokens_back(t_tokens *tks, t_tokens_node *curr);
 t_tokens	*cut_tokens_front(t_tokens *tks, t_tokens_node *curr);
 t_tokens	*merge_tokens(t_tokens *tks1, t_tokens *tks2);
 void		issue_token(t_tokens *tks, t_buffer *buf);
+char		**tokens_to_splited(t_tokens *tks);
+int			count_token(t_tokens *tks);
 
 #endif

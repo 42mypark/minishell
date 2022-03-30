@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander_utils.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 14:05:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/30 17:29:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ void				expand_tour_tree(\
 								t_parsetree_node *node, \
 								t_tokens *(*todo)(t_token *, char **), \
 								char **envp);
-char				*dupenv(char *target, char **envp);
 
 #endif
