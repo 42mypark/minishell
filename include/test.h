@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 02:18:26 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 22:05:26 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # include "exe_tree.h"
 # include "redirection.h"
 # include "info.h"
+# include "env_expander_utils.h"
+#include <string.h>
+#include <errno.h>
+
 
 void	print_tokens(t_tokens *tks);
 void	print_parsetree(t_parsetree_node *node, int *cnt);

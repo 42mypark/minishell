@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leakcheck.c                                        :+:      :+:    :+:   */
+/*   is_same.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 15:06:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 21:55:32 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/31 18:09:58 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/31 18:10:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "libft.h"
 
-int	main(void)
+int	is_same(char *s1, char *s2)
 {
-	while (1)
-	{
-		sleep(1);
-		system("leaks minishell");
-	}
+	if (ft_strncmp(s1, s2, -1) == 0)
+		return (1);
+	return (0);
 }

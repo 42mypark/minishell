@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 18:05:06 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 18:49:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ void	clear_buffer(t_buffer *buf)
 	buf->ep_rec = NULL;
 }
 
-void	push_buffer(t_buffer *buf, char input)
-{
-	if (input == '\0')
-		return ;
-	buf->space[buf->len++] = input;
-	buf->space[buf->len] = '\0';
-}
-
 void	expand_buffer(t_buffer *buf)
 {
 	if (buf->space == 0)
@@ -59,11 +51,29 @@ void	expand_buffer(t_buffer *buf)
 		if (buf->space == 0)
 			print_malloc_error();
 	}
-	else if (buf->len == buf->cnt * BUFFER_SIZE)
+	else if (buf->len == buf->cnt * BUFFER_SIZE - 1)
 	{
 		buf->cnt++;
 		buf->space = ft_realloc(buf->space, buf->cnt * BUFFER_SIZE);
 		if (buf->space == 0)
 			print_malloc_error();
+	}
+}
+
+void	push_buffer(t_buffer *buf, char input)
+{
+	if (input == '\0')
+		return ;
+	expand_buffer(buf);
+	buf->space[buf->len++] = input;
+	buf->space[buf->len] = '\0';
+}
+
+void	push_buffer_str(t_buffer *buf, char *str)
+{
+	while (*str)
+	{
+		push_buffer(buf, *str);
+		str++;
 	}
 }

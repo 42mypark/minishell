@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meet_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 02:23:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 18:35:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 		return (0);
 	else if (p_nd->type == NODE_HRD)
 	{
+		if (e_nd->infd != 0)
+			close(e_nd->infd);
 		pipe(p);
 		insert_new_pipe(info, p);
 		if (tk->type == QUOTED_STR)
 			listen_heredoc_quoted(tk->content, p[1]);
 		else
-		{
-			// unquoted - need expansion!
-		}
+			listen_heredoc(tk->content, p[1], info->envp);
 		e_nd->infd = p[0];
 	}
 	return (1);

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leakcheck.c                                        :+:      :+:    :+:   */
+/*   strict_malloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 15:06:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 21:55:32 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/31 20:47:13 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/31 20:49:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
+#include "error.h"
 
-int	main(void)
+void	*strict_malloc(int size, int count)
 {
-	while (1)
-	{
-		sleep(1);
-		system("leaks minishell");
-	}
+	void	*mem;
+	
+	mem = malloc(size * count);
+	if (mem == NULL)
+		print_malloc_error();
+	return (mem);
 }

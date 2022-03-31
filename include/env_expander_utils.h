@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander_utils.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 01:49:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:16:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_env_epdr_state	env_epdr_dq_expand(\
 	char **envp);
 void				expand_tour_tree(\
 	t_parsetree_node *node, \
-	t_tokens *(*todo)(t_token *, char **), \
 	char **envp);
 
 #endif

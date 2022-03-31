@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 17:20:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 22:02:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	env_epdr_init(\
 	init_buffer(buf);
 }
 
-static void	env_expander(t_tokens *tks, char *str, char **envp)
+void	env_expander(t_tokens *tks, char *str, char **envp)
 {
 	t_buffer			buf;
 	t_env_epdr_state	s;
@@ -37,7 +37,6 @@ static void	env_expander(t_tokens *tks, char *str, char **envp)
 	s = E_CHARS;
 	while (*str)
 	{
-		expand_buffer(&buf);
 		s = actions[s](tks, &buf, *str, envp);
 		str++;
 	}
@@ -49,19 +48,4 @@ static void	env_expander(t_tokens *tks, char *str, char **envp)
 	if (buf.len)
 		issue_token(tks, &buf);
 	reset_buffer(&buf);
-}
-
-t_tokens	*expand_token_env(t_token *tk, char **envp)
-{
-	t_tokens	*tks;
-
-	tks = new_tokens();
-	env_expander(tks, tk->content, envp);
-	free_token(tk);
-	return (tks);
-}
-
-void	expand_env(t_parsetree_node *head, char **envp)
-{
-	expand_tour_tree(head, expand_token_env, envp);
 }

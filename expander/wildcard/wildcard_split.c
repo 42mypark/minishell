@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:06 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 16:46:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 18:47:59 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	wildcard_spliter(t_tokens *tks, t_token *origin)
 	i = 0;
 	while (str[i])
 	{
-		expand_buffer(&buf);
 		if (s == WS_CHARS)
 			s = wildcard_spliter_chars(tks, &buf, origin, i);
 		else if (s == WS_DOUBLE_QUOTE)

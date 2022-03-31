@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_expander_utils.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 01:40:12 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:17:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef enum e_wildcard_spliter_state
 
 void						expand_tour_tree(\
 	t_parsetree_node *node, \
-	t_tokens *(*todo)(t_token *, char **), \
 	char **envp);
 int							wildcard_check_format(\
 	char *file, \

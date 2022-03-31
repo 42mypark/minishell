@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc_quoted.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 00:49:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 20:55:21 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,30 @@
 #include <unistd.h>
 #include "utils.h"
 #include "libft.h"
-
-static int	is_same(char *s1, char *s2)
-{
-	if (ft_strncmp(s1, s2, -1) == 0)
-		return (1);
-	return (0);
-}
+#include "error.h"
 
 void	listen_heredoc_quoted(char *limiter, int to)
 {
-	char	buf[BUFFER_SIZE + 1];
+	char	*buf;
 	int		read_size;
+	int		lim_len;
 
 	limiter = ft_strjoin(limiter, "\n");
+	lim_len = ft_strlen(limiter);
+	buf = malloc(sizeof(char) * (lim_len + 2));
+	if (buf == NULL)
+		print_malloc_error();
+	ft_putstr_fd("> ", 1);
 	while (1)
 	{
-		ft_putstr_fd("> ", 1);
-		read_size = read(0, buf, BUFFER_SIZE);
+		read_size = read(0, buf, lim_len + 1);
 		buf[read_size] = '\0';
 		if (is_same(buf, limiter))
 			break ;
 		write(to, buf, read_size);
+		if (ft_strchr(buf, '\n'))
+			ft_putstr_fd("> ", 1);
 	}
+	free(buf);
+	close(to);
 }

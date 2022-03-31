@@ -6,13 +6,13 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 17:29:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 19:02:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
-# define BUFFER_SIZE 128
+# define BUFFER_SIZE 5
 # include "libft.h"
 
 typedef struct s_buf
@@ -30,11 +30,13 @@ void	push_buffer(t_buffer *buf, char input);
 void	expand_buffer(t_buffer *buf);
 void	reset_buffer(t_buffer *buf);
 void	init_buffer(t_buffer *buf);
+void	push_buffer_str(t_buffer *buf, char *str);
 int		is_meta(char c);
 int		is_blank(char c);
 int		is_parenthesis(char c);
 int		is_bool(char c);
 int		is_redir(char c);
 char	*dupenv(char *target, char **envp);
+int		is_same(char *s1, char *s2);
 
 #endif

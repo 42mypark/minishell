@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_exetree_node.c                                     :+:      :+:    :+:   */
+/*   make_exetree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 15:40:03 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 00:15:43 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
+/*   Updated: 2022/03/31 17:54:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_in
 	return (0);
 }
 
-
 static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 {
 	while (p_nd)
@@ -62,7 +61,7 @@ static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_i
 			break ;
 		}
 		if (meet_redir(p_nd, e_nd, info) == 0)
-			break;
+			break ;
 		p_nd = p_nd->left;
 	}
 }
@@ -70,18 +69,9 @@ static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_i
 t_exetree_node	*make_exetree_node(t_parsetree_node *p_nd, int infd, int outfd, t_exe_info *info)
 {
 	t_exetree_node	*e_nd;
-	int				p[2];
 
 	e_nd = new_exetree_node(to_enum_exetree_node(p_nd->type), infd, outfd);
-	if (p_nd->type == NODE_PIPE)
-	{
-		pipe(p);
-		insert_new_pipe(info, p);
-		printf("pipe re : %d, we : %d\n", p[0], p[1]);
-		e_nd->left = make_exetree_node(p_nd->left, e_nd->infd, p[1], info);
-		e_nd->right = make_exetree_node(p_nd->right, p[0], e_nd->outfd, info);
-	}
-	else if (p_nd->type & (NODE_AND | NODE_OR))
+	if (p_nd->type & (NODE_AND | NODE_OR | NODE_PIPE))
 	{
 		e_nd->left = make_exetree_node(p_nd->left, e_nd->infd, e_nd->outfd, info);
 		e_nd->right = make_exetree_node(p_nd->right, e_nd->infd, e_nd->outfd, info);
@@ -97,4 +87,3 @@ t_exetree_node	*make_exetree(t_parsetree_node *p_nd, t_exe_info *info)
 {
 	return (make_exetree_node(p_nd, 0, 1, info));
 }
-

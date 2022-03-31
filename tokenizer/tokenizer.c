@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 14:34:54 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 18:47:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	tokenizer(t_tokens *tks, char *readline)
 	s = T_BLANK;
 	while (*readline)
 	{
-		expand_buffer(&buf);
 		if (s == T_BLANK)
 			s = tokenizer_blank(&buf, *readline);
 		else if (s == T_SINGLE_QUOTE)

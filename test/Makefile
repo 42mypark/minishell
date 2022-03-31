@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/31 02:11:28 by mypark           ###   ########.fr        #
+#    Updated: 2022/03/31 21:43:06 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g #-fsanitize=address -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -24,49 +24,11 @@ RL_DIR = /usr/include#$(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
-# SRCS =	test_tokenizer.c\
-# 		tokenizer.c\
-# 		tokenizer_utils.c\
-# 		token.c\
-# 		cut_tokens.c\
-# 		find_token_forward.c\
-# 		merge_tokens.c\
-# 		print_tokens.c\
-# 		buffer.c\
-# 		actions.c
-
-# SRCS =	test_parser.c\
-# 		tokenizer.c\
-# 		tokenizer_utils.c\
-# 		token.c\
-# 		cut_tokens.c\
-# 		find_token_forward.c\
-# 		merge_tokens.c\
-# 		buffer.c\
-# 		tokenizer_actions.c\
-# 		parse_bool.c\
-# 		parse_pipe.c\
-# 		parse_redir.c\
-# 		parse.c\
-# 		pass_parenthesis.c\
-# 		remove_parenthesis.c\
-# 		parse_tree.c\
-# 		syntax_error.c\
-# 		syntax_unexpected_token.c\
-# 		syntax_incorrect_pairs.c\
-# 		print_tokens.c\
-# 		print_syntax_error.c\
-# 		print_malloc_error.c\
-# 		print_parsetree.c\
-# 		is_chars.c\
-# 		issue_token.c
-
 SRCS_EXPANDER =	quote_remover_actions.c\
 				quote_remover.c\
 				env_epdr_actions.c\
 				env_epdr_actions_expand.c\
 				env_expander.c\
-				dupenv.c\
 				wildcard_check_format.c\
 				wildcard_matcher_actions.c\
 				wildcard_spliter_actions.c\
@@ -80,6 +42,7 @@ SRCS_EXPANDER =	quote_remover_actions.c\
 
 SRCS_REDIRECTION =	make_exetree.c\
 					listen_heredoc_quoted.c\
+					listen_heredoc.c\
 					make_cmd.c\
 					meet_redir.c
 
@@ -101,6 +64,13 @@ SRCS_TEST_PRINT =	print_tokens.c\
 					print_splited.c\
 					print_exe_info.c
 
+SRCS_UTILS =	buffer.c\
+				is_chars.c\
+				dupenv.c\
+				is_same.c
+
+SRCS_STRICT =	strict_malloc.c
+
 SRCS =	test_to_exetree.c\
 		tokenizer.c\
 		tokenizer_utils.c\
@@ -108,7 +78,6 @@ SRCS =	test_to_exetree.c\
 		cut_tokens.c\
 		find_token_forward.c\
 		merge_tokens.c\
-		buffer.c\
 		tokenizer_actions.c\
 		parse_bool.c\
 		parse_pipe.c\
@@ -119,14 +88,15 @@ SRCS =	test_to_exetree.c\
 		syntax_error.c\
 		syntax_unexpected_token.c\
 		syntax_incorrect_pairs.c\
-		is_chars.c\
 		issue_token.c\
 		$(SRCS_EXPANDER) \
 		$(SRCS_REDIRECTION)\
 		$(SRCS_INFO)\
 		$(SRCS_TREE)\
 		$(SRCS_TEST_PRINT)\
-		$(SRCS_PRINT)
+		$(SRCS_PRINT)\
+		$(SRCS_UTILS)\
+		$(SRCS_STRICT)
 
 INCS = test.h
 OBJ_DIR = ./obj

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 18:04:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/03/31 22:02:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	jump_expanded(t_buffer *buf, int i, t_token *tk)
 	return (i);
 }
 
-static void	quote_remover(t_tokens *tks, t_token *tk)
+void	quote_remover(t_tokens *tks, t_token *tk)
 {
 	t_quote_remover_state	s;
 	t_buffer				buf;
@@ -48,7 +48,6 @@ static void	quote_remover(t_tokens *tks, t_token *tk)
 	char					*str;
 
 	init_buffer(&buf);
-	expand_buffer(&buf);
 	str = tk->content;
 	s = Q_CHARS;
 	i = 0;
@@ -64,25 +63,8 @@ static void	quote_remover(t_tokens *tks, t_token *tk)
 		if (s != Q_CHARS)
 			buf.quoted = 1;
 		i = jump_expanded(&buf, ++i, tk);
-		expand_buffer(&buf);
 	}
 	if (buf.len)
 		issue_token(tks, &buf);
 	reset_buffer(&buf);
-}
-
-t_tokens	*expand_token_quote(t_token *tk, char **envp)
-{
-	t_tokens	*tks;
-
-	envp++;
-	tks = new_tokens();
-	quote_remover(tks, tk);
-	free_token(tk);
-	return (tks);
-}
-
-void	remove_quote(t_parsetree_node *node, char **envp)
-{
-	expand_tour_tree(node, expand_token_quote, envp);
 }
