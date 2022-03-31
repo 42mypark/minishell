@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_to_exetree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 22:06:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 03:08:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	testleak(void)
 {
-	system("leaks minishell");
+	system("valgrind ./minishell --leak-check=full");
 }
 
 int	main(int argc, char **argv, char **envp)

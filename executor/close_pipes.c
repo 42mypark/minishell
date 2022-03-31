@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strict.h                                           :+:      :+:    :+:   */
+/*   close_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 02:34:34 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/01 02:31:21 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/01 02:31:57 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRICT_H
-# define STRICT_H
-# include <sys/types.h>
+#include "libft.h"
+#include "strict.h"
 
-void	*strict_malloc(int size, int count);
-pid_t	strict_fork(int size, int count);
-void	strict_dup2(int srcfd, int dstfd);
-void	strict_close(int fd);
-
-#endif
+void	close_pipes(t_list *pipes)
+{
+	int	*p;
+	while (pipes)
+	{
+		p = (int *)pipes->content;
+		strict_close(p[0]);
+		strict_close(p[1]);
+		pipes = pipes->next;
+	}
+}

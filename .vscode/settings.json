@@ -12,6 +12,7 @@
 		"quote_remover_utils.h": "c",
 		"error.h": "c",
 		"exe_tree.h": "c",
-		"redirection_utils.h": "c"
-	}
+		"redirection_utils.h": "c",
+		"wait.h": "c"
+	},
 }

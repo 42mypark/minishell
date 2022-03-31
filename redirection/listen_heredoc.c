@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 20:57:45 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 03:16:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 	init_buffer(&mbuf);
 	limiter = ft_strjoin(limiter, "\n");
 	lim_len = ft_strlen(limiter);
-	rbuf = strict_malloc(sizeof(char), lim_len + 2);
+	rbuf = strict_malloc(sizeof(char), lim_len + 1);
 	ft_putstr_fd("> ", 1);
 	while (1)
 	{
-		read_size = read(0, rbuf, lim_len + 1);
+		read_size = read(0, rbuf, lim_len);
 		rbuf[read_size] = '\0';
 		if (is_same(rbuf, limiter))
 			break ;
@@ -91,7 +91,8 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 		if (ft_strrchr(rbuf, '\n'))
 			ft_putstr_fd("> ", 1);
 	}
-	write(to, mbuf.space, mbuf.len); // write(1, mbuf.space, mbuf.len);
+	write(1, mbuf.space, mbuf.len);
+	write(to, mbuf.space, mbuf.len);
 	reset_buffer(&mbuf);
 	free(rbuf);
 	close(to);
