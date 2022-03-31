@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 03:16:01 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 03:23:00 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 		if (ft_strrchr(rbuf, '\n'))
 			ft_putstr_fd("> ", 1);
 	}
-	write(1, mbuf.space, mbuf.len);
 	write(to, mbuf.space, mbuf.len);
 	reset_buffer(&mbuf);
 	free(rbuf);
