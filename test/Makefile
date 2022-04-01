@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/04/01 22:46:20 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/02 04:10:37 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,14 @@ RL_DIR = /usr/include#$(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
+INCS_EXPANDER =	-I../parser/expander/\
+				-I../parser/expander/env\
+				-I../parser/expander/quote
+
 SRCS_EXPANDER =	quote_remover_actions.c\
 				quote_remover.c\
-				env_epdr_actions.c\
-				env_epdr_actions_expand.c\
+				env_expander_actions.c\
+				env_expander_actions_dollar.c\
 				env_expander.c\
 				wildcard_check_format.c\
 				wildcard_matcher_actions.c\
@@ -35,10 +39,10 @@ SRCS_EXPANDER =	quote_remover_actions.c\
 				wildcard_expander.c\
 				wildcard_split.c\
 				dup_filenames.c\
-				expand.c\
-				ep_rec.c\
-				tokens_to_splited.c\
-				count_token.c
+				expander.c\
+				expand_token.c\
+				expansion_record.c\
+				expansion_range.c
 
 SRCS_REDIRECTION =	make_exetree.c\
 					listen_heredoc_quoted.c\
@@ -60,14 +64,15 @@ SRCS_PRINT =	print_syntax_error.c\
 SRCS_TEST_PRINT =	print_tokens.c\
 					print_parsetree.c\
 					print_exetree.c\
-					print_ep_rec.c\
+					print_expansion_record.c\
 					print_splited.c\
 					print_exe_info.c
 
 SRCS_UTILS =	buffer.c\
 				is_chars.c\
 				dupenv.c\
-				is_same.c
+				is_same.c\
+				set_state.c
 
 SRCS_STRICT =	strict_malloc.c\
 				strict_fork.c\
@@ -83,9 +88,11 @@ SRCS_EXECUTOR =	calc_exit_status.c\
 				exe_pipe.c\
 				exe_redir.c\
 				executor.c\
-				set_exe_node_fd.c\
+				set_exe_node_fd.c
 
 SRCS =	test_executor.c\
+		count_token.c\
+		tokens_to_splited.c\
 		tokenizer.c\
 		tokenizer_utils.c\
 		token.c\
@@ -113,7 +120,6 @@ SRCS =	test_executor.c\
 		$(SRCS_STRICT)\
 		$(SRCS_EXECUTOR)
 
-INCS = test.h
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 INC_DIR = ../include
@@ -144,7 +150,7 @@ rr : wclean all
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -I $(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) -c $< -o $@ -g
+	@$(CC) $(CFLAGS) $(INCS_EXPANDER) -I $(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) -c $< -o $@ -g
 
 .PHONY : all clean fclean wclean re rr \
 	$(LIBFT_NAME)_clean $(LIBFT_NAME)_fclean

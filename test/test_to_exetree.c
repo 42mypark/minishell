@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 03:08:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 01:18:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv, char **envp)
 			tokenizer(tks, input);
 			print_tokens(tks);
 			syntax_error_check(tks);
-			pt_head = parse_script(tks);
+			pt_head = parser(tks);
 			expand_tour_tree(pt_head, envp);
 			printf("\n***** parse tree *****\n");
 			print_parsetree(pt_head, &pcnt);

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   print_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 19:16:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 01:32:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-#include "ep_rec.h"
+#include "expansion_record.h"
 
 char	*enum_token_to_str(enum e_token type)
 {
@@ -58,13 +58,13 @@ void	print_tokens(t_tokens *tks)
 		tk = curr->content;
 		printf("token type : %-10s \t", enum_token_to_str(tk->type));
 		printf("token content : %-20s \n", tk->content);
-		print_ep_rec(tk->ep_rec);
+		print_expansion_record(tk->expansion_record);
 		printf("\n");
 		curr = curr->next;
 	}
 	tk = curr->content;
 	printf("token type : %-10s \t", enum_token_to_str(tk->type));
 	printf("token content : %-20s \n", tk->content);
-	print_ep_rec(tk->ep_rec);
+	print_expansion_record(tk->expansion_record);
 	printf("\n");
 }

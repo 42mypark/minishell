@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 22:45:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 01:18:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	parse_node(t_parsetree_node *node)
 		parse_node(node);
 }
 
-t_parsetree_node	*parse_script(t_tokens	*tks)
+t_parsetree_node	*parser(t_tokens *tks)
 {
 	t_parsetree_node	*head;
 

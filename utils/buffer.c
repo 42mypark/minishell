@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 18:49:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 01:32:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "libft.h"
 #include "error.h"
-#include "ep_rec.h"
+#include "expansion_record.h"
 
 void	init_buffer(t_buffer *buf)
 {
@@ -22,13 +22,13 @@ void	init_buffer(t_buffer *buf)
 	buf->len = 0;
 	buf->cnt = 0;
 	buf->quoted = 0;
-	buf->ep_rec = NULL;
+	buf->expansion_record = NULL;
 }
 
 void	reset_buffer(t_buffer *buf)
 {
 	free(buf->space);
-	free_ep_rec(buf->ep_rec);
+	free_expansion_record(buf->expansion_record);
 	init_buffer(buf);
 }
 
@@ -38,8 +38,8 @@ void	clear_buffer(t_buffer *buf)
 	buf->space[0] = '\0';
 	buf->start = 0;
 	buf->quoted = 0;
-	free_ep_rec(buf->ep_rec);
-	buf->ep_rec = NULL;
+	free_expansion_record(buf->expansion_record);
+	buf->expansion_record = NULL;
 }
 
 void	expand_buffer(t_buffer *buf)

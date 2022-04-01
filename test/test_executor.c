@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 21:27:57 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 04:07:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	main(int argc, char **argv, char **envp)
 			printf("\n***** tokens *****\n");
 			//print_tokens(tks);
 			syntax_error_check(tks);
-			pt_head = parse_script(tks);
-			expand_tour_tree(pt_head, envp);
+			pt_head = parser(tks);
+			expander(pt_head, envp);
 			printf("\n***** parse tree *****\n");
 			print_parsetree(pt_head, &pcnt);
 			exe_head = make_exetree(pt_head, info);

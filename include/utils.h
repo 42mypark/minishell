@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 19:02:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 04:07:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_buf
 	int		cnt;
 	int		start;
 	int		quoted;
-	t_list	*ep_rec;
+	t_list	*expansion_record;
 }				t_buffer;
 
 void	clear_buffer(t_buffer *buf);
@@ -38,5 +38,6 @@ int		is_bool(char c);
 int		is_redir(char c);
 char	*dupenv(char *target, char **envp);
 int		is_same(char *s1, char *s2);
+int		set_state(int *old_state, int new_state);
 
 #endif
