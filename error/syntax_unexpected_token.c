@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_unexpected_token.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/29 02:29:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:01:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "utils.h"
 #include "error_utils.h"
+#include "strict.h"
 #include "test.h"
 
 static int	**copy_table(const char (*table)[11])
@@ -21,15 +22,11 @@ static int	**copy_table(const char (*table)[11])
 	int	j;
 	int	**syn_tb;
 
-	syn_tb = malloc(sizeof(int *) * 11);
-	if (syn_tb == NULL)
-		print_malloc_error();
+	syn_tb = strict_malloc(sizeof(int *), 11);
 	i = -1;
 	while (++i < 11)
 	{
-		syn_tb[i] = malloc(sizeof(int) * 11);
-		if (syn_tb[i] == NULL)
-			print_malloc_error();
+		syn_tb[i] = strict_malloc(sizeof(int), 11);
 		j = -1;
 		while (++j < 11)
 			syn_tb[i][j] = (int) table[i][j];

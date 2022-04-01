@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 03:23:00 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 20:28:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 	}
 	write(to, mbuf.space, mbuf.len);
 	reset_buffer(&mbuf);
+	free(limiter);
 	free(rbuf);
-	close(to);
+	strict_close(to);
 }

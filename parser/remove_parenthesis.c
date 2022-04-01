@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:31:39 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 14:42:02 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 21:46:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	remove_parenthesis(t_parsetree_node *pt_node)
 	tks = pt_node->tokens;
 	first = tks->head->content;
 	last = tks->tail->content;
-	if (first->type == LPT && last->type == RPT)
+	while (first->type == LPT && last->type == RPT)
 	{
 		tk = tks->pop_head(tks);
 		free_token(tk);
 		tk = tks->pop_tail(tks);
 		free_token(tk);
+		first = tks->head->content;
+		last = tks->tail->content;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 03:04:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:01:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "ep_rec.h"
 #include "error.h"
+#include "strict.h"
 #include <stdlib.h>
 
 void	free_token(void *token)
@@ -35,7 +36,7 @@ t_token	*new_token(enum e_token type, char *content)
 {
 	t_token	*tk;
 
-	tk = malloc(sizeof(t_token));
+	tk = strict_malloc(sizeof(t_token), 1);
 	if (tk == NULL)
 		return (NULL);
 	tk->content = ft_strdup(content);

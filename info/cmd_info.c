@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:51:01 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 01:25:25 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:02:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "info.h"
 #include "libft.h"
+#include "strict.h"
 #include <stdlib.h>
 
 t_cmd_info	*new_cmd_info(char *cmd, char **args, char **envp)
 {
 	t_cmd_info *info;
 
-	info = malloc(sizeof(t_cmd_info));
+	info = strict_malloc(sizeof(t_cmd_info), 1);
 	info->cmd = cmd;
 	info->args = args;
 	info->envp = envp;

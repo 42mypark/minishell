@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 21:17:13 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 19:04:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print_exetree_node(t_exetree_node *node, int *cnt)
 	printf("= %02d =======================================================\n", \
 			(*cnt)++);
 	printf("myaddr : %p \n", node);
+	printf("parent : %p \n", node->parent);
 	printf("left   : %p \t", node->left);
 	printf("right  : %p \n", node->right);
 	printf("type   : %s \n", enum_exetree_node_to_str(node->type));

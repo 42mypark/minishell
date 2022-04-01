@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/03/31 21:43:06 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/01 21:55:39 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,23 @@ SRCS_UTILS =	buffer.c\
 				dupenv.c\
 				is_same.c
 
-SRCS_STRICT =	strict_malloc.c
+SRCS_STRICT =	strict_malloc.c\
+				strict_fork.c\
+				strict_dup2.c\
+				strict_close.c
 
-SRCS =	test_to_exetree.c\
+SRCS_EXECUTOR =	calc_exit_status.c\
+				close_pipes.c\
+				close_pipe_oneside.c\
+				exe_and.c\
+				exe_bool_child.c\
+				exe_or.c\
+				exe_pipe.c\
+				exe_redir.c\
+				executor.c\
+				set_exe_node_fd.c\
+
+SRCS =	test_executor.c\
 		tokenizer.c\
 		tokenizer_utils.c\
 		token.c\
@@ -96,7 +110,8 @@ SRCS =	test_to_exetree.c\
 		$(SRCS_TEST_PRINT)\
 		$(SRCS_PRINT)\
 		$(SRCS_UTILS)\
-		$(SRCS_STRICT)
+		$(SRCS_STRICT)\
+		$(SRCS_EXECUTOR)
 
 INCS = test.h
 OBJ_DIR = ./obj

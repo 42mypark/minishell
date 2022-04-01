@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:31:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 02:31:57 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 20:58:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	close_pipes(t_list *pipes)
 	while (pipes)
 	{
 		p = (int *)pipes->content;
-		strict_close(p[0]);
-		strict_close(p[1]);
+		if (p[0] != -1)
+			strict_close(p[0]);
+		if (p[1] != -1)
+			strict_close(p[1]);
 		pipes = pipes->next;
 	}
 }

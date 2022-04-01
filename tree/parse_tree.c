@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:55:44 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 01:55:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:06:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_tree.h"
+#include "strict.h"
 
 enum e_parsetree_node	to_enum_parsetree_node(enum e_token tk_type)
 {
@@ -38,9 +39,7 @@ t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent)
 
 	if (tks == NULL)
 		return (NULL);
-	new = malloc(sizeof(t_parsetree_node));
-	if (new == NULL)
-		return (NULL);
+	new = strict_malloc(sizeof(t_parsetree_node), 1);
 	new->left = NULL;
 	new->right = NULL;
 	new->parent = parent;

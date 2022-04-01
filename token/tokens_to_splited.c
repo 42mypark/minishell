@@ -6,13 +6,14 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:42:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 16:43:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:02:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "libft.h"
 #include "error.h"
+#include "strict.h"
 
 char	**tokens_to_splited(t_tokens *tks)
 {
@@ -22,9 +23,7 @@ char	**tokens_to_splited(t_tokens *tks)
 	t_token			*tk;
 
 	wc = count_token(tks);
-	splited = malloc(sizeof(char *) * (wc + 1));
-	if (splited == 0)
-		print_malloc_error();
+	splited = strict_malloc(sizeof(char *), (wc + 1));
 	splited[wc] = 0;
 	curr = tks->head;
 	wc = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strict_dup2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:47:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 02:12:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 20:34:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	strict_dup2(int srcfd, int dstfd)
 
 	ret = dup2(srcfd, dstfd);
 	if (ret == -1)
-		print_strerror(strerror(errno));
+		print_strerror("dup2", strerror(errno));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strict_fork.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:47:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 02:12:27 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 20:34:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include <errno.h>
 #include "error.h"
 
-pid_t	strict_fork(int size, int count)
+pid_t	strict_fork()
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
-		print_strerror(strerror(errno));
+		print_strerror("fork", strerror(errno));
 	return (pid);
 }

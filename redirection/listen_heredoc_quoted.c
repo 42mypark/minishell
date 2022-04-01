@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc_quoted.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 03:22:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 20:28:46 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	listen_heredoc_quoted(char *limiter, int to)
 		if (ft_strchr(buf, '\n'))
 			ft_putstr_fd("> ", 1);
 	}
+	free(limiter);
 	free(buf);
-	close(to);
+	strict_close(to);
 }

@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -27,6 +28,7 @@
 # include "redirection.h"
 # include "info.h"
 # include "env_expander_utils.h"
+# include "executor.h"
 #include <string.h>
 #include <errno.h>
 

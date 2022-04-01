@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ep_rec.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 20:01:45 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:56:36 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:04:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ep_rec.h"
 #include "libft.h"
 #include "error.h"
+#include "strict.h"
 
 t_ep_range	*new_ep_range(int start, int end)
 {
 	t_ep_range	*range;
 
-	range = malloc(sizeof(t_ep_range));
-	if (range == NULL)
-		print_malloc_error();
+	range = strict_malloc(sizeof(t_ep_range), 1);
 	range->start = start;
 	range->end = end;
 	return (range);

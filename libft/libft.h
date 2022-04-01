@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:45:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/26 21:10:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 19:11:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstdup(t_list *lst, void *(*dup)(void *));
+t_list	*ft_lstpop_front(t_list **head);
 
 char	*ft_realloc(char *original, int desired);
 void	ft_strtoupper(char *s);

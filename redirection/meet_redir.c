@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 18:35:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 20:29:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "parse_tree.h"
 #include "utils.h"
 #include "test.h"
+#include "strict.h"
 #include <fcntl.h>
 #include "redirection_utils.h"
 
@@ -22,7 +23,7 @@ static int	register_fd(t_exetree_node *e_nd, int *dst_fd, char *file_name, int f
 	int	fd;
 
 	if (*dst_fd != 0 && *dst_fd != 1)
-		close(*dst_fd);
+		strict_close(*dst_fd);
 	fd = open(file_name, flag, 0644);
 	printf("fd : %d \t filename : %s \n", fd, file_name);
 	if (fd == -1)
@@ -61,7 +62,7 @@ int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 	else if (p_nd->type == NODE_HRD)
 	{
 		if (e_nd->infd != 0)
-			close(e_nd->infd);
+			strict_close(e_nd->infd);
 		pipe(p);
 		insert_new_pipe(info, p);
 		if (tk->type == QUOTED_STR)

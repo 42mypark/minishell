@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dup_filenames.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:45:08 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:58:41 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 20:34:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "error.h"
+#include "strict.h"
 #include <unistd.h>
 #include <dirent.h>
 #include <stdlib.h>
@@ -37,7 +38,7 @@ static char	**put_on_files(DIR *dir_ptr, int file_cnt)
 	struct dirent	*dp;
 	int				i;
 
-	files = malloc(sizeof(char *) * (file_cnt + 1));
+	files = strict_malloc(sizeof(char *), (file_cnt + 1));
 	files[file_cnt] = NULL;
 	i = 0;
 	dp = readdir(dir_ptr);
@@ -59,7 +60,7 @@ char	**dup_filenames(void)
 	dir_name = getcwd(NULL, 0);
 	dir_ptr = opendir(dir_name);
 	if (dir_ptr == NULL)
-		print_strerror("cannot be accessed");
+		print_strerror("DIR OPEN", "cannot be accessed");
 	file_cnt = count_files(dir_ptr);
 	closedir(dir_ptr);
 	dir_ptr = opendir(dir_name);
