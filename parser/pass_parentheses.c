@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pass_parenthesis.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 02:15:04 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 22:30:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_utils.h"
 
-t_tokens_node	*pass_parenthesis_forward(t_tokens_node *curr)
+t_tokens_node	*pass_parentheses_forward(t_tokens_node *curr)
 {
 	t_token	*tk;
 	int		cnt;
@@ -31,7 +31,7 @@ t_tokens_node	*pass_parenthesis_forward(t_tokens_node *curr)
 	return (curr);
 }
 
-t_tokens_node	*pass_parenthesis_backward(t_tokens_node *curr)
+t_tokens_node	*pass_parentheses_backward(t_tokens_node *curr)
 {
 	t_token	*tk;
 	int		cnt;

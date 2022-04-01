@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/04/01 21:55:39 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/01 22:31:00 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,8 +97,8 @@ SRCS =	test_executor.c\
 		parse_pipe.c\
 		parse_redir.c\
 		parse.c\
-		pass_parenthesis.c\
-		remove_parenthesis.c\
+		pass_parentheses.c\
+		remove_parentheses.c\
 		syntax_error.c\
 		syntax_unexpected_token.c\
 		syntax_incorrect_pairs.c\
