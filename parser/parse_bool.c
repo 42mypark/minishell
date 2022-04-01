@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bool.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 14:11:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/01 22:44:34 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parse_bool(t_parsetree_node *pt_node)
 
 	tks = pt_node->tokens;
 	curr = tks->tail;
-	curr = pass_parenthesis_forward(curr);
+	curr = pass_parentheses_forward(curr);
 	while (curr != tks->head)
 	{
 		tk = curr->content;
@@ -37,7 +37,7 @@ int	parse_bool(t_parsetree_node *pt_node)
 			return (1);
 		}
 		curr = curr->prev;
-		curr = pass_parenthesis_forward(curr);
+		curr = pass_parentheses_forward(curr);
 	}
 	return (0);
 }
