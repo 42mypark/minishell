@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:45:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 19:11:25 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 20:44:35 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strchr(const char *s, int c);
+int		ft_strchri(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strdup(const char *s);
@@ -77,5 +78,6 @@ t_list	*ft_lstpop_front(t_list **head);
 char	*ft_realloc(char *original, int desired);
 void	ft_strtoupper(char *s);
 void	ft_free_splited(char **words);
+char	*ft_strdiv(char **front, int index);
 
 #endif

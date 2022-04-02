@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 20:29:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 20:57:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 		if (e_nd->infd != 0)
 			strict_close(e_nd->infd);
 		pipe(p);
-		insert_new_pipe(info, p);
 		if (tk->type == QUOTED_STR)
 			listen_heredoc_quoted(tk->content, p[1]);
 		else
 			listen_heredoc(tk->content, p[1], info->envp);
 		e_nd->infd = p[0];
+		p[1] = -1;
+		insert_new_pipe(info, p);
 	}
 	return (1);
 }
