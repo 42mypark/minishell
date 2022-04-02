@@ -23,11 +23,11 @@
 # include "error.h"
 # include "tokenizer.h"
 # include "expander.h"
-# include "ep_rec.h"
+# include "../parser/expander/expansion_record.h"
 # include "exe_tree.h"
 # include "redirection.h"
 # include "info.h"
-# include "env_expander_utils.h"
+# include "../parser/expander/env/env_expander.h"
 # include "executor.h"
 #include <string.h>
 #include <errno.h>
@@ -36,8 +36,8 @@
 void	print_tokens(t_tokens *tks);
 void	print_parsetree(t_parsetree_node *node, int *cnt);
 void	print_parsetree_node(t_parsetree_node *node, int *cnt);
-void	print_ep_rec(t_ep_rec *rec);
-void	print_ep_range(t_ep_range *range);
+void	print_expansion_record(t_expansion_record *rec);
+void	print_expansion_range(t_expansion_range *range);
 char	*enum_token_to_str(enum e_token type);
 void	print_splited(char **splited);
 void	print_exetree(t_exetree_node *node, int *cnt);
