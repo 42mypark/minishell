@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 03:31:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 16:02:09 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	env_expander(t_tokens *tks, char *str, char **envp)
 	{
 		envexp.actions[E_EXPAND](&envexp, '\0');
 		range = new_expansion_range(envexp.buf->start, envexp.buf->len);
-		expansion_record_add_back(envexp.buf->expansion_record, range);
+		expansion_record_add_back(&envexp.buf->expansion_record, range);
 	}
 	if (envexp.buf->len)
 		issue_token(tks, envexp.buf);

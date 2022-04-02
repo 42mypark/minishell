@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander_actions_dollar.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 02:49:51 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 03:25:41 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/02 16:09:40 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	env_expander_dq_dollar(\
 			return (0);
 		push_buffer(envexp->buf, input);
 		if (input == '\"')
-			return (set_state(&envexp->state, E_CHARS));
-		return (set_state(&envexp->state, E_DOUBLE_QUOTE));
+			return (set_state((int *)&envexp->state, E_CHARS));
+		return (set_state((int *)&envexp->state, E_DOUBLE_QUOTE));
 	}
 	return (0);
 }
@@ -110,10 +110,10 @@ int	env_expander_dollar(\
 			return (0);
 		push_buffer(envexp->buf, input);
 		if (input == '\"')
-			return (set_state(&envexp->state, E_DOUBLE_QUOTE));
+			return (set_state((int *)&envexp->state, E_DOUBLE_QUOTE));
 		if (input == '\'')
-			return (set_state(&envexp->state, E_SINGLE_QUOTE));
-		return (set_state(&envexp->state, E_CHARS));
+			return (set_state((int *)&envexp->state, E_SINGLE_QUOTE));
+		return (set_state((int *)&envexp->state, E_CHARS));
 	}
 	return (0);
 }

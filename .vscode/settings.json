@@ -19,6 +19,6 @@
 		"executor.h": "c",
 		"expansion_record.h": "c",
 		"env_expander.h": "c",
-		"env_expander_actions.h": "c"
+		"env_expander_actions.h": "c",
 	},
 }

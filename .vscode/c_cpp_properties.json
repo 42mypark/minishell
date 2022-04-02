@@ -5,7 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/include/**",
-                "${workspaceFolder}/structure/**"
+                "${workspaceFolder}/structure/**",
+                "/Users/mypark/msh/parser/expander/",
+                "/Users/mypark/msh/parser/expander/env/"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
