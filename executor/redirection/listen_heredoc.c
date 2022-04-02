@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 21:00:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/03 00:52:39 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 	while (1)
 	{
 		input = readline("> ");
+		if (input == 0)
+			exit(0);
 		if (is_same(input, limiter))
 		{
 			free(input);

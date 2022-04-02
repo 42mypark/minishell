@@ -20,6 +20,13 @@
 		"expansion_record.h": "c",
 		"env_expander.h": "c",
 		"env_expander_actions.h": "c",
-		"signal.h": "c"
+		"signal.h": "c",
+		"chardefs.h": "c",
+		"tilde.h": "c",
+		"rltypedefs.h": "c",
+		"rlstdc.h": "c",
+		"rlconf.h": "c",
+		"history.h": "c",
+		"readline.h": "c"
 	},
 }

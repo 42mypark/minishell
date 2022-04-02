@@ -3,20 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   test_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 18:01:12 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/03 02:18:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 #include <readline/readline.h>
+#include <readline/history.h>
+#include <signal.h>
 #include <sys/wait.h>
 
 void	testleak(void)
 {
 	system("leaks minishell");
+}
+
+void	ctrl_c()
+{
+	printf("\n");
+	rl_replace_line("", 1);
+	rl_on_new_line();
+	rl_redisplay();
+}
+
+void	ctrl_c_child()
+{
+	ft_putstr_fd("hey!\n", 1);
+	exit(130);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -25,7 +41,7 @@ int	main(int argc, char **argv, char **envp)
 	t_parsetree_node	*pt_head;
 	t_exetree_node		*exe_head;
 	char				*input;
-	int					pcnt;
+	//int					pcnt;
 	int					ecnt;
 	pid_t				pid;
 	int					exit_status;
@@ -34,20 +50,22 @@ int	main(int argc, char **argv, char **envp)
 
 	//atexit(testleak);
 	info = new_exe_info(envp);
-
 	argc++;
 	a = argv[0];
 	a++;
+	signal(3, SIG_IGN);
 	while (1)
 	{
-		pcnt = 0;
+		signal(2, ctrl_c);
+		//pcnt = 0;
 		ecnt = 0;
 		input = readline("msh ^ㅁ^/ $$ ");
+		if (input && *input)
+			add_history(input);
 		if (input == 0)
 		{
-			//?
-			ft_putchar_fd('\n', 1);
-			continue;
+			printf(" exit\n");
+			exit(0);
 		}
 		if (input[0] == '\0')
 		{
@@ -58,6 +76,7 @@ int	main(int argc, char **argv, char **envp)
 		pid = fork();
 		if (pid == 0)
 		{
+			signal(2, ctrl_c_child);
 			tokenizer(tks, input);
 			free(input);
 			printf("\n***** tokens *****\n");
@@ -66,7 +85,7 @@ int	main(int argc, char **argv, char **envp)
 			pt_head = parser(tks);
 			expander(pt_head, envp);
 			printf("\n***** parse tree *****\n");
-			print_parsetree(pt_head, &pcnt);
+			//print_parsetree(pt_head, &pcnt);
 			exe_head = make_exetree(pt_head, info);
 			free_parsetree(pt_head);
 			printf("\n***** exe tree *****\n");
@@ -79,7 +98,10 @@ int	main(int argc, char **argv, char **envp)
 			exit(0);
 		}
 		else
+		{
+			signal(2, SIG_IGN);
 			waitpid(pid, &exit_status, 0);
+		}
 		free(input);
 		free_tokens(tks);
 	}

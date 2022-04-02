@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 21:55:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/03 03:08:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	exe_redir(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_ex
 		strict_dup2(exe_node->outfd, 1);
 		close_pipes(info->pipes);
 		free_exe_info(info);
+		if (exe_node->cmd == NULL)
+			exit(0);
 		execve(exe_node->cmd->cmd, exe_node->cmd->args, exe_node->cmd->envp); //?
 	}
 }

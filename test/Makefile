@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/04/02 22:45:57 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/02 23:47:58 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ../libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = $(shell brew --prefix readline)
+RL_DIR = /usr/include#$(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -126,6 +126,9 @@ INC_DIR = ../include
 VPATH = $(shell ls -R ..)
 
 all : $(NAME)
+
+on_test :
+	gcc test_signal.c -L../libft -lft -I../libft -L/usr/include -lreadline
 
 $(NAME) : $(LIBFT) $(OBJS) $(INCS)
 	@$(CC) $(CFLAGS) $(OBJS) \
