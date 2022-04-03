@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_splited.c                                  :+:      :+:    :+:   */
+/*   ft_strprepend.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 14:20:32 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:56:07 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/13 17:08:17 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/03 23:59:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_free_splited(char **words)
+char	*ft_strprepend(const char *s1, char *s2)
 {
-	int	wi;
+	char	*s3;
 
-	wi = 0;
-	while (words[wi])
-		free(words[wi++]);
-	free(words[wi]);
-	free(words);
+	s3 = ft_strjoin(s1, s2);
+	free(s2);
+	return (s3);
 }

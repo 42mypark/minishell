@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_exetree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 21:29:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 01:37:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ static enum e_exetree_node	to_enum_exetree_node(enum e_parsetree_node type)
 	return (EXE_REDIR);
 }
 
-int	is_ambiguous(t_parsetree_node *p_nd)
-{
-	if (count_token(p_nd->tokens) != 1)
-		return (1);
-	return (0);
-}
-
 static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 {
 	if (p_nd->type == TOKENS && make_cmd(p_nd, e_nd, info))
@@ -54,7 +47,7 @@ static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_i
 	{
 		if (meet_not_redir(p_nd, e_nd, info))
 			break;
-		if (is_ambiguous(p_nd->right))
+		if (count_token(p_nd->right->tokens) != 1)
 		{
 			e_nd->type = EXE_ERROR;
 			e_nd->err = new_err_info("minishell : ambiguous redirect", 1);
@@ -66,7 +59,13 @@ static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_i
 	}
 }
 
-t_exetree_node	*make_exetree_node(t_exetree_node *parent, t_parsetree_node *p_nd, int infd, int outfd, t_exe_info *info)
+t_exetree_node	*make_exetree_node(\
+	t_exetree_node *parent, \
+	t_parsetree_node *p_nd, \
+	int infd, \
+	int outfd, \
+	t_exe_info *info\
+)
 {
 	t_exetree_node	*e_nd;
 

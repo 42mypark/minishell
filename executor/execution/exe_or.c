@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_or.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 21:23:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 01:28:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 
 void	exe_or(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_exe_info *info)
 {
-	if (exe_node->infd == 0)
-		exe_node->infd = parent_infd;
-	if (exe_node->outfd == 1)
-		exe_node->outfd = parent_outfd;
+	int	exit_status;
 
+	set_exe_node_fd(exe_node, parent_infd, parent_outfd);
 	close_pipe_oneside(exe_node->parent, exe_node, info);
-	if (exe_bool_child(exe_node->left, exe_node->infd, exe_node->outfd, info) == 1)
+	exit_status = exe_bool_child(exe_node->left, exe_node->infd, exe_node->outfd, info);
+	if (exit_status == 0)
 		exit(0);
-	if (exe_bool_child(exe_node->right, exe_node->infd, exe_node->outfd, info) == 1)
+	exit_status = exe_bool_child(exe_node->right, exe_node->infd, exe_node->outfd, info);
+	if (exit_status == 0)
 		exit(0);
-	exit(1);
+	exit(exit_status);
 }

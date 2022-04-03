@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:51:01 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 15:02:36 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 00:36:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ t_cmd_info	*new_cmd_info(char *cmd, char **args, char **envp)
 void	free_cmd_info(t_cmd_info *info)
 {
 	free(info->cmd);
-	ft_free_splited(info->args);
+	ft_splitfree(info->args);
 	free(info);
 }

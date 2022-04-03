@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_bool_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 21:23:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 01:28:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ int	exe_bool_child(t_exetree_node *child, int infd, int outfd, t_exe_info *info)
 	pid = strict_fork();
 	if (pid)
 	{
-		waitpid(pid, &ws, 0);
-		if(calc_exit_status(ws))
-			return (0);
+		strict_waitpid(pid, &ws, 0);
+		return (calc_exit_status(ws));
 	}
 	else
 	{
 		execute_node(child, infd, outfd, info);
-		exit(0);
+		//exit(0);
 	}
 	return (1);
 }

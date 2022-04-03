@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_expander.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 16:02:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 00:36:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	wildcard_expander(t_tokens *tks, t_token *tk, char **envp)
 		}
 		i++;
 	}
-	ft_free_splited(formats);
-	ft_free_splited(files);
+	ft_splitfree(formats);
+	ft_splitfree(files);
 }

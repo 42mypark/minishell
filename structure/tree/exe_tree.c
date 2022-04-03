@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_tree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:55:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 18:54:50 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/03 16:08:11 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_exetree_node	*new_exetree_node(t_exetree_node *parent, enum e_exetree_node typ
 
 void	free_exetree_node(t_exetree_node *node)
 {
-	free(node->cmd);
-	free(node->err);
+	free_cmd_info(node->cmd);
+	free_err_info(node->err);
 	free(node);
 }
 

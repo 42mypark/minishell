@@ -27,6 +27,7 @@
 		"rlstdc.h": "c",
 		"rlconf.h": "c",
 		"history.h": "c",
-		"readline.h": "c"
+		"readline.h": "c",
+		"types.h": "c"
 	},
 }

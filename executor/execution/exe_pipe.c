@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 04:05:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 01:04:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
 #include <sys/wait.h>
 #include "test.h"
 
-static void	exe_pipe_child(t_exetree_node *child, enum e_exetree_node type, int *fd, t_exe_info *info)
+static void	exe_pipe_child(\
+	t_exetree_node *child, \
+	enum e_exetree_node type, \
+	int *fd, \
+	t_exe_info *info\
+)
 {
 	pid_t	pid;
 
@@ -38,7 +43,7 @@ static void	exe_pipe_child(t_exetree_node *child, enum e_exetree_node type, int 
 	}
 }
 
-void	wait_childs(t_exe_info *info)
+static void	wait_childs(t_exe_info *info)
 {
 	t_list	*pids;
 	t_list	*poped;
@@ -51,6 +56,7 @@ void	wait_childs(t_exe_info *info)
 		poped = ft_lstpop_front(&pids);
 		pid = ((int *)poped->content)[0];
 		waitpid(pid, &ws, 0);
+		insert_new_exit(info, calc_exit_status(ws));
 		ft_lstdelone(poped, free);
 	}
 	info->pids = NULL;
@@ -60,11 +66,10 @@ void	exe_pipe(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_exe
 {
 	int		p[2];
 	int		fd[3];
+	int		*exit_status;
+	t_list	*last;
 
-	if (exe_node->infd == 0)
-		exe_node->infd = parent_infd;
-	if (exe_node->outfd == 1)
-		exe_node->outfd = parent_outfd;
+	set_exe_node_fd(exe_node, parent_infd, parent_outfd);
 	close_pipe_oneside(exe_node->parent, exe_node, info);
 	pipe(p);
 	insert_new_pipe(info, p);
@@ -78,6 +83,8 @@ void	exe_pipe(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_exe
 	{
 		close_pipes(info->pipes);
 		wait_childs(info);
-		exit(0);
+		last = ft_lstlast(info->exits);
+		exit_status = last->content;
+		exit(*exit_status);
 	}
 }

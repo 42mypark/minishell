@@ -37,7 +37,9 @@ SRCS =	ft_atoi.c\
 		ft_realloc.c\
 		ft_strmerge.c\
 		ft_strappend.c\
-		ft_free_splited.c\
+		ft_strprepend.c\
+		ft_splitfree.c\
+		ft_splitdup.c\
 		ft_strchri.c\
 		ft_strdiv.c
 

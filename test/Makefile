@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/04/02 23:47:58 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/04 01:08:48 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRCS_REDIRECTION =	make_exetree.c\
 
 SRCS_INFO =	cmd_info.c\
 			err_info.c\
-			exe_info.c
+			exe_info.c\
+			exe_info_insert.c\
 
 SRCS_TREE =	exe_tree.c\
 			parse_tree.c
@@ -77,7 +78,10 @@ SRCS_UTILS =	buffer.c\
 SRCS_STRICT =	strict_malloc.c\
 				strict_fork.c\
 				strict_dup2.c\
-				strict_close.c
+				strict_close.c\
+				strict_open.c\
+				strict_execve.c\
+				strict_waitpid.c\
 
 SRCS_EXECUTOR =	calc_exit_status.c\
 				close_pipes.c\
@@ -145,15 +149,11 @@ fclean : clean
 	@$(RM) $(NAME)
 	@echo "🗑 Remove $(NAME) Done"
 
-wclean : fclean $(LIBFT_NAME)_fclean
-
 re : fclean all
-
-rr : wclean all
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCS_EXPANDER) -I $(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) -c $< -o $@ -g
+	@$(CC) $(CFLAGS) $(INCS_EXPANDER) -I $(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) -c $< -o $@
 
 .PHONY : all clean fclean wclean re rr \
 	$(LIBFT_NAME)_clean $(LIBFT_NAME)_fclean

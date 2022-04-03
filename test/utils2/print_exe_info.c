@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 20:35:06 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 02:20:25 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 01:11:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,11 @@ void	print_exe_info(t_exe_info *info)
 	}
 	else
 		printf("pipes : NULL\n");
+	if (info->exits)
+	{
+		printf("exits : \n");
+		ft_lstiter(info->exits, print_pid);
+	}
+	else
+		printf("exits : NULL\n");
 }

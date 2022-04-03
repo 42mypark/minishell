@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:28:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 00:00:13 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 00:34:04 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_exe_info
 {
 	t_list	*pipes;
 	t_list	*pids;
+	t_list	*exits;
 	char	**envp;
 }				t_exe_info;
 
@@ -41,6 +42,7 @@ void			free_cmd_info(t_cmd_info *info);
 t_exe_info		*new_exe_info(char **envp);
 void			insert_new_pipe(t_exe_info *info, int *pipe);
 void			insert_new_pid(t_exe_info *info, int pid);
+void			insert_new_exit(t_exe_info *info, int exit);
 void			free_exe_info(t_exe_info *info);
 
 #endif

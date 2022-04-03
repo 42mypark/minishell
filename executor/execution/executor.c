@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 20:34:29 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/03 16:28:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	exe_error(t_exetree_node *exe_node)
 {
-	print_strerror("ERROR", (char *)exe_node->err->msg);
+	print_strerror("file", (char *)exe_node->err->msg);
 	exit(exe_node->err->exit_status);
 }
 

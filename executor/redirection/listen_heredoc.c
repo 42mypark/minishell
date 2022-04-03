@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/03 00:52:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 00:36:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "test.h"
 #include "strict.h"
 
-void	write_expanded(int to, char *str, char **envp)
+static void	write_expanded(int to, char *str, char **envp)
 {
 	t_tokens	*tks;
 	char		**expanded;
@@ -35,7 +35,7 @@ void	write_expanded(int to, char *str, char **envp)
 		write(to, expanded[i], ft_strlen(expanded[i]));
 		i++;
 	}
-	ft_free_splited(expanded);
+	ft_splitfree(expanded);
 	free_tokens(tks);
 }
 
@@ -48,15 +48,15 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 	while (1)
 	{
 		input = readline("> ");
-		if (input == 0)
-			exit(0);
-		if (is_same(input, limiter))
+		if (input == 0 || is_same(input, limiter))
 		{
 			free(input);
 			break;
 		}
 		dollar = ft_strchri(input, '$');
-		if (dollar != -1)
+		if (dollar == -1)
+			write(to, input, ft_strlen(input));
+		else
 		{
 			back = ft_strdiv(&input, dollar);
 			if (back == NULL)
@@ -65,8 +65,6 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 			write_expanded(to, back, envp);
 			free(back);
 		}
-		else
-			write(to, input, ft_strlen(input));
 		write(to, "\n", 1);
 		free(input);
 	}

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/03 02:18:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 01:21:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ void	ctrl_c()
 	rl_replace_line("", 1);
 	rl_on_new_line();
 	rl_redisplay();
-}
-
-void	ctrl_c_child()
-{
-	ft_putstr_fd("hey!\n", 1);
-	exit(130);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -76,7 +70,7 @@ int	main(int argc, char **argv, char **envp)
 		pid = fork();
 		if (pid == 0)
 		{
-			signal(2, ctrl_c_child);
+			signal(2, SIG_IGN);
 			tokenizer(tks, input);
 			free(input);
 			printf("\n***** tokens *****\n");
@@ -93,14 +87,13 @@ int	main(int argc, char **argv, char **envp)
 			print_exe_info(info);
 			printf("\n***** cmd result *****\n");
 			executor(exe_head, info);
-			free_exetree(exe_head);
-			free_exe_info(info);
 			exit(0);
 		}
 		else
 		{
 			signal(2, SIG_IGN);
 			waitpid(pid, &exit_status, 0);
+			printf("%d\n", calc_exit_status(exit_status));
 		}
 		free(input);
 		free_tokens(tks);

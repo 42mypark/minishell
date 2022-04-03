@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strict.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 14:29:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 00:50:13 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,8 @@ void	*strict_malloc(int size, int count);
 pid_t	strict_fork();
 void	strict_dup2(int srcfd, int dstfd);
 void	strict_close(int fd);
+int		strict_open(char *filename, int oflag, int right);
+void	strict_execve(char *cmd, char **args, char **envp);
+int		strict_waitpid(pid_t pid, int *ws, int opt);
 
 #endif
