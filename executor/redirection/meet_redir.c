@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 00:55:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 01:49:59 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 #include "strict.h"
 #include <fcntl.h>
 #include "redirection_utils.h"
+
+static int	to_open_flag(enum e_parsetree_node type)
+{
+	if (type == NODE_ARD)
+		return (O_APPEND | O_CREAT);
+	if (type == NODE_ORD)
+		return (O_WRONLY | O_CREAT | O_TRUNC);
+	return (O_RDONLY);
+}
 
 static int	register_fd(t_exetree_node *e_nd, int *dst_fd, char *file_name, int flag)
 {
@@ -33,15 +42,6 @@ static int	register_fd(t_exetree_node *e_nd, int *dst_fd, char *file_name, int f
 	}
 	*dst_fd = fd;
 	return (1);
-}
-
-static int	to_open_flag(enum e_parsetree_node type)
-{
-	if (type == NODE_ARD)
-		return (O_APPEND | O_CREAT);
-	if (type == NODE_ORD)
-		return (O_WRONLY | O_CREAT | O_TRUNC);
-	return (O_RDONLY);
 }
 
 static void	make_heredoc(t_exetree_node *e_nd, t_token *tk, t_exe_info *info)
