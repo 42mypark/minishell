@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_filenames.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:45:08 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 01:43:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 19:20:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ char	**dup_filenames(void)
 	char	**files;
 
 	dir_name = getcwd(NULL, 0);
+	if (dir_name == 0)
+		print_strerror("getcwd", "cannot get working directory.");
 	dir_ptr = opendir(dir_name);
 	if (dir_ptr == NULL)
-		print_strerror("directory", "cannot be accessed");
+		print_strerror("directory", "cannot be accessed.");
 	file_cnt = count_files(dir_ptr);
 	closedir(dir_ptr);
 	dir_ptr = opendir(dir_name);

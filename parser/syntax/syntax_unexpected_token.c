@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 15:01:45 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 21:44:57 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,27 @@ static void	free_syntax_table(int **syn_tb)
 	free(syn_tb);
 }
 
-static void	check_head_tail(t_tokens *tks)
+static int	check_head_tail(t_tokens *tks)
 {
 	t_token	*tk_curr;
 
 	tk_curr = tks->head->content;
 	if (is_bool(tk_curr->content[0]))
-		print_unexpected_token(tks, tk_curr->content);
+	{
+		print_unexpected_token(tk_curr->content);
+		return (1);
+	}
 	tk_curr = tks->tail->content;
 	if (is_bool(tk_curr->content[0]) \
 		|| is_redir(tk_curr->content[0]))
-		print_unexpected_token(tks, "newline");
+	{
+		print_unexpected_token("newline");
+		return (1);
+	}
+	return (0);
 }
 
-void	syntax_unexpected_token(t_tokens *tks)
+int	syntax_unexpected_token(t_tokens *tks)
 {
 	t_tokens_node	*curr;
 	t_token			*tk_curr;
@@ -84,8 +91,10 @@ void	syntax_unexpected_token(t_tokens *tks)
 	t_token			*tk_next;
 	int				**syn_tb;
 
+
 	syn_tb = get_syntax_table();
-	check_head_tail(tks);
+	if(check_head_tail(tks))
+		return (1);
 	curr = tks->head;
 	while (curr != tks->tail)
 	{
@@ -93,10 +102,19 @@ void	syntax_unexpected_token(t_tokens *tks)
 		tk_next = curr->next->content;
 		tk_prev = curr->prev->content;
 		if (syn_tb[tk_curr->type][tk_next->type] == 0)
-			print_unexpected_token(tks, tk_next->content);
+		{
+			free_syntax_table(syn_tb);
+			print_unexpected_token(tk_next->content);
+			return (1);
+		}
 		if (curr != tks->head && syn_tb[tk_prev->type][tk_curr->type] == 0)
-			print_unexpected_token(tks, tk_curr->content);
+		{
+			free_syntax_table(syn_tb);
+			print_unexpected_token(tk_curr->content);
+			return (1);
+		}
 		curr = curr->next;
 	}
 	free_syntax_table(syn_tb);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_exetree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 01:37:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 16:04:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "utils.h"
 #include "test.h"
 #include <fcntl.h>
+#include <signal.h>
 #include "redirection_utils.h"
 #include "info.h"
 
@@ -84,5 +85,10 @@ t_exetree_node	*make_exetree_node(\
 
 t_exetree_node	*make_exetree(t_parsetree_node *p_nd, t_exe_info *info)
 {
-	return (make_exetree_node(NULL, p_nd, 0, 1, info));
+	t_exetree_node	*e_nd;
+
+	signal(SIGINT, SIG_DFL);
+	e_nd = make_exetree_node(NULL, p_nd, 0, 1, info);
+	signal(SIGINT, SIG_IGN);
+	return (e_nd);
 }

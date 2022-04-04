@@ -40,6 +40,7 @@ SRCS =	ft_atoi.c\
 		ft_strprepend.c\
 		ft_splitfree.c\
 		ft_splitdup.c\
+		ft_wordcount.c\
 		ft_strchri.c\
 		ft_strdiv.c
 

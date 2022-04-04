@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_incorrect_pairs.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:27:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/27 13:49:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 21:45:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,17 @@ static int	is_correct_quotes(t_tokens *tks)
 	return (1);
 }
 
-void	syntax_incorrect_pairs(t_tokens *tks)
+int	syntax_incorrect_pairs(t_tokens *tks)
 {
 	if (!is_correct_parenthese(tks))
-		print_incorrect_pairs(tks, "parenthese");
+	{
+		print_incorrect_pairs("parenthese");
+		return (1);
+	}
 	if (!is_correct_quotes(tks))
-		print_incorrect_pairs(tks, "quotes");
+	{
+		print_incorrect_pairs("quotes");
+		return (1);
+	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:14:37 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 00:36:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 21:19:37 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,15 @@
 #include "parse_tree.h"
 #include "utils.h"
 #include "test.h"
+#include "builtin.h"
 #include <fcntl.h>
 
-static char	*can_access(char *cmd, char **paths, char **envp)
+static char	*can_access(char *cmd, char **paths)
 {
 	int		i;
-	char	*pwd;
 
-	if (access((const char *)cmd, X_OK) == 0)
-	{
-		pwd = dupenv("PWD", envp);
-		pwd = ft_strappend(pwd, cmd + 1);
-		return (pwd);
-	}
+	if (is_builtin(cmd) || access((const char *)cmd, X_OK) == 0)
+		return (ft_strdup(cmd));
 	i = 0;
 	while (paths[i])
 	{
@@ -49,7 +45,7 @@ int	make_cmd(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 	args = tokens_to_splited(p_nd->tokens);
 	env_path = dupenv("PATH", info->envp);
 	paths = ft_split(env_path, ':');
-	cmd = can_access(args[0], paths, info->envp);
+	cmd = can_access(args[0], paths);
 	if (cmd != NULL)
 		e_nd->cmd = new_cmd_info(cmd, args, info->envp);
 	else

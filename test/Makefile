@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/04/04 01:08:48 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/04 21:16:55 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = #-g -fsanitize=address -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -20,13 +20,17 @@ LIBFT_DIR = ../libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = /usr/include#$(shell brew --prefix readline)
+RL_DIR = $(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
 INCS_EXPANDER =	-I../parser/expander/\
 				-I../parser/expander/env\
 				-I../parser/expander/quote
+
+INCS_BUILTIN =	-I../builtin
+
+INCS =	$(INCS_BUILTIN) $(INCS_EXPANDER)
 
 SRCS_EXPANDER =	quote_remover_actions.c\
 				quote_remover.c\
@@ -68,6 +72,11 @@ SRCS_TEST_PRINT =	print_tokens.c\
 					print_expansion_record.c\
 					print_splited.c\
 					print_exe_info.c
+
+SRCS_BUILTINS =	builtin.c\
+				cd.c\
+				pwd.c
+
 
 SRCS_UTILS =	buffer.c\
 				is_chars.c\
@@ -122,7 +131,8 @@ SRCS =	test_executor.c\
 		$(SRCS_PRINT)\
 		$(SRCS_UTILS)\
 		$(SRCS_STRICT)\
-		$(SRCS_EXECUTOR)
+		$(SRCS_EXECUTOR)\
+		$(SRCS_BUILTINS)
 
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -132,12 +142,13 @@ VPATH = $(shell ls -R ..)
 all : $(NAME)
 
 on_test :
-	gcc test_signal.c -L../libft -lft -I../libft -L/usr/include -lreadline
+	gcc test_signal.c -L../libft -lft -I../libft -L/usr/include -lreadline -lhistory -I$(RL_INC)
 
-$(NAME) : $(LIBFT) $(OBJS) $(INCS)
-	@$(CC) $(CFLAGS) $(OBJS) \
+$(NAME) : $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) \
 	-L $(LIBFT_DIR) -l$(LIBFT_NAME) \
-	-L $(RL_DIR) -lreadline \
+	-L $(RL_LIB) -lreadline \
+	-L $(RL_LIB) -lhistory \
 	-o $@
 	@printf "💡 Make $(NAME) Done\n"
 
@@ -153,7 +164,7 @@ re : fclean all
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCS_EXPANDER) -I $(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCS) -I$(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) -c $< -o $@
 
 .PHONY : all clean fclean wclean re rr \
 	$(LIBFT_NAME)_clean $(LIBFT_NAME)_fclean

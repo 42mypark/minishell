@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 04:25:15 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/04 17:36:25 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/04 19:21:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
-# include "parse_tree.h"
-# include "expander.h"
+#ifndef BUILTIN_H
+# define BUILTIN_H
+# include "info.h"
 
-t_parsetree_node	*parser(t_tokens *tks);
+int	builtin_cd(char *dir, char **envp);
+int	builtin(t_cmd_info *info);
+int	is_builtin(char *cmd);
+int	builtin_pwd(void);
 
 #endif

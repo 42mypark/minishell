@@ -23,7 +23,7 @@ char	**ft_splitdup(char **old_words)
 	new_words = malloc(sizeof(char *) * (count + 1));
 	if (new_words == 0)
 		return (0);
-	new_words[count] = '\0';
+	new_words[count] = 0;
 	i = 0;
 	while (old_words[i])
 	{

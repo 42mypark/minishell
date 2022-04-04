@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/03 23:26:36 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 17:39:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include "test.h"
+#include "builtin.h"
 
 void	exe_redir(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_exe_info *info)
 {
@@ -32,9 +33,11 @@ void	exe_redir(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_ex
 		strict_dup2(exe_node->infd, 0);
 		strict_dup2(exe_node->outfd, 1);
 		close_pipes(info->pipes);
-		free_exe_info(info);	//?
+		//free_exe_info(info);	//?
 		if (exe_node->cmd == NULL)
 			exit(0);
+		if (is_builtin(exe_node->cmd->cmd))
+			exit(builtin(exe_node->cmd));
 		strict_execve(exe_node->cmd->cmd, exe_node->cmd->args, exe_node->cmd->envp);
 	}
 }

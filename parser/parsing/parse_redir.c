@@ -6,12 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 22:45:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:18:00 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_utils.h"
-#include "test.h"
+#include "parsing.h"
 
 static t_tokens	*extract_tokens(t_tokens *tks, t_tokens **rem, \
 								t_tokens_node *curr)

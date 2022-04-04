@@ -23,7 +23,7 @@
 # include "error.h"
 # include "tokenizer.h"
 # include "expander.h"
-# include "../parser/expander/expansion_record.h"
+# include "../parser/expander/expansion_record/expansion_record.h"
 # include "exe_tree.h"
 # include "redirection.h"
 # include "info.h"

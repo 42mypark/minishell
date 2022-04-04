@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_error.c                                     :+:      :+:    :+:   */
+/*   syntax_error_check.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/23 01:26:20 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 21:26:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "error_utils.h"
 
-void	syntax_error_check(t_tokens *tks)
+int	syntax_error_check(t_tokens *tks)
 {
-	syntax_unexpected_token(tks);
-	syntax_incorrect_pairs(tks);
+	if (syntax_unexpected_token(tks))
+		return (1);
+	if (syntax_incorrect_pairs(tks))
+		return (1);
+	return (0);
 }

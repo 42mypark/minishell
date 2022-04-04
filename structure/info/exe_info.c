@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:05:01 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 01:12:23 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:08:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_exe_info	*new_exe_info(char **envp)
 	info->pids = 0;
 	info->pipes = 0;
 	info->exits = 0;
-	info->envp = envp;
+	info->envp = ft_splitdup(envp);
+	info->last_exit = 0;
 	return (info);
 }
 

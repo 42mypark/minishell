@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_utils.h"
+#include "parsing.h"
+#include "expander.h"
+#include "info.h"
 #include "error.h"
-#include "test.h"
+#include "tokenizer.h"
 
-static void	parse_node(t_parsetree_node *node)
+static void	make_parsetree_node(t_parsetree_node *node)
 {
 	if (node == NULL || node->tokens == NULL)
 		return ;
@@ -22,20 +24,32 @@ static void	parse_node(t_parsetree_node *node)
 		remove_edge_parentheses(node);
 	if (parse_bool(node) || parse_pipe(node))
 	{
-		parse_node(node->right);
-		parse_node(node->left);
+		make_parsetree_node(node->right);
+		make_parsetree_node(node->left);
 	}
 	else if (parse_redir(node))
-		parse_node(node->left);
+		make_parsetree_node(node->left);
 	else if (is_edge_parentheses(node))
-		parse_node(node);
+		make_parsetree_node(node);
 }
 
-t_parsetree_node	*parser(t_tokens *tks)
+t_parsetree_node	*parser(char *input, t_exe_info *info)
 {
 	t_parsetree_node	*head;
+	t_tokens			*tks;
 
+	tks = new_tokens();
+	tokenizer(tks, input);
+	free(input);
+	if (syntax_error_check(tks))
+	{
+		free_tokens(tks);
+		info->last_exit = 258;
+		return (NULL);
+	}
 	head = new_parsetree_node(tks, NULL);
-	parse_node(head);
+	make_parsetree_node(head);
+	expander(head, info->envp);
+	free_tokens(tks);
 	return (head);
 }

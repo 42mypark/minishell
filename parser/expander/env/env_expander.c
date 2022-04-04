@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 16:02:09 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 14:43:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	env_expander(t_tokens *tks, char *str, char **envp)
 	t_env_expander		envexp;
 	t_expansion_range	*range;
 
+	if (is_same(str, "$"))
+		return ;
 	init_env_expander(&envexp, tks, envp);
 	while (*str)
 	{

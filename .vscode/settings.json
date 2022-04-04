@@ -1,6 +1,6 @@
 {
 	"files.associations": {
-		"parser_utils.h": "c",
+		"parsing.h": "c",
 		"parse_tree.h": "c",
 		"libft.h": "c",
 		"tokenizer_utils.h": "c",

@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc_quoted.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 01:52:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 15:18:29 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <readline/readline.h>
 #include "utils.h"
 #include "libft.h"
 #include "error.h"
@@ -20,7 +22,6 @@
 void	listen_heredoc_quoted(char *limiter, int to)
 {
 	char	*input;
-	char	*back;
 
 	while (1)
 	{
