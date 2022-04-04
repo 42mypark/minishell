@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/04/04 22:45:08 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/04 22:49:49 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ INCS_UTILS		=	-I./utils
 INCS_STRUCTURE	=	-I./structure/info\
 					-I./structure/token\
 					-I./structure/tree
+INCS_ERROR		=	-I./error\
+					-I./error/strict
 
 INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS)
 
@@ -136,7 +138,7 @@ SRCS_PARSER =	parse_bool.c\
 				syntax_unexpected_token.c\
 				syntax_incorrect_pairs.c
 
-SRCS =	minishell.c\
+SRCS =	minishell.c \
 		$(SRCS_TOKEN)\
 		$(SRCS_TOKENIZER)\
 		$(SRCS_PARSER)\
@@ -173,11 +175,7 @@ fclean : clean
 	@$(RM) $(NAME)
 	@echo "🗑 Remove $(NAME) Done"
 
-wclean : fclean $(LIBFT_NAME)_fclean
-
 re : fclean all
-
-rr : wclean all
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)

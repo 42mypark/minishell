@@ -14,6 +14,7 @@
 #include "expander.h"
 #include "info.h"
 #include "error.h"
+#include "syntax.h"
 #include "tokenizer.h"
 
 static void	make_parsetree_node(t_parsetree_node *node)
