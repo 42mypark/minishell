@@ -6,15 +6,14 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 21:44:57 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:44:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "utils.h"
-#include "error_utils.h"
+#include "error.h"
 #include "strict.h"
-#include "test.h"
 
 static int	**copy_table(const char (*table)[11])
 {

@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/04/04 22:28:27 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/04 22:45:08 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,22 +24,25 @@ RL_DIR = $(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
-INCS_EXPANDER =	-I./parser/expander/\
-				-I./parser/expander/env\
-				-I./parser/expander/quote\
-				-I./parser/expander/wildcard\
-				-I./parser/expander/expand_token\
-				-I./parser/expander/expansion_record\
+INCS_TOKENIZER	=	-I./parser/tokenizer
+INCS_EXPANDER 	=	-I./parser/expander/\
+					-I./parser/expander/env\
+					-I./parser/expander/quote\
+					-I./parser/expander/wildcard\
+					-I./parser/expander/expand_token\
+					-I./parser/expander/expansion_record
+INCS_PARSER		=	-I./parser\
+					-I./parser/parsing\
+					-I./parser/syntax\
+					$(INCS_EXPANDER)\
+					$(INCS_TOKENIZER)
+INCS_BUILTIN	=	-I./builtin
+INCS_UTILS		=	-I./utils
+INCS_STRUCTURE	=	-I./structure/info\
+					-I./structure/token\
+					-I./structure/tree
 
-
-
-INCS_PARSER =	-I./parser/\
-				-I./parser/parsing/\
-				$(INCS_EXPANDER)
-
-INCS_BUILTIN =	-I./builtin
-
-INCS =	$(INCS_BUILTIN) $(INCS_PARSER)
+INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS)
 
 SRCS_EXPANDER =	quote_remover_actions.c\
 				quote_remover.c\
@@ -66,7 +69,7 @@ SRCS_REDIRECTION =	make_exetree.c\
 SRCS_INFO =	cmd_info.c\
 			err_info.c\
 			exe_info.c\
-			exe_info_insert.c\
+			exe_info_insert.c
 
 SRCS_TREE =	exe_tree.c\
 			parse_tree.c
@@ -99,7 +102,7 @@ SRCS_STRICT =	strict_malloc.c\
 				strict_close.c\
 				strict_open.c\
 				strict_execve.c\
-				strict_waitpid.c\
+				strict_waitpid.c
 
 SRCS_EXECUTOR =	calc_exit_status.c\
 				close_pipes.c\
@@ -112,26 +115,31 @@ SRCS_EXECUTOR =	calc_exit_status.c\
 				executor.c\
 				set_exe_node_fd.c
 
+SRCS_TOKEN =	count_token.c\
+				tokens_to_splited.c\
+				token.c\
+				cut_tokens.c\
+				merge_tokens.c\
+				issue_token.c\
+				find_token_forward.c
+
+SRCS_TOKENIZER =	tokenizer.c\
+					tokenizer_utils.c\
+					tokenizer_actions.c
+SRCS_PARSER =	parse_bool.c\
+				parse_pipe.c\
+				parse_redir.c\
+				parser.c\
+				pass_parentheses.c\
+				edge_parentheses.c\
+				syntax_error_check.c\
+				syntax_unexpected_token.c\
+				syntax_incorrect_pairs.c
+
 SRCS =	minishell.c\
-		count_token.c\
-		tokens_to_splited.c\
-		tokenizer.c\
-		tokenizer_utils.c\
-		token.c\
-		cut_tokens.c\
-		find_token_forward.c\
-		merge_tokens.c\
-		tokenizer_actions.c\
-		parse_bool.c\
-		parse_pipe.c\
-		parse_redir.c\
-		parser.c\
-		pass_parentheses.c\
-		edge_parentheses.c\
-		syntax_error_check.c\
-		syntax_unexpected_token.c\
-		syntax_incorrect_pairs.c\
-		issue_token.c\
+		$(SRCS_TOKEN)\
+		$(SRCS_TOKENIZER)\
+		$(SRCS_PARSER)\
 		$(SRCS_EXPANDER) \
 		$(SRCS_REDIRECTION)\
 		$(SRCS_INFO)\

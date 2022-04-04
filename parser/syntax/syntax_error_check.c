@@ -6,12 +6,12 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 21:26:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:44:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
-#include "error_utils.h"
+#include "syntax.h"
 
 int	syntax_error_check(t_tokens *tks)
 {
