@@ -17,11 +17,10 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "token.h"
-# include "tokenizer_utils.h"
+# include "../parser/lexer/tokenizer/tokenizer.h"
 # include "parse_tree.h"
 # include "parser.h"
 # include "error.h"
-# include "tokenizer.h"
 # include "expander.h"
 # include "../parser/expander/expansion_record/expansion_record.h"
 # include "exe_tree.h"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:15:05 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 21:21:59 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 12:46:52 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	is_builtin(char *cmd)
 {
-	static char	*builtins[] = { "echo", \
+	static char	*builtins[] = { /*"echo", */\
 							"cd", \
 							"pwd", \
 							"export", \

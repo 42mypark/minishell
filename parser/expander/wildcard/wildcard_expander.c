@@ -6,42 +6,50 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 00:36:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:05:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
-#include "parse_tree.h"
-#include "wildcard_expander_utils.h"
 #include "libft.h"
 #include "token.h"
+#include "utils.h"
+#include "wildcard_expander.h"
 #include "expansion_record.h"
 
-void	wildcard_expander(t_tokens *tks, t_token *tk, char **envp)
+static void	filename_to_token(t_tokens *tks, char *filename)
+{
+	t_buffer			buf;
+	t_expansion_range	*range;
+
+	init_buffer(&buf);
+	buf.space = filename;
+	buf.len = ft_strlen(buf.space);
+	range = new_expansion_range(0, buf.len);
+	expansion_record_add_back(&buf.expansion_record, range);
+	issue_token(tks, &buf);
+}
+
+void	wildcard_expander(t_tokens *tks, t_token *tk)
 {
 	int			i;
-	char		**files;
-	char		**formats;
-	t_buffer	buf;
+	char		**filenames;
+	char		**patterns;
+	char		*pattern_raw;
 
-	envp++;
-	init_buffer(&buf);
-	files = dup_filenames();
-	formats = wildcard_split(tk);
-	if (formats == NULL)
+	filenames = dup_filenames();
+	pattern_raw = tk->content;
+	patterns = wildcard_split(tk);
+	if (patterns == NULL)
 		print_malloc_error();
-	i = 0;
-	while (files[i])
+	i = -1;
+	while (filenames[++i])
 	{
-		if (wildcard_check_format(files[i], tk, formats))
-		{
-			buf.space = files[i];
-			buf.len = ft_strlen(buf.space);
-			expansion_record_add_back(&buf.expansion_record, new_expansion_range(0, buf.len));
-			issue_token(tks, &buf);
-		}
-		i++;
+		if (filenames[i][0] == '.' && pattern_raw[0] != '.')
+			continue;
+		if (wildcard_match(filenames[i], pattern_raw, patterns))
+			filename_to_token(tks, filenames[i]);
 	}
-	ft_splitfree(formats);
-	ft_splitfree(files);
+	ft_splitfree(patterns);
+	ft_splitfree(filenames);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 22:11:20 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 02:01:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 #include <readline/history.h>
 #include <signal.h>
 #include <sys/wait.h>
-
-void	testleak(void)
-{
-	system("leaks minishell");
-}
 
 void	ctrl_c()
 {
@@ -32,7 +27,7 @@ void	ctrl_c()
 char	*ft_readline(char *prompt)
 {
 	char	*input;
-	
+
 	input = readline(prompt);
 	if (input && *input)
 		add_history(input);
@@ -53,8 +48,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_parsetree_node	*parse_tree;
 	t_exetree_node		*exe_tree;
-	char				*input;
 	t_exe_info			*info;
+	char				*input;
+
+	int	pcnt = 0;
 
 	argc++;
 	argv++;
@@ -68,12 +65,14 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		signal(SIGINT, SIG_IGN);
 		parse_tree = parser(input, info);
+		print_parsetree(parse_tree, &pcnt);
 		if (parse_tree == 0)
 			continue ;
 		exe_tree = make_exetree(parse_tree, info);
 		free_parsetree(parse_tree);
 		printf("\n***** cmd result *****\n");
 		executor(exe_tree, info);
+		free_exetree(exe_tree);
 		free(input);
 	}
 }

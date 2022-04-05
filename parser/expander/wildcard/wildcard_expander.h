@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.h                                        :+:      :+:    :+:   */
+/*   wildcard_expander.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 01:46:22 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/24 02:22:07 by mypark           ###   ########.fr       */
+/*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/05 12:35:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIZER_H
-# define TOKENIZER_H
+#ifndef WILDCARD_SPLITER_H
+# define WILDCARD_SPLITER_H
 # include "token.h"
+# include "utils.h"
 
-void	tokenizer(t_tokens *tks, char *readline);
+char	**wildcard_split(t_token *tk);
+int		wildcard_match(char *word, char *pattern_raw, char **patterns);
+char	**dup_filenames(void);
 
 #endif

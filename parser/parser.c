@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */ 
-/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 01:18:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 01:08:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "expander.h"
 #include "info.h"
 #include "error.h"
-#include "syntax.h"
-#include "tokenizer.h"
+#include "lexer.h"
+#include "test.h"
 
 static void	make_parsetree_node(t_parsetree_node *node)
 {
@@ -51,6 +51,5 @@ t_parsetree_node	*parser(char *input, t_exe_info *info)
 	head = new_parsetree_node(tks, NULL);
 	make_parsetree_node(head);
 	expander(head, info->envp);
-	free_tokens(tks);
 	return (head);
 }

@@ -29,6 +29,7 @@
 		"history.h": "c",
 		"readline.h": "c",
 		"types.h": "c",
-		"syntax.h": "c"
+		"syntax.h": "c",
+		"expander.h": "c"
 	},
 }
