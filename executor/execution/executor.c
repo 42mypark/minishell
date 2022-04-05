@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/03 16:28:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 18:45:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,33 @@
 #include "error.h"
 #include "executor.h"
 
-static void	exe_error(t_exetree_node *exe_node)
+static int	exe_error(t_exetree_node *exe_node)
 {
 	print_strerror("file", (char *)exe_node->err->msg);
-	exit(exe_node->err->exit_status);
+	if (exe_node->parent && exe_node->parent->type == EXE_PIPE)
+		exit(exe_node->err->exit_status);
+	return (1);
 }
 
-void	execute_node(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_exe_info *info)
+int	execute_node(t_exetree_node *exe_node, int *parent_fd, t_exe_info *info)
 {
 	if (exe_node->type == EXE_ERROR)
-		exe_error(exe_node);
+		return (exe_error(exe_node));
 	if (exe_node->type == EXE_REDIR)
-		exe_redir(exe_node, parent_infd, parent_outfd, info);
+		return (exe_redir(exe_node, parent_fd, info));
 	if (exe_node->type == EXE_PIPE)
-		exe_pipe(exe_node, parent_infd, parent_outfd, info);
+		return (exe_pipe(exe_node, parent_fd, info));
 	if (exe_node->type == EXE_AND)
-		exe_and(exe_node, parent_infd, parent_outfd, info);
+		return (exe_and(exe_node, parent_fd, info));
 	if (exe_node->type == EXE_OR)
-		exe_or(exe_node, parent_infd, parent_outfd, info);
+		return (exe_or(exe_node, parent_fd, info));
+	return (0);
 }
 
 void	executor(t_exetree_node *exe_node, t_exe_info *info)
 {
-	execute_node(exe_node, 0, 1, info);
+	int	fd[2];
+	fd[0] = 0;
+	fd[1] = 1;
+	execute_node(exe_node, fd, info);
 }

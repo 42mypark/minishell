@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 19:04:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 15:54:27 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	print_exetree_node(t_exetree_node *node, int *cnt)
 	printf("left   : %p \t", node->left);
 	printf("right  : %p \n", node->right);
 	printf("type   : %s \n", enum_exetree_node_to_str(node->type));
-	printf("infd   : %d \n", node->infd);
-	printf("outfd  : %d \n", node->outfd);
+	printf("fd[0]   : %d \n", node->fd[0]);
+	printf("fd[1]  : %d \n", node->fd[1]);
 	print_cmd_info(node->cmd);
 	print_err_info(node->err);
 	printf("============================================================\n");

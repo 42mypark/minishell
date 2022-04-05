@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meet_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 01:49:59 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 15:54:27 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ static void	make_heredoc(t_exetree_node *e_nd, t_token *tk, t_exe_info *info)
 {
 	int		p[2];
 
-	if (e_nd->infd != 0)
-		strict_close(e_nd->infd);
+	if (e_nd->fd[0] != 0)
+		strict_close(e_nd->fd[0]);
 	pipe(p);
 	if (tk->type == QUOTED_STR)
 		listen_heredoc_quoted(tk->content, p[1]);
 	else
 		listen_heredoc(tk->content, p[1], info->envp);
-	e_nd->infd = p[0];
+	e_nd->fd[0] = p[0];
 	p[1] = -1;
 	insert_new_pipe(info, p);
 }
@@ -68,10 +68,10 @@ int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 	tk = p_nd->right->tokens->head->content;
 	flag = to_open_flag(p_nd->type);
 	if (p_nd->type & (NODE_ORD | NODE_ARD) \
-	&& register_fd(e_nd, &e_nd->outfd, tk->content, flag) == 0)
+	&& register_fd(e_nd, &e_nd->fd[1], tk->content, flag) == 0)
 		return (0);
 	else if (p_nd->type == NODE_IRD \
-	&& register_fd(e_nd, &e_nd->infd, tk->content, flag) == 0)
+	&& register_fd(e_nd, &e_nd->fd[0], tk->content, flag) == 0)
 		return (0);
 	else if (p_nd->type == NODE_HRD)
 		make_heredoc(e_nd, tk, info);

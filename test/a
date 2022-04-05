@@ -1,8 +1,42 @@
-Apple clang version 12.0.0 (clang-1200.0.32.28)
-Target: x86_64-apple-darwin19.6.0
-Thread model: posix
-InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 10.15.0 10.15.6 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -o minishell -L../libft -L/goinfre/mypark/.brew/opt/readline -L/goinfre/mypark/.brew/opt/readline -L/usr/local/lib ./obj/test_executor.o ./obj/count_token.o ./obj/tokens_to_splited.o ./obj/tokenizer.o ./obj/tokenizer_utils.o ./obj/token.o ./obj/cut_tokens.o ./obj/find_token_forward.o ./obj/merge_tokens.o ./obj/tokenizer_actions.o ./obj/parse_bool.o ./obj/parse_pipe.o ./obj/parse_redir.o ./obj/parse.o ./obj/pass_parentheses.o ./obj/edge_parentheses.o ./obj/syntax_error_check.o ./obj/syntax_unexpected_token.o ./obj/syntax_incorrect_pairs.o ./obj/issue_token.o ./obj/quote_remover_actions.o ./obj/quote_remover.o ./obj/env_expander_actions.o ./obj/env_expander_actions_dollar.o ./obj/env_expander.o ./obj/wildcard_check_format.o ./obj/wildcard_matcher_actions.o ./obj/wildcard_spliter_actions.o ./obj/wildcard_expander.o ./obj/wildcard_split.o ./obj/dup_filenames.o ./obj/expander.o ./obj/expand_token.o ./obj/expansion_record.o ./obj/expansion_range.o ./obj/make_exetree.o ./obj/listen_heredoc_quoted.o ./obj/listen_heredoc.o ./obj/make_cmd.o ./obj/meet_redir.o ./obj/cmd_info.o ./obj/err_info.o ./obj/exe_info.o ./obj/exe_info_insert.o ./obj/exe_tree.o ./obj/parse_tree.o ./obj/print_tokens.o ./obj/print_parsetree.o ./obj/print_exetree.o ./obj/print_expansion_record.o ./obj/print_splited.o ./obj/print_exe_info.o ./obj/print_syntax_error.o ./obj/print_malloc_error.o ./obj/print_strerror.o ./obj/buffer.o ./obj/is_chars.o ./obj/dupenv.o ./obj/is_same.o ./obj/set_state.o ./obj/strict_malloc.o ./obj/strict_fork.o ./obj/strict_dup2.o ./obj/strict_close.o ./obj/strict_open.o ./obj/strict_execve.o ./obj/strict_waitpid.o ./obj/calc_exit_status.o ./obj/close_pipes.o ./obj/close_pipe_oneside.o ./obj/exe_and.o ./obj/exe_bool_child.o ./obj/exe_or.o ./obj/exe_pipe.o ./obj/exe_redir.o ./obj/executor.o ./obj/set_exe_node_fd.o -lft -lreadline -lhistory -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/lib/darwin/libclang_rt.osx.a
-ld: library not found for -lhistory
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
-make: *** [minishell] Error 1
+""b
+"*"
+"a"
+"asdf"
+'*'
+'a'
+*.c
+*.v
++head
+A
+Makefile
+\-head
+a.out
+argcnt
+argcnt.c
+b
+content;
+head-
+leakcheck
+memo
+minishell
+obj
+out
+tail-
+test.c
+test_chdir.c
+test_dupenv.c
+test_env_epdr.c
+test_executor.c
+test_fd.c
+test_getcwd.c
+test_parser.c
+test_pipe.c
+test_quote_remover.c
+test_signal.c
+test_to_exetree.c
+test_tokenizer.c
+test_wildcard_epdr.c
+test_write.c
+test_zombie.c
+utils2
+v

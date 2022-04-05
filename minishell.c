@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 02:01:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 19:28:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
@@ -70,9 +71,10 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		exe_tree = make_exetree(parse_tree, info);
 		free_parsetree(parse_tree);
+		print_exetree(exe_tree, &pcnt);
 		printf("\n***** cmd result *****\n");
 		executor(exe_tree, info);
+		printf("***** cmd end *****\n");
 		free_exetree(exe_tree);
-		free(input);
 	}
 }

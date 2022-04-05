@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 16:04:47 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 15:57:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_in
 		return (1) ;
 	if (p_nd->type & (NODE_OR | NODE_AND | NODE_PIPE))
 	{
-		e_nd->left = make_exetree_node(e_nd, p_nd, e_nd->infd, e_nd->outfd, info);
+		e_nd->left = make_exetree_node(e_nd, p_nd, e_nd->fd, info);
 		return (1);
 	}
 	return (0);
@@ -63,18 +63,17 @@ static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_i
 t_exetree_node	*make_exetree_node(\
 	t_exetree_node *parent, \
 	t_parsetree_node *p_nd, \
-	int infd, \
-	int outfd, \
+	int *fd, \
 	t_exe_info *info\
 )
 {
 	t_exetree_node	*e_nd;
 
-	e_nd = new_exetree_node(parent, to_enum_exetree_node(p_nd->type), infd, outfd);
+	e_nd = new_exetree_node(parent, to_enum_exetree_node(p_nd->type), fd[0], fd[1]);
 	if (p_nd->type & (NODE_AND | NODE_OR | NODE_PIPE))
 	{
-		e_nd->left = make_exetree_node(e_nd, p_nd->left, e_nd->infd, e_nd->outfd, info);
-		e_nd->right = make_exetree_node(e_nd, p_nd->right, e_nd->infd, e_nd->outfd, info);
+		e_nd->left = make_exetree_node(e_nd, p_nd->left, e_nd->fd, info);
+		e_nd->right = make_exetree_node(e_nd, p_nd->right, e_nd->fd, info);
 	}
 	else if (p_nd->type == TOKENS)
 		make_cmd(p_nd, e_nd, info);
@@ -86,9 +85,12 @@ t_exetree_node	*make_exetree_node(\
 t_exetree_node	*make_exetree(t_parsetree_node *p_nd, t_exe_info *info)
 {
 	t_exetree_node	*e_nd;
+	int				fd[2];
 
+	fd[0] = 0;
+	fd[1] = 1;
 	signal(SIGINT, SIG_DFL);
-	e_nd = make_exetree_node(NULL, p_nd, 0, 1, info);
+	e_nd = make_exetree_node(NULL, p_nd, fd, info);
 	signal(SIGINT, SIG_IGN);
 	return (e_nd);
 }

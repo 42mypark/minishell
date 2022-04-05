@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:15:05 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 12:46:52 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 17:34:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ int	is_builtin(char *cmd)
 	return (0);
 }
 
-int	builtin(t_cmd_info *info)
+int	exe_builtin(t_cmd_info *info)
 {
+	printf("builtin\n");
+	if (info == NULL)
+		return (0);
 	if (is_same(info->cmd, "cd"))
 		return (builtin_cd(info->args[1], info->envp));
 	if (is_same(info->cmd, "pwd"))

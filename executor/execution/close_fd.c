@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_strerror.c                                   :+:      :+:    :+:   */
+/*   close_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 20:57:10 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 18:46:30 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/01 02:31:21 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/05 22:18:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <errno.h>
+#include "strict.h"
+#include "test.h"
 
-void	print_strerror(char *func, char *msg)
+void	close_fd(int *fd)
 {
-	ft_putstr_fd(func, 2);
-	ft_putstr_fd(" : ", 2);
-	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);
+	if (fd[0] != -1 && fd[0] != 0)
+	{
+		strict_close(fd[0]);
+		fd[0] = -1;
+	}
+	if (fd[1] != -1 && fd[1] != 1)
+	{
+		strict_close(fd[1]);
+		fd[1] = -1;
+	}
 }

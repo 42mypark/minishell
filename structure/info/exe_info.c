@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:05:01 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 22:08:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 22:16:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ void	del_pid_pipe(void *content)
 
 	ptr = (int *)content;
 	free(ptr);
+}
+
+void	free_exe_info_pipes(t_exe_info *info)
+{
+	if (info->pipes)
+		ft_lstclear(&info->pipes, del_pid_pipe);
+	info->pipes = 0;
 }
 
 void	free_exe_info(t_exe_info *info)

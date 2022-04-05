@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:28:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 18:55:16 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 16:12:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ typedef struct s_exetree_node
 	struct s_exetree_node	*parent;
 	struct s_exetree_node	*left;
 	struct s_exetree_node	*right;
-	int						infd;
-	int						outfd;
+	int						*fd;
 	t_cmd_info				*cmd;
 	t_err_info				*err;
 }				t_exetree_node;

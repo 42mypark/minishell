@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_tree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:55:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/03 16:08:11 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 16:11:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ t_exetree_node	*new_exetree_node(t_exetree_node *parent, enum e_exetree_node typ
 	node->type = type;
 	node->left = 0;
 	node->right = 0;
-	node->infd = infd;
-	node->outfd = outfd;
+	node->fd = strict_malloc(sizeof(int), 2);
+	node->fd[0] = infd;
+	node->fd[1] = outfd;
 	node->cmd = 0;
 	node->err = 0;
 	return (node);
@@ -32,6 +33,7 @@ t_exetree_node	*new_exetree_node(t_exetree_node *parent, enum e_exetree_node typ
 
 void	free_exetree_node(t_exetree_node *node)
 {
+	free(node->fd);
 	free_cmd_info(node->cmd);
 	free_err_info(node->err);
 	free(node);

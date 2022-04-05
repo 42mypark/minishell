@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 17:39:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 22:20:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,55 @@
 #include "test.h"
 #include "builtin.h"
 
-void	exe_redir(t_exetree_node *exe_node, int parent_infd, int parent_outfd, t_exe_info *info)
+static int	exe_cmd(t_exetree_node *exe_node, t_exe_info *info)
 {
-	signal(SIGINT, SIG_DFL);
-	set_exe_node_fd(exe_node, parent_infd, parent_outfd);
-	close_pipe_oneside(exe_node->parent, exe_node, info);
-	if (exe_node->left)
-		execute_node(exe_node->left, exe_node->infd, exe_node->outfd, info);
+	pid_t	pid;
+	int		ws;
+
+	pid = strict_fork();
+	if (pid)
+	{
+		strict_waitpid(pid, &ws, 0);
+		close_fd(exe_node->fd);
+		return (calc_exit_status(ws));
+	}
 	else
 	{
-		strict_dup2(exe_node->infd, 0);
-		strict_dup2(exe_node->outfd, 1);
-		close_pipes(info->pipes);
-		//free_exe_info(info);	//?
-		if (exe_node->cmd == NULL)
-			exit(0);
-		if (is_builtin(exe_node->cmd->cmd))
-			exit(builtin(exe_node->cmd));
+		strict_dup2(exe_node->fd[0], 0);
+		strict_dup2(exe_node->fd[1], 1);
+		close_pipes(info);
 		strict_execve(exe_node->cmd->cmd, exe_node->cmd->args, exe_node->cmd->envp);
 	}
+	return (0);
+}
+
+
+int	exe_redir(t_exetree_node *exe_node, int *parent_fd, t_exe_info *info)
+{
+	signal(SIGINT, SIG_DFL);
+	set_exe_node_fd(exe_node, parent_fd);
+	close_pipe_oneside(exe_node->parent, exe_node, info);
+	if (exe_node->left)
+		execute_node(exe_node->left, exe_node->fd, info);
+	else
+	{
+		if (exe_node->cmd == NULL)
+		{
+			close_fd(exe_node->fd);
+			return (0);
+		}
+		if (exe_node->parent && exe_node->parent->type == EXE_PIPE)
+		{
+			if (is_builtin(exe_node->cmd->cmd))
+				exit(exe_builtin(exe_node->cmd));
+			exit(exe_cmd(exe_node, info));
+		}
+		else
+		{
+			if (is_builtin(exe_node->cmd->cmd))
+				return (exe_builtin(exe_node->cmd));
+			return (exe_cmd(exe_node, info));
+		}
+	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/04/05 02:00:51 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/05 18:54:24 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = /usr/include#$(shell brew --prefix readline)
+RL_DIR = $(shell brew --prefix readline)#/usr/include
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -109,6 +109,7 @@ SRCS_STRICT			=	strict_malloc.c\
 						strict_waitpid.c
 
 SRCS_EXECUTOR		=	calc_exit_status.c\
+						close_fd.c\
 						close_pipes.c\
 						close_pipe_oneside.c\
 						exe_and.c\
@@ -165,6 +166,7 @@ $(NAME) : $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) \
 	-L $(LIBFT_DIR) -l$(LIBFT_NAME) \
 	-L $(RL_LIB) -lreadline \
+	-L $(RL_LIB) -lhistory \
 	-o $@
 	@printf "💡 Make $(NAME) Done\n"
 
