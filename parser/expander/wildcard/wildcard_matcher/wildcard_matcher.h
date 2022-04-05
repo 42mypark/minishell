@@ -6,12 +6,12 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 12:37:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:14:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WILDCARD_EXPANDER_UTILS_H
-# define WILDCARD_EXPANDER_UTILS_H
+#ifndef WILDCARD_MATCHER_H
+# define WILDCARD_MATCHER_H
 # include "parse_tree.h"
 
 typedef enum e_wildcard_matcher_state
@@ -41,4 +41,5 @@ void	wildcard_matcher_wildcard(\
 	char *word, \
 	int *wi
 );
+
 #endif

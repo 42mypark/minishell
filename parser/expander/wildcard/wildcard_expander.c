@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 13:05:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:16:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	wildcard_expander(t_tokens *tks, t_token *tk)
 	while (filenames[++i])
 	{
 		if (filenames[i][0] == '.' && pattern_raw[0] != '.')
-			continue;
+			continue ;
 		if (wildcard_match(filenames[i], pattern_raw, patterns))
 			filename_to_token(tks, filenames[i]);
 	}

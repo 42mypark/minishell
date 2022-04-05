@@ -6,12 +6,12 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 04:03:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:13:08 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef QUOTE_REMOVER_UTILS_H
-# define QUOTE_REMOVER_UTILS_H
+#ifndef QUOTE_REMOVER_H
+# define QUOTE_REMOVER_H
 # include "utils.h"
 # include "token.h"
 # include "parse_tree.h"

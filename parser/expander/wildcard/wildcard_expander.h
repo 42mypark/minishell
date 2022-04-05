@@ -6,12 +6,12 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 12:35:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:15:46 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WILDCARD_SPLITER_H
-# define WILDCARD_SPLITER_H
+#ifndef WILDCARD_EXPANDER_H
+# define WILDCARD_EXPANDER_H
 # include "token.h"
 # include "utils.h"
 
