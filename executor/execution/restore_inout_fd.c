@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   restore_inout_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 17:36:25 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 20:37:00 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/01 02:31:21 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/06 17:30:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-# include "info.h"
-# include "exe_tree.h"
+#include "libft.h"
+#include "strict.h"
+#include "test.h"
+#include "exe_tree.h"
 
-int	builtin_cd(t_exetree_node *exe_node);
-int	exe_builtin(t_exetree_node *exe_node);
-int	is_builtin(char *);
-int	builtin_pwd(t_exetree_node *exe_node);
-int	builtin_exit();
+static void	close_inout_fd(t_exetree_node *e_node)
+{
+	if (e_node->fd[0] != 0)
+		strict_close(0);
+	if (e_node->fd[1] != 1)
+		strict_close(1);
+}
 
-#endif
+void	restore_inout_fd(t_exetree_node *e_node)
+{
+	close_inout_fd(e_node);
+	strict_dup2(4, 1);
+	strict_dup2(3, 0);
+}

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 19:28:28 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 20:20:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,7 @@
 #include <readline/history.h>
 #include <signal.h>
 #include <sys/wait.h>
-
-void	ctrl_c()
-{
-	printf("\n");
-	rl_replace_line("", 1);
-	rl_on_new_line();
-	rl_redisplay();
-}
+#include "strict.h"
 
 char	*ft_readline(char *prompt)
 {
@@ -57,6 +50,8 @@ int	main(int argc, char **argv, char **envp)
 	argc++;
 	argv++;
 	info = new_exe_info(envp);
+	strict_dup2(0, 3);
+	strict_dup2(1, 4);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
@@ -66,7 +61,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		signal(SIGINT, SIG_IGN);
 		parse_tree = parser(input, info);
-		print_parsetree(parse_tree, &pcnt);
+		//print_parsetree(parse_tree, &pcnt)1;
 		if (parse_tree == 0)
 			continue ;
 		exe_tree = make_exetree(parse_tree, info);
@@ -74,7 +69,7 @@ int	main(int argc, char **argv, char **envp)
 		print_exetree(exe_tree, &pcnt);
 		printf("\n***** cmd result *****\n");
 		executor(exe_tree, info);
-		printf("***** cmd end *****\n");
+		//printf("***** cmd end *****\n");
 		free_exetree(exe_tree);
 	}
 }

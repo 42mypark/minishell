@@ -1,5 +1,3 @@
-pipe close : 5 -1
-pipe close : -1 6
 Makefile
 README.md
 a

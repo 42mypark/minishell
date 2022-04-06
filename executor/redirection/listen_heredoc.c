@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 15:13:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 20:17:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,52 @@ static void	write_expanded(int to, char *str, char **envp)
 	free_tokens(tks);
 }
 
+static int	env_end_index(char *str)
+{
+	int	i;
+
+	i = 1;
+	while (str[i])
+	{
+		if (!(ft_isalnum(str[i]) || str[i] == '_'))
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+void	write_input(char *input, int to, char **envp)
+{
+	int		dollar;
+	int		env_end;;
+	char	*env;
+
+	while (*input)
+	{
+		dollar = ft_strchri(input, '$');
+		if (dollar == -1)
+		{
+			write(to, input, ft_strlen(input));
+			break;
+		}
+		else
+		{
+			write(to, input, dollar);
+			input += dollar;
+			env_end = env_end_index(input);
+			env = ft_strndup(input, env_end);
+			write_expanded(to, env, envp);
+			input += env_end;
+			free(env);
+		}
+	}
+}
+
 void	listen_heredoc(char *limiter, int to, char **envp)
 {
 	char	*input;
-	int		dollar;
-	char	*back;
 
+	signal(SIGINT, ctrl_c_heredoc);
 	while (1)
 	{
 		input = readline("> ");
@@ -54,18 +94,7 @@ void	listen_heredoc(char *limiter, int to, char **envp)
 			free(input);
 			break;
 		}
-		dollar = ft_strchri(input, '$');
-		if (dollar == -1)
-			write(to, input, ft_strlen(input));
-		else
-		{
-			back = ft_strdiv(&input, dollar);
-			if (back == NULL)
-				print_malloc_error();
-			write(to, input, dollar);
-			write_expanded(to, back, envp);
-			free(back);
-		}
+		write_input(input, to, envp);
 		write(to, "\n", 1);
 		free(input);
 	}

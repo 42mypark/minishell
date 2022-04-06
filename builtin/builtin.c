@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:15:05 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 17:34:28 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 20:37:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,21 @@ int	is_builtin(char *cmd)
 	return (0);
 }
 
-int	exe_builtin(t_cmd_info *info)
+int	exe_builtin(t_exetree_node *exe_node)
 {
-	printf("builtin\n");
-	if (info == NULL)
+	t_cmd_info	*info;
+
+	info = exe_node->cmd;
+	if (exe_node->cmd == NULL)
+	{
+		restore_inout_fd(exe_node);
 		return (0);
+	}
 	if (is_same(info->cmd, "cd"))
-		return (builtin_cd(info->args[1], info->envp));
+		return (builtin_cd(exe_node));
 	if (is_same(info->cmd, "pwd"))
-		return (builtin_pwd());
+		return (builtin_pwd(exe_node));
+	if (is_same(info->cmd, "exit"))
+		return (builtin_exit());
 	return (0);
 }
