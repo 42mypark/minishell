@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_token.h                                     :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 01:25:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 22:28:38 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/06 18:40:39 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/06 22:12:16 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_TOKEN_H
-# define EXPAND_TOKEN_H
-# include "token.h"
-# include "info.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-t_tokens	*expand_token_env(t_token *tk, t_exe_info *info);
-t_tokens	*expand_token_wildcard(t_token *tk, t_exe_info *info);
-t_tokens	*expand_token_quote(t_token *tk, t_exe_info *info);
+void	ctrl_c()
+{
+	write(1, "\n", 1);
+	rl_replace_line("", 1);
+	rl_on_new_line();
+	rl_redisplay();
+}
 
-#endif
+void	ctrl_c_heredoc()
+{
+	exit(131);
+}

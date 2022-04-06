@@ -6,26 +6,33 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 19:15:32 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 17:04:37 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "error.h"
+#include "exe_tree.h"
+#include "executor.h"
 #include <errno.h>
 #include <string.h>
 
-int	builtin_cd(char *dir, char **envp)
+int	builtin_cd(t_exetree_node *exe_node)
 {
 	int		ret;
 	char	*home;
+	char	**envp;
+	char	*dir;
 
+	envp = exe_node->cmd->envp;
+	dir = exe_node->cmd->args[1];
 	if (dir == NULL)
 	{
 		home = dupenv("HOME", envp);
 		ret = chdir(home);
 		if (ret == -1)
 		{
+			restore_inout_fd(exe_node);
 			print_strerror("builtin", strerror(errno));
 			return (1);
 		}
@@ -35,8 +42,10 @@ int	builtin_cd(char *dir, char **envp)
 	ret = chdir(dir);
 	if (ret == -1)
 	{
+		restore_inout_fd(exe_node);
 		print_strerror("builtin", strerror(errno));
 		return (1);
 	}
+	restore_inout_fd(exe_node);
 	return (0);
 }

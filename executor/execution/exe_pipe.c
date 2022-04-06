@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 22:17:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 16:25:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@
 
 static void	exe_pipe_child(\
 	t_exetree_node *child, \
-	enum e_exetree_node type, \
-	int *fd, \
+	int *inherit_fd, \
 	t_exe_info *info\
 )
 {
 	pid_t	pid;
 
-	if (type == EXE_PIPE)
-		execute_node(child, fd, info);
+	if (child->type == EXE_PIPE)
+		execute_node(child, inherit_fd, info);
 	else
 	{
 		pid = strict_fork();
@@ -37,7 +36,7 @@ static void	exe_pipe_child(\
 			insert_new_pid(info, pid);
 		else
 		{
-			execute_node(child, fd, info);
+			execute_node(child, inherit_fd, info);
 			exit(0);
 		}
 	}
@@ -64,21 +63,21 @@ static void	wait_childs(t_exe_info *info)
 
 int	exe_pipe(t_exetree_node *exe_node, int *parent_fd, t_exe_info *info)
 {
-	int		p[2];
-	int		fd[2];
+	int		pipefd[2];
+	int		inherit_fd[2];
 	int		*exit_status;
 	t_list	*last;
 
 	set_exe_node_fd(exe_node, parent_fd);
 	close_pipe_oneside(exe_node->parent, exe_node, info);
-	pipe(p);
-	insert_new_pipe(info, p);
-	fd[0] = exe_node->fd[0];
-	fd[1] = p[1];
-	exe_pipe_child(exe_node->left, exe_node->left->type, fd, info);
-	fd[0] = p[0];
-	fd[1] = exe_node->fd[1];
-	exe_pipe_child(exe_node->right, exe_node->right->type, fd, info);
+	pipe(pipefd);
+	insert_new_pipe(info, pipefd);
+	inherit_fd[0] = exe_node->fd[0];
+	inherit_fd[1] = pipefd[1];
+	exe_pipe_child(exe_node->left, inherit_fd, info);
+	inherit_fd[0] = pipefd[0];
+	inherit_fd[1] = exe_node->fd[1];
+	exe_pipe_child(exe_node->right, inherit_fd, info);
 	if (exe_node->parent == NULL || exe_node->parent->type != EXE_PIPE)
 	{
 		close_pipes(info);

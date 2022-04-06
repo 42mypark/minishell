@@ -6,12 +6,12 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/04/05 18:54:24 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/06 20:50:47 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g #-fsanitize=address -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -91,14 +91,16 @@ SRCS_TEST_PRINT		=	print_tokens.c\
 
 SRCS_BUILTINS		=	builtin.c\
 						cd.c\
-						pwd.c
+						pwd.c\
+						exit.c\
 
 
 SRCS_UTILS			=	buffer.c\
 						is_chars.c\
 						dupenv.c\
 						is_same.c\
-						set_state.c
+						set_state.c\
+						signal.c
 
 SRCS_STRICT			=	strict_malloc.c\
 						strict_fork.c\
@@ -109,11 +111,11 @@ SRCS_STRICT			=	strict_malloc.c\
 						strict_waitpid.c
 
 SRCS_EXECUTOR		=	calc_exit_status.c\
-						close_fd.c\
+						restore_inout_fd.c\
 						close_pipes.c\
 						close_pipe_oneside.c\
+						close_fd.c\
 						exe_and.c\
-						exe_bool_child.c\
 						exe_or.c\
 						exe_pipe.c\
 						exe_redir.c\

@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe_bool_child.c                                   :+:      :+:    :+:   */
+/*   restore_inout_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 16:18:55 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/01 02:31:21 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/06 17:30:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
-#include "info.h"
-#include "executor.h"
+#include "libft.h"
 #include "strict.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include "test.h"
+#include "exe_tree.h"
 
-int	exe_bool_child(t_exetree_node *child, int *fd, t_exe_info *info)
+static void	close_inout_fd(t_exetree_node *e_node)
 {
-	pid_t	pid;
-	int		ws;
+	if (e_node->fd[0] != 0)
+		strict_close(0);
+	if (e_node->fd[1] != 1)
+		strict_close(1);
+}
 
-	pid = strict_fork();
-	if (pid)
-	{
-		strict_waitpid(pid, &ws, 0);
-		return (calc_exit_status(ws));
-	}
-	else
-	{
-		execute_node(child, fd, info);
-		//exit(0);
-	}
-	return (1);
+void	restore_inout_fd(t_exetree_node *e_node)
+{
+	close_inout_fd(e_node);
+	strict_dup2(4, 1);
+	strict_dup2(3, 0);
 }

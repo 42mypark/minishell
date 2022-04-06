@@ -8,7 +8,7 @@
 *.v
 +head
 A
-Makefile
+Makefile G
 \-head
 a.out
 argcnt

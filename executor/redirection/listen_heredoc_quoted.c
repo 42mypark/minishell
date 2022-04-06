@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 15:18:29 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 18:58:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	listen_heredoc_quoted(char *limiter, int to)
 {
 	char	*input;
 
+	signal(SIGINT, ctrl_c_heredoc);
 	while (1)
 	{
 		input = readline("> ");

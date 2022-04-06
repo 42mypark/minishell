@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:45:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 00:42:34 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 19:59:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	ft_splitfree(char **words);
 char	**ft_splitdup(char **old_words);
 char	*ft_strdiv(char **front, int index);
 int		ft_wordcount(char **words);
+char	*ft_strndup(const char *s1, int n);
 
 #endif
