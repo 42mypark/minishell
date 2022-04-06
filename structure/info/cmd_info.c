@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:51:01 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 17:28:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 02:12:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "strict.h"
 #include <stdlib.h>
 
-t_cmd_info	*new_cmd_info(char *cmd, char **args, char **envp)
+t_cmd_info	*new_cmd_info(char *cmd, char **args, char ***envp)
 {
 	t_cmd_info *info;
 

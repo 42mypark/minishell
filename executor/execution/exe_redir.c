@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 21:55:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 02:46:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	exe_cmd(t_exetree_node *exe_node)
 	else
 	{
 		signal(SIGINT, SIG_DFL);
-		strict_execve(exe_node->cmd->cmd, exe_node->cmd->args, exe_node->cmd->envp);
+		strict_execve(exe_node->cmd->cmd, exe_node->cmd->args, *exe_node->cmd->envp);
 	}
 	return (0);
 }
@@ -47,7 +47,7 @@ int	exe_redir(t_exetree_node *exe_node, int *parent_fd, t_exe_info *info)
 	set_exe_node_fd(exe_node, parent_fd);
 	close_pipe_oneside(exe_node->parent, exe_node, info);
 	if (exe_node->left)
-		execute_node(exe_node->left, exe_node->fd, info);
+		return (execute_node(exe_node->left, exe_node->fd, info));
 	else
 	{
 		strict_dup2(exe_node->fd[0], 0);

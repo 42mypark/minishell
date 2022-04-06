@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meet_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 22:31:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 00:50:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "test.h"
 #include "strict.h"
 #include <fcntl.h>
+#include <sys/wait.h>
 #include "redirection_utils.h"
 
 static int	to_open_flag(enum e_parsetree_node type)

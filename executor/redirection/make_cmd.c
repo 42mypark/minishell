@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:14:37 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 17:20:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 02:12:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	make_cmd(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 	paths = ft_split(env_path, ':');
 	cmd = can_access(args[0], paths);
 	if (cmd != NULL)
-		e_nd->cmd = new_cmd_info(cmd, args, info->envp);
+		e_nd->cmd = new_cmd_info(cmd, args, &info->envp);
 	else
 	{
 		e_nd->type = EXE_ERROR;

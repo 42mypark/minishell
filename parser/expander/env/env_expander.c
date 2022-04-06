@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 22:32:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 02:11:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static void	init_env_expander(\
 	t_env_expander *envexp, \
 	t_tokens *tks, \
-	char **envp\
+	char ***envp\
 )
 {
 	envexp->state = E_CHARS;
@@ -68,7 +68,7 @@ void	env_expander(t_tokens *tks, char *str, t_exe_info *info)
 	t_env_expander		envexp;
 	t_expansion_range	*range;
 
-	init_env_expander(&envexp, tks, info->envp);
+	init_env_expander(&envexp, tks, &info->envp);
 	if (is_only_dollar(&envexp, str, tks))
 		return ;
 	if (is_exit_expansion(&envexp, str, tks, info))

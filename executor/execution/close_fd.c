@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 21:16:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 17:29:41 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 01:06:19 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "libft.h"
 #include "strict.h"
 
-void	check_close_pipe(int pipe_num, t_exe_info *info)
+void	check_pipe_closed(int pipe_num, t_exe_info *info)
 {
 	int		*p;
 	t_list	*curr;
-	
+
 	curr = info->pipes;
 	while (curr)
 	{
@@ -41,12 +41,12 @@ void	close_fd(t_exetree_node *exe_node, t_exe_info *info)
 {
 	if (exe_node->fd[0] != 0)
 	{
-		check_close_pipe(exe_node->fd[0], info);
 		strict_close(exe_node->fd[0]);
+		check_pipe_closed(exe_node->fd[0], info);
 	}
 	if (exe_node->fd[1] != 1)
 	{
-		check_close_pipe(exe_node->fd[1], info);			
 		strict_close(exe_node->fd[1]);
+		check_pipe_closed(exe_node->fd[1], info);
 	}
 }

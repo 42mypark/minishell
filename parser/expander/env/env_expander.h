@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:46:22 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 03:07:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 02:10:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_env_expander
 	t_env_expander_state	state;
 	t_buffer				*buf;
 	int						(*actions[5])(struct s_env_expander *, char);
-	char					**envp;
+	char					***envp;
 	t_tokens				*tokens;
 }				t_env_expander;
 

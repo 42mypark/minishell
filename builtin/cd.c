@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 17:04:37 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 02:47:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	builtin_cd(t_exetree_node *exe_node)
 	char	**envp;
 	char	*dir;
 
-	envp = exe_node->cmd->envp;
+	envp = *exe_node->cmd->envp;
 	dir = exe_node->cmd->args[1];
 	if (dir == NULL)
 	{

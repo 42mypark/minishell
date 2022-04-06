@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander_actions_dollar.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 02:49:51 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 16:09:40 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 02:46:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@
 static void	push_env_to_buffer(t_buffer *env_name, t_buffer *buf, char **envp)
 {
 	char				*env;
-	int					i;
 	int					start;
 	t_expansion_range	*range;
 
 	env = dupenv(env_name->space, envp);
-	i = 0;
 	start = buf->len;
-	while (env[i])
-		push_buffer(buf, env[i++]);
+	push_buffer_str(buf, env);
 	range = new_expansion_range(start, buf->len);
 	expansion_record_add_back(&buf->expansion_record, range);
 	free(env);
@@ -43,7 +40,7 @@ int	env_expander_dq_dollar(\
 		push_buffer(&env_name, input);
 	else
 	{
-		push_env_to_buffer(&env_name, envexp->buf, envexp->envp);
+		push_env_to_buffer(&env_name, envexp->buf, *envexp->envp);
 		reset_buffer(&env_name);
 		if (input == '$')
 			return (0);
@@ -74,7 +71,11 @@ static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
 
 	i = 0;
 	if (is_blank(env[0]))
+	{
+		if (buf->len)
+			issue_token(tks, buf);
 		i = pass_blank(env, i);
+	}
 	buf->start = buf->len;
 	while (env[i])
 	{
@@ -102,7 +103,7 @@ int	env_expander_dollar(\
 		push_buffer(&env_name, input);
 	else
 	{
-		env = dupenv(env_name.space, envexp->envp);
+		env = dupenv(env_name.space, *envexp->envp);
 		env_to_token(envexp->tokens, envexp->buf, env);
 		free(env);
 		reset_buffer(&env_name);
