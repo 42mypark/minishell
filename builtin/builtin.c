@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:15:05 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 01:58:37 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 03:50:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	exe_builtin(t_exetree_node *exe_node, t_exe_info *e_info)
 	}
 	if (is_same(cmd->cmd, "export"))
 		return (builtin_export(exe_node, e_info));
+	if (is_same(cmd->cmd, "env"))
+		return (builtin_env(e_info));
 	if (is_same(cmd->cmd, "cd"))
 		return (builtin_cd(exe_node));
 	if (is_same(cmd->cmd, "pwd"))

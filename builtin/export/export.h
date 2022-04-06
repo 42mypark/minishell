@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   export.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:36:25 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 03:49:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 03:38:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-# include "info.h"
-# include "exe_tree.h"
+#ifndef EXPORT_H
+# define EXPORT_H
 
-int		exe_builtin(t_exetree_node *exe_node, t_exe_info *e_info);
-int		is_builtin(char *);
-int		builtin_cd(t_exetree_node *exe_node);
-int		builtin_pwd(t_exetree_node *exe_node);
-int		builtin_exit(t_exe_info *info);
-int		builtin_export(t_exetree_node *exe_node, t_exe_info *info);
-int		builtin_env(t_exe_info *info);
+void	export_print(char **envp);
 
 #endif

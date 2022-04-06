@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/06 15:54:50 by dha               #+#    #+#              #
-#    Updated: 2022/04/07 02:01:02 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/07 03:50:26 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ INCS_PARSER		=	-I./parser\
 					-I./parser/parsing\
 					$(INCS_EXPANDER)\
 					$(INCS_LEXER)
-INCS_BUILTIN	=	-I./builtin
+INCS_BUILTIN	=	-I./builtin\
+					-I./builtin/export
 INCS_UTILS		=	-I./utils
 INCS_STRUCTURE	=	-I./structure/info\
 					-I./structure/token\
@@ -92,8 +93,10 @@ SRCS_TEST_PRINT		=	print_tokens.c\
 SRCS_BUILTINS		=	builtin.c\
 						cd.c\
 						pwd.c\
+						env.c\
 						exit.c\
 						export.c\
+						export_print.c\
 
 
 SRCS_UTILS			=	buffer.c\
