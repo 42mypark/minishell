@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 20:20:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 22:34:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		exe_tree = make_exetree(parse_tree, info);
 		free_parsetree(parse_tree);
-		print_exetree(exe_tree, &pcnt);
+		//print_exetree(exe_tree, &pcnt);
 		printf("\n***** cmd result *****\n");
 		executor(exe_tree, info);
 		//printf("***** cmd end *****\n");

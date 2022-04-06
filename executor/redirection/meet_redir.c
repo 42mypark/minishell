@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 20:31:40 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 22:31:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	make_heredoc(t_exetree_node *e_nd, t_token *tk, t_exe_info *info)
 	if (pid)
 	{
 		waitpid(pid, &ws, 0);
+		info->last_exit = calc_exit_status(ws);
 		strict_close(p[1]);
 		e_nd->fd[0] = p[0];
 	}
@@ -65,7 +66,7 @@ static void	make_heredoc(t_exetree_node *e_nd, t_token *tk, t_exe_info *info)
 		if (tk->type == QUOTED_STR)
 			listen_heredoc_quoted(tk->content, p[1]);
 		else
-			listen_heredoc(tk->content, p[1], info->envp);
+			listen_heredoc(tk->content, p[1], info);
 		exit(0);
 	}
 }

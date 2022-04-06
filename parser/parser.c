@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 01:08:44 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 22:33:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ t_parsetree_node	*parser(char *input, t_exe_info *info)
 	}
 	head = new_parsetree_node(tks, NULL);
 	make_parsetree_node(head);
-	expander(head, info->envp);
+	expander(head, info);
 	return (head);
 }

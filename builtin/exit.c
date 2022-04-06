@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 20:37:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 22:18:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "test.h"
 #include "executor.h"
 
-int	builtin_exit()
+int	builtin_exit(t_exe_info *info)
 {
-	exit(0);
+	exit(info->last_exit);
 }

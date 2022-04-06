@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 18:45:45 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/06 22:38:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	exe_error(t_exetree_node *exe_node)
 	print_strerror("file", (char *)exe_node->err->msg);
 	if (exe_node->parent && exe_node->parent->type == EXE_PIPE)
 		exit(exe_node->err->exit_status);
-	return (1);
+	return (exe_node->err->exit_status);
 }
 
 int	execute_node(t_exetree_node *exe_node, int *parent_fd, t_exe_info *info)
@@ -42,5 +42,10 @@ void	executor(t_exetree_node *exe_node, t_exe_info *info)
 	int	fd[2];
 	fd[0] = 0;
 	fd[1] = 1;
-	execute_node(exe_node, fd, info);
+	if (info->last_exit == 131)
+	{
+		info->last_exit = 1;
+		return ;
+	}
+	info->last_exit = execute_node(exe_node, fd, info);
 }
