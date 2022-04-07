@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 03:44:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 02:32:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ static void	register_new_var(char *var, t_exe_info *info)
 
 int	builtin_export(t_exetree_node *exe_node, t_exe_info *info)
 {
-	int		count;
-	int		i;
-	char	*new_envp;
 	// print_exetree_node(exe_node, &count);
 	// print_exe_info(info);
 

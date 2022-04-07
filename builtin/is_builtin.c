@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.c                                          :+:      :+:    :+:   */
+/*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 23:58:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 23:58:22 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/08 02:14:16 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/08 02:14:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "info.h"
-#include "builtin.h"
-#include "test.h"
 
 int	is_builtin(char *cmd)
 {
@@ -36,32 +33,5 @@ int	is_builtin(char *cmd)
 			return (1);
 		i++;
 	}
-	return (0);
-}
-
-int	exe_builtin(t_exetree_node *exe_node, t_exe_info *e_info)
-{
-	t_cmd_info	*cmd;
-
-	cmd = exe_node->cmd;
-	if (exe_node->cmd == NULL)
-	{
-		restore_inout_fd(exe_node);
-		return (0);
-	}
-	if (is_same(cmd->cmd, "echo"))
-		return (builtin_echo(exe_node));
-	if (is_same(cmd->cmd, "export"))
-		return (builtin_export(exe_node, e_info));
-	if (is_same(cmd->cmd, "env"))
-		return (builtin_env(e_info));
-	if (is_same(cmd->cmd, "cd"))
-		return (builtin_cd(exe_node));
-	if (is_same(cmd->cmd, "pwd"))
-		return (builtin_pwd(exe_node));
-	if (is_same(cmd->cmd, "unset"))
-		return (builtin_unset(exe_node, e_info));
-	if (is_same(cmd->cmd, "exit"))
-		builtin_exit(e_info);
 	return (0);
 }

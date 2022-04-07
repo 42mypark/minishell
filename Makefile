@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/07 23:56:46 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/08 03:26:28 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = $(shell brew --prefix readline)#/usr/include
+RL_DIR = /usr/include#$(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -90,7 +90,7 @@ SRCS_TEST_PRINT		=	print_tokens.c\
 						print_splited.c\
 						print_exe_info.c
 
-SRCS_BUILTINS		=	builtin.c\
+SRCS_BUILTINS		=	is_builtin.c\
 						cd.c\
 						pwd.c\
 						env.c\
@@ -113,19 +113,21 @@ SRCS_STRICT			=	strict_malloc.c\
 						strict_close.c\
 						strict_open.c\
 						strict_execve.c\
+						strict_pipe.c\
 						strict_waitpid.c
 
 SRCS_EXECUTOR		=	calc_exit_status.c\
-						restore_inout_fd.c\
+						restore_std_fd.c\
 						close_pipes.c\
-						close_pipe_oneside.c\
+						close_unused_pipe.c\
+						close_inout_fd.c\
 						close_fd.c\
 						exe_and.c\
 						exe_or.c\
 						exe_pipe.c\
 						exe_redir.c\
 						executor.c\
-						set_exe_node_fd.c
+						inherit_parent_fd.c
 
 SRCS_TOKEN			=	count_token.c\
 						tokens_to_splited.c\

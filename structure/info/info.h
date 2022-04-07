@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:28:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 02:12:50 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 01:29:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_exe_info
 	t_list	*exits;
 	char	**envp;
 	int		last_exit;
+	int		pipefd_unused;
 }				t_exe_info;
 
 t_err_info		*new_err_info(const char *msg, int exit_status);

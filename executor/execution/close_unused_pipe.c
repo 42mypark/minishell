@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_pipe_oneside.c                               :+:      :+:    :+:   */
+/*   close_unused_pipe.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,21 +13,12 @@
 #include "exe_tree.h"
 #include "libft.h"
 #include "strict.h"
+#include "exe_tree.h"
 
-void	close_pipe_oneside(t_exetree_node *parent, t_exetree_node *exe_node, t_exe_info *info)
+void	close_unused_pipe(t_exetree_node *exnode, t_exe_info *info)
 {
-	int	*p;
-	
-	if (parent != NULL && parent->type == EXE_PIPE && parent->right == exe_node)
-	{
-		p = ft_lstlast(info->pipes)->content;
-		strict_close(p[1]);
-		p[1] = -1;
-	}
-	if (parent != NULL && parent->type == EXE_PIPE && parent->left == exe_node)
-	{
-		p = ft_lstlast(info->pipes)->content;
-		strict_close(p[0]);
-		p[0] = -1;
-	}
+	if (exnode->parent && exnode->parent->type == EXE_PIPE \
+		&& info->pipefd_unused != -1)
+		strict_close(info->pipefd_unused);
+	info->pipefd_unused = -1;
 }

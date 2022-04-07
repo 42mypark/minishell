@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 03:50:53 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 02:17:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int	builtin_env(t_exe_info *info)
 {
-	// handle error more than 1 args
+	// handle error more than 1 args?
 	char **envp;
 
 	envp = info->envp;

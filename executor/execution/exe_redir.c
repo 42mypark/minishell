@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 22:27:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 04:47:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "test.h"
 #include "builtin.h"
 
-static int	exe_cmd(t_exetree_node *exe_node)
+static int	exe_cmd(t_exetree_node *exnode)
 {
 	pid_t	pid;
 	int		ws;
@@ -30,42 +30,78 @@ static int	exe_cmd(t_exetree_node *exe_node)
 	if (pid)
 	{
 		strict_waitpid(pid, &ws, 0);
-		restore_inout_fd(exe_node);
+		restore_std_fd();//?
 		return (calc_exit_status(ws));
 	}
 	else
 	{
 		signal(SIGINT, SIG_DFL);
-		strict_execve(exe_node->cmd->cmd, exe_node->cmd->args, *exe_node->cmd->envp);
+		strict_execve(exnode->cmd->cmd, exnode->cmd->args, *exnode->cmd->envp);
 	}
 	return (0);
 }
 
-
-int	exe_redir(t_exetree_node *exe_node, int *parent_fd, t_exe_info *info)
+static int	exe_builtin(t_exetree_node *exnode, t_exe_info *e_info)
 {
-	set_exe_node_fd(exe_node, parent_fd);
-	close_pipe_oneside(exe_node->parent, exe_node, info);
-	if (exe_node->left)
-		return (execute_node(exe_node->left, exe_node->fd, info));
+	t_cmd_info	*cmd;
+	int			exit_status;
+
+	cmd = exnode->cmd;
+	if (exnode->cmd == NULL)
+		exit_status = 0;
+	if (is_same(cmd->cmd, "echo"))
+		exit_status = builtin_echo(exnode);
+	if (is_same(cmd->cmd, "export"))
+		exit_status = builtin_export(exnode, e_info);
+	if (is_same(cmd->cmd, "env"))
+		exit_status = builtin_env(e_info);
+	if (is_same(cmd->cmd, "cd"))
+		exit_status = builtin_cd(exnode);
+	if (is_same(cmd->cmd, "pwd"))
+		exit_status = builtin_pwd(exnode);
+	if (is_same(cmd->cmd, "unset"))
+		exit_status = builtin_unset(exnode, e_info);
+	if (is_same(cmd->cmd, "exit"))
+		builtin_exit(e_info);
+	restore_std_fd(); //?
+	return (exit_status);
+}
+
+static int	execute_and_goback(t_exetree_node *exnode, t_exe_info *info)
+{
+	// if (exnode->parent && exnode->parent->type == EXE_PIPE)
+	// {
+	// 	if (exnode->cmd == NULL || is_builtin(exnode->cmd->cmd))
+	// 		exit(exe_builtin(exnode, info));
+	// 	exit(exe_cmd(exnode));
+	// }
+	// else
+	// {
+		if (exnode->cmd == NULL || is_builtin(exnode->cmd->cmd))
+			return (exe_builtin(exnode, info));
+		return (exe_cmd(exnode));
+	// }
+	// return (0);
+}
+
+int	exe_redir(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
+{
+	int	exit_status;
+
+	inherit_parent_fd(exnode, parent_fd);
+	close_unused_pipe(exnode, info);
+	if (exnode->left)
+	{
+		exit_status = execute_node(exnode->left, exnode->fd, info);
+		close_inout_fd(exnode);
+		return (exit_status);
+	}
 	else
 	{
-		strict_dup2(exe_node->fd[0], 0);
-		strict_dup2(exe_node->fd[1], 1);
-		close_fd(exe_node, info);
-		close_pipes(info);
-		if (exe_node->parent && exe_node->parent->type == EXE_PIPE)
-		{
-			if (exe_node->cmd == NULL || is_builtin(exe_node->cmd->cmd))
-				exit(exe_builtin(exe_node, info));
-			exit(exe_cmd(exe_node));
-		}
-		else
-		{
-			if (exe_node->cmd == NULL || is_builtin(exe_node->cmd->cmd))
-				return (exe_builtin(exe_node, info));
-			return (exe_cmd(exe_node));
-		}
+		strict_dup2(exnode->fd[0], 0);
+		strict_dup2(exnode->fd[1], 1);
+		close_inout_fd(exnode);
+		return (execute_and_goback(exnode, info));
 	}
 	return (0);
 }

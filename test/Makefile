@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/04/04 21:16:55 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/08 02:14:10 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ SRCS_TEST_PRINT =	print_tokens.c\
 					print_splited.c\
 					print_exe_info.c
 
-SRCS_BUILTINS =	builtin.c\
+SRCS_BUILTINS =	is_builtin.c\
 				cd.c\
 				pwd.c
 
@@ -94,14 +94,13 @@ SRCS_STRICT =	strict_malloc.c\
 
 SRCS_EXECUTOR =	calc_exit_status.c\
 				close_pipes.c\
-				close_pipe_oneside.c\
+				close_unused_pipe.c\
 				exe_and.c\
-				exe_bool_child.c\
 				exe_or.c\
 				exe_pipe.c\
 				exe_redir.c\
 				executor.c\
-				set_exe_node_fd.c
+				inherit_parent_fd.c
 
 SRCS =	test_executor.c\
 		count_token.c\
