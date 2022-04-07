@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 15:54:27 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 21:41:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ void	print_exetree_node(t_exetree_node *node, int *cnt)
 {
 	printf("= %02d =======================================================\n", \
 			(*cnt)++);
-	printf("myaddr : %p \n", node);
-	printf("parent : %p \n", node->parent);
-	printf("left   : %p \t", node->left);
-	printf("right  : %p \n", node->right);
-	printf("type   : %s \n", enum_exetree_node_to_str(node->type));
-	printf("fd[0]   : %d \n", node->fd[0]);
-	printf("fd[1]  : %d \n", node->fd[1]);
+	printf("myaddr    : %p \n", node);
+	printf("parent    : %p \n", node->parent);
+	printf("left      : %p \t", node->left);
+	printf("right     : %p \n", node->right);
+	printf("pipelines : %p \n", node->pls);
+	printf("type      : %s \n", enum_exetree_node_to_str(node->type));
+	printf("fd[0]     : %d \n", node->fd[0]);
+	printf("fd[1]     : %d \n", node->fd[1]);
 	print_cmd_info(node->cmd);
 	print_err_info(node->err);
 	printf("============================================================\n");
@@ -68,9 +69,17 @@ void	print_exetree_node(t_exetree_node *node, int *cnt)
 
 void	print_exetree(t_exetree_node *node, int *cnt)
 {
+	t_pipelines	*curr;
+
+	print_exetree_node(node, cnt);
 	if (node->left)
 		print_exetree(node->left, cnt);
-	print_exetree_node(node, cnt);
 	if (node->right)
 		print_exetree(node->right, cnt);
+	curr = node->pls;
+	while (curr)
+	{
+		print_exetree(curr->content, cnt);
+		curr = curr->next;
+	}
 }

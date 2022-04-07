@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 03:14:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 16:11:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,10 @@ static void	print_export(char **envp)
 
 int	builtin_export(t_exetree_node *exe_node, t_exe_info *info)
 {
-	int		count;
-	int		i;
-	char	*new_envp;
 	// print_exetree_node(exe_node, &count);
 	// print_exe_info(info);
 
+	// a number can't be the first charactor of env_var
 	// handle more than 2 args error
 	if (exe_node->cmd->args[1])
 		register_new_var(exe_node->cmd->args[1], info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:36:25 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 02:00:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 19:12:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	builtin_cd(t_exetree_node *exe_node);
 int	builtin_pwd(t_exetree_node *exe_node);
 int	builtin_exit(t_exe_info *info);
 int	builtin_export(t_exetree_node *exe_node, t_exe_info *info);
-
+int	builtin_echo(t_exetree_node *exe_node);
+int	builtin_unset(t_exetree_node *exe_node, t_exe_info *info);
 
 #endif

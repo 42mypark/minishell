@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:55:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 16:11:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 20:23:27 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_exetree_node	*new_exetree_node(t_exetree_node *parent, enum e_exetree_node typ
 	node->fd[1] = outfd;
 	node->cmd = 0;
 	node->err = 0;
+	node->pls = 0;
 	return (node);
 }
 
@@ -39,12 +40,23 @@ void	free_exetree_node(t_exetree_node *node)
 	free(node);
 }
 
-void	free_exetree(t_exetree_node *node)
+void	free_exetree_pls(t_pipelines **pls)
 {
-	if (node == NULL)
+	if (pls == NULL)
 		return ;
-	free_exetree(node->left);
-	free_exetree(node->right);
-	free_exetree_node(node);
+	ft_lstclear(pls, free_exetree);
+}
+
+void	free_exetree(void *node)
+{
+	t_exetree_node *e_node;
+
+	e_node = (t_exetree_node *)node;
+	if (e_node == NULL)
+		return ;
+	free_exetree(e_node->left);
+	free_exetree(e_node->right);
+	free_exetree_pls(&e_node->pls);
+	free_exetree_node(e_node);
 }
 
