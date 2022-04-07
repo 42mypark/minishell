@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 22:34:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 22:23:17 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,34 @@ int	main(int argc, char **argv, char **envp)
 	t_exe_info			*info;
 	char				*input;
 
-	int	pcnt = 0;
+	//int	pcnt = 0;
 
 	argc++;
 	argv++;
 	info = new_exe_info(envp);
 	strict_dup2(0, 3);
 	strict_dup2(1, 4);
-	signal(SIGQUIT, SIG_IGN);
+	//signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		signal(SIGINT, ctrl_c);
+		//signal(SIGINT, ctrl_c);
 		input = ft_readline("msh ^ㅁ^/ $$ ");
 		if (input == NULL)
 			continue ;
-		signal(SIGINT, SIG_IGN);
+		//signal(SIGINT, SIG_IGN);
 		parse_tree = parser(input, info);
-		//print_parsetree(parse_tree, &pcnt)1;
+		//print_parsetree(parse_tree, &pcnt);
 		if (parse_tree == 0)
 			continue ;
+		//printf("\n***** exe_tree *****\n");
 		exe_tree = make_exetree(parse_tree, info);
 		free_parsetree(parse_tree);
+		//pcnt = 0;
 		//print_exetree(exe_tree, &pcnt);
+		//pcnt = 0;
 		printf("\n***** cmd result *****\n");
-		executor(exe_tree, info);
+		//executor(exe_tree, info);
 		//printf("***** cmd end *****\n");
-		free_exetree(exe_tree);
+		//free_exetree(exe_tree);
 	}
 }

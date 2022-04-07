@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 17:15:05 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 03:50:06 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/07 23:58:21 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/07 23:58:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 int	is_builtin(char *cmd)
 {
-	static char	*builtins[] = { /*"echo", */\
+	static char	*builtins[] = {\
+							"echo", \
 							"cd", \
 							"pwd", \
 							"export", \
@@ -48,6 +49,8 @@ int	exe_builtin(t_exetree_node *exe_node, t_exe_info *e_info)
 		restore_inout_fd(exe_node);
 		return (0);
 	}
+	if (is_same(cmd->cmd, "echo"))
+		return (builtin_echo(exe_node));
 	if (is_same(cmd->cmd, "export"))
 		return (builtin_export(exe_node, e_info));
 	if (is_same(cmd->cmd, "env"))
@@ -56,6 +59,8 @@ int	exe_builtin(t_exetree_node *exe_node, t_exe_info *e_info)
 		return (builtin_cd(exe_node));
 	if (is_same(cmd->cmd, "pwd"))
 		return (builtin_pwd(exe_node));
+	if (is_same(cmd->cmd, "unset"))
+		return (builtin_unset(exe_node, e_info));
 	if (is_same(cmd->cmd, "exit"))
 		builtin_exit(e_info);
 	return (0);

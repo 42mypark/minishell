@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:31:39 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 22:17:53 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 21:26:27 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,31 @@
 
 int	is_edge_parentheses(t_parsetree_node *pt_node)
 {
-	t_token		*first;
-	t_token		*last;
-	t_tokens	*tks;
+	t_token			*first;
+	t_tokens		*tks;
+	t_tokens_node	*curr;
+	t_token			*tk;
+	int				cnt;
 
 	tks = pt_node->tokens;
 	first = tks->head->content;
-	last = tks->tail->content;
-	if (first->type == LPT && last->type == RPT)
-		return (1);
+	if (first->type == LPT)
+	{
+		cnt = 1;
+		curr = tks->head->next;
+		while (cnt && curr != tks->tail)
+		{
+			tk = curr->content;
+			if (tk->type == RPT)
+				cnt--;
+			if (tk->type == LPT)
+				cnt++;
+			curr = curr->next;
+		}
+		tk = curr->content;
+		if (curr == tks->tail && tk->type == RPT)
+			return (1);
+	}
 	return (0);
 }
 

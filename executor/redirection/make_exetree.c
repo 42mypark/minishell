@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/06 21:52:50 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/07 21:38:09 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_i
 	}
 }
 
+void	make_exe_pipe(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
+{
+	if (p_nd->type == NODE_PIPE && p_nd->left)
+		make_exe_pipe(p_nd->left, e_nd, info);
+	if (p_nd->type == NODE_PIPE && p_nd->right)
+		make_exe_pipe(p_nd->right, e_nd, info);
+	if (p_nd->type != NODE_PIPE)
+		ft_lstadd_back(&e_nd->pls, ft_lstnew(make_exetree_node(e_nd, p_nd, e_nd->fd, info)));
+}
+
 t_exetree_node	*make_exetree_node(\
 	t_exetree_node *parent, \
 	t_parsetree_node *p_nd, \
@@ -70,13 +80,15 @@ t_exetree_node	*make_exetree_node(\
 	t_exetree_node	*e_nd;
 
 	e_nd = new_exetree_node(parent, to_enum_exetree_node(p_nd->type), fd[0], fd[1]);
-	if (p_nd->type & (NODE_AND | NODE_OR | NODE_PIPE))
+	if (p_nd->type & (NODE_AND | NODE_OR))
 	{
 		e_nd->left = make_exetree_node(e_nd, p_nd->left, e_nd->fd, info);
 		e_nd->right = make_exetree_node(e_nd, p_nd->right, e_nd->fd, info);
 	}
 	else if (p_nd->type == TOKENS)
 		make_cmd(p_nd, e_nd, info);
+	else if (p_nd->type == NODE_PIPE)
+		make_exe_pipe(p_nd, e_nd, info);
 	else if (p_nd->type & (NODE_IRD | NODE_ORD | NODE_ARD | NODE_HRD))
 		make_exe_redir(p_nd, e_nd, info);
 	return (e_nd);
