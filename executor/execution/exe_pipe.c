@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 06:00:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 11:59:17 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ static void	exe_pipe_child(t_exetree_node *exnode, int infd, int outfd, t_exe_in
 	fd[0] = infd;
 	fd[1] = outfd;
 	pid = strict_fork();
-	printf("%d\n", pid);
-	if(pid)
+	if(pid == 0)
+		exit(execute_node(exnode, fd, info));
+	else
 	{
 		inherit_parent_fd(exnode, fd);
 		insert_new_pid(info, pid);
 		close_inout_fd(exnode);//?
 	}
-	else
-		exit(execute_node(exnode, fd, info));
 }
 
 static void	wait_childs(t_exe_info *info)
@@ -88,6 +87,7 @@ int	exe_pipe(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 		prev_pipe = curr_pipe;
 		curr = curr->next;
 	}
+	info->pipefd_unused = -1;
 	exe_pipe_child(curr->content, prev_pipe[0], exnode->fd[1], info);
 	free(prev_pipe);
 	wait_childs(info);

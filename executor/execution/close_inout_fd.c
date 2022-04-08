@@ -20,9 +20,9 @@ void	close_inout_fd(t_exetree_node *exnode)
 	t_exetree_node	*parent;
 
 	parent = exnode->parent;
-	printf("curr in out : %d %d\n", exnode->fd[0], exnode->fd[1]);
-	if (parent)
-		printf("parent in out : %d %d\n", parent->fd[0], parent->fd[1]);
+	// printf("curr in out : %d %d\n", exnode->fd[0], exnode->fd[1]);
+	// if (parent)
+	// 	printf("parent in out : %d %d\n", parent->fd[0], parent->fd[1]);
 	if (parent == NULL && exnode->fd[0] != 0)
 		strict_close(exnode->fd[0]);
 	if (parent == NULL && exnode->fd[1] != 1)
