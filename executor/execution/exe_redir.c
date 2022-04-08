@@ -6,20 +6,22 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 16:15:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 20:17:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
 #include "info.h"
-#include "executor.h"
+#include "fdctrl.h"
 #include "strict.h"
+#include "utils.h"
+#include "execution.h"
+#include "builtin.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
 #include "test.h"
-#include "builtin.h"
 
 static int	exe_cmd(t_exetree_node *exnode)
 {
@@ -75,6 +77,9 @@ int	exe_redir(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 	close_unused_pipe(exnode, info);
 	if (exnode->left)
 	{
+		// int cnt;
+		// print_exetree_node(exnode, &cnt);
+		// print_exetree_node(exnode->left, &cnt);
 		exit_status = execute_node(exnode->left, exnode->fd, info);
 		close_myinout_fd(exnode);
 		return (exit_status);

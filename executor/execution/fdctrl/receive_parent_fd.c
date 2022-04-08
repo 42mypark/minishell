@@ -12,6 +12,7 @@
 
 #include "exe_tree.h"
 #include "strict.h"
+#include "test.h"
 
 void	receive_parent_fd(t_exetree_node *exnode, int *parent_fd)
 {
@@ -30,4 +31,6 @@ void	receive_parent_fd(t_exetree_node *exnode, int *parent_fd)
 			strict_close(parent_fd[i]);
 		i++;
 	}
+	int cnt = 0;
+	//print_exetree_node(exnode, &cnt);
 }

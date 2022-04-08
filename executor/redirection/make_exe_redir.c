@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_redir.c                                       :+:      :+:    :+:   */
+/*   make_exe_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 17:16:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 19:48:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "token.h"
 #include "strict.h"
 #include "heredoc.h"
+#include "redirection.h"
 #include <fcntl.h>
 #include <sys/wait.h>
 
@@ -68,7 +69,7 @@ static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_in
 		return (1) ;
 	if (p_nd->type & (NODE_OR | NODE_AND | NODE_PIPE))
 	{
-		e_nd->left = make_exetree_node(e_nd, p_nd, e_nd->fd, info);
+		e_nd->left = make_exetree_node(e_nd, p_nd, info);
 		return (1);
 	}
 	return (0);

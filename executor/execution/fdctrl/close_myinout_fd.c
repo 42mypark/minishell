@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 21:16:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 16:46:28 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 19:04:57 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	close_myinout_fd(t_exetree_node *exnode)
 			strict_close(exnode->fd[i]);
 		if (is_not_parent_fd)
 			strict_close(exnode->fd[i]);
+		i++;
 	}
 }

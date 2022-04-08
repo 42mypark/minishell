@@ -6,12 +6,12 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/08 16:50:12 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/08 18:57:08 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g #-fsanitize=address -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -47,8 +47,11 @@ INCS_STRUCTURE	=	-I./structure/info\
 INCS_ERROR		=	-I./error\
 					-I./error/strict
 INCS_EXECUTOR	=	-I./executor\
+					-I./executor/execution\
 					-I./executor/execution/pipe\
 					-I./executor/execution/fdctrl\
+					-I./executor/redirection\
+					-I./executor/redirection/heredoc\
 
 INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS) $(INCS_ERROR) $(INCS_EXECUTOR)
 
@@ -72,7 +75,9 @@ SRCS_REDIRECTION	=	make_exetree.c\
 						listen_heredoc_quoted.c\
 						listen_heredoc.c\
 						make_cmd.c\
-						meet_redir.c
+						make_exe_redir.c\
+						make_exe_pipe.c\
+						make_heredoc.c
 
 SRCS_INFO			=	cmd_info.c\
 						err_info.c\
@@ -130,7 +135,10 @@ SRCS_EXECUTOR		=	calc_exit_status.c\
 						exe_pipe.c\
 						exe_redir.c\
 						executor.c\
-						receive_parent_fd.c
+						execute_node.c\
+						receive_parent_fd.c\
+						exe_error.c\
+						pipe.c
 
 SRCS_TOKEN			=	count_token.c\
 						tokens_to_splited.c\

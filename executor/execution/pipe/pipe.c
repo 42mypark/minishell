@@ -6,11 +6,12 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:31:36 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 16:36:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 18:50:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
+#include "strict.h"
 #include "pipe.h"
 
 int	*generate_pipe()

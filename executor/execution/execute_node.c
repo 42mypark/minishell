@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe_or.c                                           :+:      :+:    :+:   */
+/*   execute_node.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 18:52:59 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/08 18:54:42 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/08 18:55:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
 #include "info.h"
-#include "fdctrl.h"
-#include "strict.h"
 #include "execution.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 
-int	exe_or(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
+int	execute_node(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 {
-	int	exit_status;
-
-	receive_parent_fd(exnode, parent_fd);
-	close_unused_pipe(exnode, info);
-
-	exit_status = execute_node(exnode->left, exnode->fd, info);
-	if (exit_status != 0)
-		exit_status = execute_node(exnode->right, exnode->fd, info);
-	close_myinout_fd(exnode);
-	return (exit_status);
+	if (exnode->type == EXE_ERROR)
+		return (exe_error(exnode, info));
+	if (exnode->type == EXE_REDIR)
+		return (exe_redir(exnode, parent_fd, info));
+	if (exnode->type == EXE_PIPE)
+		return (exe_pipe(exnode, parent_fd, info));
+	if (exnode->type == EXE_AND)
+		return (exe_and(exnode, parent_fd, info));
+	if (exnode->type == EXE_OR)
+		return (exe_or(exnode, parent_fd, info));
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 17:23:25 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 19:16:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	main(int argc, char **argv, char **envp)
 		parse_tree = parser(input, info);
 		if (parse_tree == NULL)
 			continue ;
-		printf("\n***** cmd result *****\n");
 		executor(parse_tree, info);
 	}
 }

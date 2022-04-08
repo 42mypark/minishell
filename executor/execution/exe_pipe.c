@@ -6,13 +6,14 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 16:39:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 20:31:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
 #include "info.h"
-#include "executor.h"
+#include "execution.h"
+#include "fdctrl.h"
 #include "strict.h"
 #include <unistd.h>
 #include <sys/types.h>
@@ -83,5 +84,6 @@ int	exe_pipe(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 	wait_childs(info);
 	close_myinout_fd(exnode);
 	exit_status = ft_lstlast(info->exits)->content;
+	printf("exit_Status : %d\n", *exit_status);
 	return (*exit_status);
 }
