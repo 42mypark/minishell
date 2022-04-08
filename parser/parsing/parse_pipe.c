@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 22:17:53 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:22:18 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parse_pipe(t_parsetree_node *pt_node)
 	while (curr != tks->head)
 	{
 		tk = curr->content;
-		if (tk->type == PIPE)
+		if (tk->type == TK_PIPE)
 		{
 			r_tks = cut_tokens_back(tks, curr);
 			l_tks = cut_tokens_front(tks, curr);

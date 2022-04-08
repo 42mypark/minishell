@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:27:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 22:44:29 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:24:48 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ static int	is_correct_parenthese(t_tokens *tks)
 	while (curr != tks->tail)
 	{
 		tk = curr->content;
-		if (tk->type == LPT)
+		if (tk->type == TK_LPT)
 			cnt++;
-		if (tk->type == RPT)
+		if (tk->type == TK_RPT)
 			cnt--;
 		if (cnt < 0)
 			return (0);
 		curr = curr->next;
 	}
 	tk = tks->tail->content;
-	if (tk->type == LPT)
+	if (tk->type == TK_LPT)
 		cnt++;
-	if (tk->type == RPT)
+	if (tk->type == TK_RPT)
 		cnt--;
 	if (cnt != 0)
 		return (0);
@@ -71,12 +71,12 @@ static int	is_correct_quotes(t_tokens *tks)
 	while (curr != tks->tail)
 	{
 		tk = curr->content;
-		if (tk->type == STR && !is_ok_quotes(tk->content))
+		if (tk->type == TK_STR && !is_ok_quotes(tk->content))
 			return (0);
 		curr = curr->next;
 	}
 	tk = tks->tail->content;
-	if (tk->type == STR && !is_ok_quotes(tk->content))
+	if (tk->type == TK_STR && !is_ok_quotes(tk->content))
 		return (0);
 	return (1);
 }

@@ -3,26 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 05:43:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 17:21:32 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
-#include "error.h"
-#include "executor.h"
-
-static int	exe_error(t_exetree_node *exnode, t_exe_info *info)
-{
-	close_unused_pipe(exnode, info);
-	close_inout_fd(exnode);
-	print_strerror("file", (char *)exnode->err->msg);
-	if (exnode->parent && exnode->parent->type == EXE_PIPE)
-		exit(exnode->err->exit_status);
-	return (exnode->err->exit_status);
-}
+#include "parse_tree.h"
+#include "execution.h"
+#include "redirection.h"
 
 int	execute_node(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 {
@@ -49,9 +40,9 @@ static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 		close_all_fd(exnode->left, info);
 	if (exnode->right)
 		close_all_fd(exnode->right, info);
-	if (exnode->pls)
+	if (exnode->pipelines)
 	{
-		curr = exnode->pls;
+		curr = exnode->pipelines;
 		while (curr)
 		{
 			close_all_fd(curr->content, info);
@@ -59,18 +50,22 @@ static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 		}
 	}
 	if (exnode->type == EXE_REDIR)
-		close_inout_fd(exnode);}
+		close_myinout_fd(exnode);
+}
 
-void	executor(t_exetree_node *exnode, t_exe_info *info)
+void	executor(t_parsetree_node *parse_tree, t_exe_info *info)
 {
-	int	fd[2];
-	fd[0] = 0;
-	fd[1] = 1;
+	t_exetree_node	*exe_tree;
+	static int		fd[2] = { 0, 1 };
+
+	exe_tree = make_exetree(parse_tree, info);
+	free_parsetree(parse_tree);
 	if (info->last_exit == 131)
 	{
-		close_all_fd(exnode, info);
+		close_all_fd(exe_tree, info);
 		info->last_exit = 1;
 		return ;
 	}
-	info->last_exit = execute_node(exnode, fd, info);
+	info->last_exit = execute_node(exe_tree, fd, info);
+	free_exetree(exe_tree);
 }

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:18:24 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 21:41:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:17:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_exetree_node(t_exetree_node *node, int *cnt)
 	printf("parent    : %p \n", node->parent);
 	printf("left      : %p \t", node->left);
 	printf("right     : %p \n", node->right);
-	printf("pipelines : %p \n", node->pls);
+	printf("pipelines : %p \n", node->pipelines);
 	printf("type      : %s \n", enum_exetree_node_to_str(node->type));
 	printf("fd[0]     : %d \n", node->fd[0]);
 	printf("fd[1]     : %d \n", node->fd[1]);
@@ -76,7 +76,7 @@ void	print_exetree(t_exetree_node *node, int *cnt)
 		print_exetree(node->left, cnt);
 	if (node->right)
 		print_exetree(node->right, cnt);
-	curr = node->pls;
+	curr = node->pipelines;
 	while (curr)
 	{
 		print_exetree(curr->content, cnt);

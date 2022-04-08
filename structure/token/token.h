@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 01:32:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:21:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 
 enum e_token
 {
-	STR,
-	IRD,
-	ORD,
-	HRD,
-	ARD,
-	PIPE,
-	AND,
-	OR,
-	LPT,
-	RPT,
-	INVALID,
-	EXPANDED_STR,
-	QUOTED_STR
+	TK_STR,
+	TK_IRD,
+	TK_ORD,
+	TK_HRD,
+	TK_ARD,
+	TK_PIPE,
+	TK_AND,
+	TK_OR,
+	TK_LPT,
+	TK_RPT,
+	TK_INVALID,
+	TK_EXPANDED_STR,
+	TK_QUOTED_STR
 };
 
 typedef struct s_token

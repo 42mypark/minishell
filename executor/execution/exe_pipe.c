@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 11:59:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:39:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include "pipe.h"
 #include "test.h"
 
-static void	exe_pipe_child(t_exetree_node *exnode, int infd, int outfd, t_exe_info *info)
+static void	exe_pipe_child(t_exetree_node *exchild, int infd, int outfd, t_exe_info *info)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -28,12 +29,12 @@ static void	exe_pipe_child(t_exetree_node *exnode, int infd, int outfd, t_exe_in
 	fd[1] = outfd;
 	pid = strict_fork();
 	if(pid == 0)
-		exit(execute_node(exnode, fd, info));
+		exit(execute_node(exchild, fd, info));
 	else
 	{
-		inherit_parent_fd(exnode, fd);
+		receive_parent_fd(exchild, fd);
+		close_myinout_fd(exchild);
 		insert_new_pid(info, pid);
-		close_inout_fd(exnode);//?
 	}
 }
 
@@ -56,42 +57,31 @@ static void	wait_childs(t_exe_info *info)
 	info->pids = NULL;
 }
 
-static int	*generate_pipe()
-{
-	int	*pipefd;
-
-	pipefd = strict_malloc(sizeof(int), 2);
-	strict_pipe(pipefd);
-	return (pipefd);
-}
-
 int	exe_pipe(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 {
-	t_pipelines	*curr;
-	int			*prev_pipe;
-	int			*curr_pipe;
+	t_pipelines	*pl_curr;
+	int			*pipe_prev;
+	int			*pipe_curr;
 	int			*exit_status;
 
-	inherit_parent_fd(exnode, parent_fd);
-	curr = exnode->pls;
-	prev_pipe = generate_pipe();
-	info->pipefd_unused = prev_pipe[0];
-	exe_pipe_child(curr->content, exnode->fd[0], prev_pipe[1], info);
-	curr = curr->next;
-	while (curr->next)
+	receive_parent_fd(exnode, parent_fd);
+	pl_curr = exnode->pipelines;
+	set_pipe(&pipe_prev, PIPE_NOT_LAST , info);
+	exe_pipe_child(pl_curr->content, exnode->fd[0], pipe_prev[1], info);
+	pl_curr = pl_curr->next;
+	while (pl_curr->next)
 	{
-		curr_pipe = generate_pipe();
-		info->pipefd_unused = curr_pipe[0];
-		exe_pipe_child(curr->content, prev_pipe[0], curr_pipe[1], info);
-		free(prev_pipe);
-		prev_pipe = curr_pipe;
-		curr = curr->next;
+		set_pipe(&pipe_curr, PIPE_NOT_LAST, info);
+		exe_pipe_child(pl_curr->content, pipe_prev[0], pipe_curr[1], info);
+		free(pipe_prev);
+		pipe_prev = pipe_curr;
+		pl_curr = pl_curr->next;
 	}
-	info->pipefd_unused = -1;
-	exe_pipe_child(curr->content, prev_pipe[0], exnode->fd[1], info);
-	free(prev_pipe);
+	set_pipe(&pipe_curr, PIPE_LAST, info);
+	exe_pipe_child(pl_curr->content, pipe_prev[0], exnode->fd[1], info);
+	free(pipe_prev);
 	wait_childs(info);
-	close_inout_fd(exnode);
+	close_myinout_fd(exnode);
 	exit_status = ft_lstlast(info->exits)->content;
 	return (*exit_status);
 }

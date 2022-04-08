@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   meet_redir.c                                       :+:      :+:    :+:   */
+/*   make_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 00:50:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 17:16:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
 #include "parse_tree.h"
-#include "utils.h"
-#include "test.h"
+#include "token.h"
 #include "strict.h"
+#include "heredoc.h"
 #include <fcntl.h>
 #include <sys/wait.h>
-#include "redirection_utils.h"
 
 static int	to_open_flag(enum e_parsetree_node type)
 {
@@ -45,34 +44,7 @@ static int	register_fd(t_exetree_node *e_nd, int *dst_fd, char *file_name, int f
 	return (1);
 }
 
-static void	make_heredoc(t_exetree_node *e_nd, t_token *tk, t_exe_info *info)
-{
-	int		p[2];
-	pid_t	pid;
-	int		ws;
-
-	if (e_nd->fd[0] != 0)
-		strict_close(e_nd->fd[0]);
-	pipe(p);
-	pid = strict_fork();
-	if (pid)
-	{
-		waitpid(pid, &ws, 0);
-		info->last_exit = calc_exit_status(ws);
-		strict_close(p[1]);
-		e_nd->fd[0] = p[0];
-	}
-	else
-	{
-		if (tk->type == QUOTED_STR)
-			listen_heredoc_quoted(tk->content, p[1]);
-		else
-			listen_heredoc(tk->content, p[1], info);
-		exit(0);
-	}
-}
-
-int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
+static int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 {
 	t_token	*tk;
 	int		flag;
@@ -88,4 +60,34 @@ int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 	else if (p_nd->type == NODE_HRD)
 		make_heredoc(e_nd, tk, info);
 	return (1);
+}
+
+static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
+{
+	if (p_nd->type == TOKENS && make_cmd(p_nd, e_nd, info))
+		return (1) ;
+	if (p_nd->type & (NODE_OR | NODE_AND | NODE_PIPE))
+	{
+		e_nd->left = make_exetree_node(e_nd, p_nd, e_nd->fd, info);
+		return (1);
+	}
+	return (0);
+}
+
+void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
+{
+	while (p_nd)
+	{
+		if (meet_not_redir(p_nd, e_nd, info))
+			break;
+		if (count_token(p_nd->right->tokens) != 1)
+		{
+			e_nd->type = EXE_ERROR;
+			e_nd->err = new_err_info("minishell : ambiguous redirect", 1);
+			break ;
+		}
+		if (meet_redir(p_nd, e_nd, info) == 0)
+			break ;
+		p_nd = p_nd->left;
+	}
 }

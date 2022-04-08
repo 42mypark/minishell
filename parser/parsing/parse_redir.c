@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 22:18:00 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:23:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	parse_redir(t_parsetree_node *pt_node)
 	while (curr != tks->tail)
 	{
 		tk = curr->content;
-		if (tk->type == IRD || tk->type == ORD \
-			|| tk->type == ARD || tk->type == HRD)
+		if (tk->type == TK_IRD || tk->type == TK_ORD \
+			|| tk->type == TK_ARD || tk->type == TK_HRD)
 		{
 			one = extract_tokens(tks, &rem, curr);
 			pt_node->right = new_parsetree_node(one, pt_node);

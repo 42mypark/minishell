@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 18:23:49 by mypark            #+#    #+#              #
-#    Updated: 2022/04/08 02:14:10 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/08 15:53:26 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ SRCS_EXECUTOR =	calc_exit_status.c\
 				exe_pipe.c\
 				exe_redir.c\
 				executor.c\
-				inherit_parent_fd.c
+				receive_parent_fd.c
 
 SRCS =	test_executor.c\
 		count_token.c\

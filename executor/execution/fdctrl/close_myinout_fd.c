@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_unused_pipe.c                               :+:      :+:    :+:   */
+/*   close_myinout_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 21:16:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 21:16:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:46:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
-#include "libft.h"
 #include "strict.h"
-#include "exe_tree.h"
 
-void	close_unused_pipe(t_exetree_node *exnode, t_exe_info *info)
+void	close_myinout_fd(t_exetree_node *exnode)
 {
-	if (exnode->parent && exnode->parent->type == EXE_PIPE \
-		&& info->pipefd_unused != -1)
-		strict_close(info->pipefd_unused);
-	info->pipefd_unused = -1;
+	t_exetree_node	*parent;
+	int				is_root_redir;
+	int				is_not_parent_fd;
+	int				i;
+
+	parent = exnode->parent;
+	i = 0;
+	while (i < 2)
+	{
+		is_root_redir = parent == NULL && exnode->fd[i] != i;
+		is_not_parent_fd = parent && parent->fd[i] != exnode->fd[i];
+		if (is_root_redir)
+			strict_close(exnode->fd[i]);
+		if (is_not_parent_fd)
+			strict_close(exnode->fd[i]);
+	}
 }

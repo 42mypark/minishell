@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 21:38:09 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 17:19:11 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,47 +30,7 @@ static enum e_exetree_node	to_enum_exetree_node(enum e_parsetree_node type)
 	return (EXE_REDIR);
 }
 
-static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
-{
-	if (p_nd->type == TOKENS && make_cmd(p_nd, e_nd, info))
-		return (1) ;
-	if (p_nd->type & (NODE_OR | NODE_AND | NODE_PIPE))
-	{
-		e_nd->left = make_exetree_node(e_nd, p_nd, e_nd->fd, info);
-		return (1);
-	}
-	return (0);
-}
-
-static void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
-{
-	while (p_nd)
-	{
-		if (meet_not_redir(p_nd, e_nd, info))
-			break;
-		if (count_token(p_nd->right->tokens) != 1)
-		{
-			e_nd->type = EXE_ERROR;
-			e_nd->err = new_err_info("minishell : ambiguous redirect", 1);
-			break ;
-		}
-		if (meet_redir(p_nd, e_nd, info) == 0)
-			break ;
-		p_nd = p_nd->left;
-	}
-}
-
-void	make_exe_pipe(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
-{
-	if (p_nd->type == NODE_PIPE && p_nd->left)
-		make_exe_pipe(p_nd->left, e_nd, info);
-	if (p_nd->type == NODE_PIPE && p_nd->right)
-		make_exe_pipe(p_nd->right, e_nd, info);
-	if (p_nd->type != NODE_PIPE)
-		ft_lstadd_back(&e_nd->pls, ft_lstnew(make_exetree_node(e_nd, p_nd, e_nd->fd, info)));
-}
-
-t_exetree_node	*make_exetree_node(\
+static t_exetree_node	*make_exetree_node(\
 	t_exetree_node *parent, \
 	t_parsetree_node *p_nd, \
 	int *fd, \

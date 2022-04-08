@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 03:22:51 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 17:23:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	*ft_readline(char *prompt)
 int	main(int argc, char **argv, char **envp)
 {
 	t_parsetree_node	*parse_tree;
-	t_exetree_node		*exe_tree;
 	t_exe_info			*info;
 	char				*input;
 
@@ -52,23 +51,18 @@ int	main(int argc, char **argv, char **envp)
 	info = new_exe_info(envp);
 	strict_dup2(0, 3);
 	strict_dup2(1, 4);
-	//signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		//signal(SIGINT, ctrl_c);
+		signal(SIGINT, ctrl_c);
 		input = ft_readline("msh ^ㅁ^/ $$ ");
 		if (input == NULL)
 			continue ;
-		//signal(SIGINT, SIG_IGN);
+		signal(SIGINT, SIG_IGN);
 		parse_tree = parser(input, info);
-		if (parse_tree == 0)
+		if (parse_tree == NULL)
 			continue ;
-		exe_tree = make_exetree(parse_tree, info);
-		print_exetree(exe_tree, &pcnt);
-		free_parsetree(parse_tree);
 		printf("\n***** cmd result *****\n");
-		executor(exe_tree, info);
-		//printf("***** cmd end *****\n");
-		free_exetree(exe_tree);
+		executor(parse_tree, info);
 	}
 }

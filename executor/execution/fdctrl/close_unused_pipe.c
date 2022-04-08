@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inherit_parent_fd.c                                  :+:      :+:    :+:   */
+/*   close_unused_pipe.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 21:54:48 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 15:54:27 by mypark           ###   ########.fr       */
+/*   Created: 2022/04/01 21:16:13 by mypark            #+#    #+#             */
+/*   Updated: 2022/04/01 21:16:39 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
 #include "strict.h"
-#include "test.h"
+#include "exe_tree.h"
+#include "info.h"
 
-void	inherit_parent_fd(t_exetree_node *exnode, int *parent_fd)
+void	close_unused_pipe(t_exetree_node *exnode, t_exe_info *info)
 {
-	if (exnode->fd[0] == 0)
-		exnode->fd[0] = parent_fd[0];
-	else if (exnode->parent && parent_fd[0] != exnode->parent->fd[0])
-	{
-		strict_close(parent_fd[0]);
-	}
-	if (exnode->fd[1] == 1)
-		exnode->fd[1] = parent_fd[1];
-	else if (exnode->parent && parent_fd[1] != exnode->parent->fd[1])
-	{
-		strict_close(parent_fd[1]);
-	}
+	int	is_parent_pipe;
+	int	is_there_unsed_pipe;
+
+	is_parent_pipe = exnode->parent && exnode->parent->type == EXE_PIPE;
+	is_there_unsed_pipe =  is_parent_pipe && info->pipefd_unused != -1;
+	if (is_there_unsed_pipe)
+		strict_close(info->pipefd_unused);
+	info->pipefd_unused = -1;
 }

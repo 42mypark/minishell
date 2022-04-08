@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 04:47:20 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:15:08 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	exe_cmd(t_exetree_node *exnode)
 	if (pid)
 	{
 		strict_waitpid(pid, &ws, 0);
-		restore_std_fd();//?
+		restore_std_fd();
 		return (calc_exit_status(ws));
 	}
 	else
@@ -63,45 +63,30 @@ static int	exe_builtin(t_exetree_node *exnode, t_exe_info *e_info)
 		exit_status = builtin_unset(exnode, e_info);
 	if (is_same(cmd->cmd, "exit"))
 		builtin_exit(e_info);
-	restore_std_fd(); //?
+	restore_std_fd();
 	return (exit_status);
-}
-
-static int	execute_and_goback(t_exetree_node *exnode, t_exe_info *info)
-{
-	// if (exnode->parent && exnode->parent->type == EXE_PIPE)
-	// {
-	// 	if (exnode->cmd == NULL || is_builtin(exnode->cmd->cmd))
-	// 		exit(exe_builtin(exnode, info));
-	// 	exit(exe_cmd(exnode));
-	// }
-	// else
-	// {
-		if (exnode->cmd == NULL || is_builtin(exnode->cmd->cmd))
-			return (exe_builtin(exnode, info));
-		return (exe_cmd(exnode));
-	// }
-	// return (0);
 }
 
 int	exe_redir(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 {
 	int	exit_status;
 
-	inherit_parent_fd(exnode, parent_fd);
+	receive_parent_fd(exnode, parent_fd);
 	close_unused_pipe(exnode, info);
 	if (exnode->left)
 	{
 		exit_status = execute_node(exnode->left, exnode->fd, info);
-		close_inout_fd(exnode);
+		close_myinout_fd(exnode);
 		return (exit_status);
 	}
 	else
 	{
 		strict_dup2(exnode->fd[0], 0);
 		strict_dup2(exnode->fd[1], 1);
-		close_inout_fd(exnode);
-		return (execute_and_goback(exnode, info));
+		close_myinout_fd(exnode);
+		if (exnode->cmd == NULL || is_builtin(exnode->cmd->cmd))
+			return (exe_builtin(exnode, info));
+		return (exe_cmd(exnode));
 	}
 	return (0);
 }

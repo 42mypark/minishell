@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 01:06:00 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:21:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@
 enum e_token	to_enum_token(char *str)
 {
 	if (ft_strncmp(str, "<", -1) == 0)
-		return (IRD);
+		return (TK_IRD);
 	if (ft_strncmp(str, ">", -1) == 0)
-		return (ORD);
+		return (TK_ORD);
 	if (ft_strncmp(str, "<<", -1) == 0)
-		return (HRD);
+		return (TK_HRD);
 	if (ft_strncmp(str, ">>", -1) == 0)
-		return (ARD);
+		return (TK_ARD);
 	if (ft_strncmp(str, "|", -1) == 0)
-		return (PIPE);
+		return (TK_PIPE);
 	if (ft_strncmp(str, "&&", -1) == 0)
-		return (AND);
+		return (TK_AND);
 	if (ft_strncmp(str, "||", -1) == 0)
-		return (OR);
+		return (TK_OR);
 	if (ft_strncmp(str, "(", -1) == 0)
-		return (LPT);
+		return (TK_LPT);
 	if (ft_strncmp(str, ")", -1) == 0)
-		return (RPT);
+		return (TK_RPT);
 	if (ft_strncmp(str, "&", -1) == 0)
-		return (INVALID);
-	return (STR);
+		return (TK_INVALID);
+	return (TK_STR);
 }
 
 static void	tokenizer_blank(t_tokenizer *tokenizer, char input)

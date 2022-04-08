@@ -30,6 +30,7 @@
 		"readline.h": "c",
 		"types.h": "c",
 		"syntax.h": "c",
-		"expander.h": "c"
+		"expander.h": "c",
+		"unistd.h": "c"
 	},
 }

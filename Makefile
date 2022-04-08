@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/08 03:26:28 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/08 16:50:12 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = /usr/include#$(shell brew --prefix readline)
+RL_DIR = $(shell brew --prefix readline)#/usr/include
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -46,8 +46,11 @@ INCS_STRUCTURE	=	-I./structure/info\
 					-I./structure/tree
 INCS_ERROR		=	-I./error\
 					-I./error/strict
+INCS_EXECUTOR	=	-I./executor\
+					-I./executor/execution/pipe\
+					-I./executor/execution/fdctrl\
 
-INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS) $(INCS_ERROR)
+INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS) $(INCS_ERROR) $(INCS_EXECUTOR)
 
 SRCS_EXPANDER		=	quote_remover_actions.c\
 						quote_remover.c\
@@ -120,14 +123,14 @@ SRCS_EXECUTOR		=	calc_exit_status.c\
 						restore_std_fd.c\
 						close_pipes.c\
 						close_unused_pipe.c\
-						close_inout_fd.c\
+						close_myinout_fd.c\
 						close_fd.c\
 						exe_and.c\
 						exe_or.c\
 						exe_pipe.c\
 						exe_redir.c\
 						executor.c\
-						inherit_parent_fd.c
+						receive_parent_fd.c
 
 SRCS_TOKEN			=	count_token.c\
 						tokens_to_splited.c\

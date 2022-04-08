@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:28:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 20:24:27 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:17:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_exetree_node
 	int						*fd;
 	t_cmd_info				*cmd;
 	t_err_info				*err;
-	t_pipelines				*pls;
+	t_pipelines				*pipelines;
 }				t_exetree_node;
 
 t_exetree_node	*new_exetree_node(t_exetree_node *parent, enum e_exetree_node type, int infd, int outfd);

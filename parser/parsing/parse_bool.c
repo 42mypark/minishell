@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:38:17 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/04 22:18:11 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:23:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parse_bool(t_parsetree_node *pt_node)
 	while (curr != tks->head)
 	{
 		tk = curr->content;
-		if (tk->type == AND || tk->type == OR)
+		if (tk->type == TK_AND || tk->type == TK_OR)
 		{
 			r_tks = cut_tokens_back(tks, curr);
 			l_tks = cut_tokens_front(tks, curr);
