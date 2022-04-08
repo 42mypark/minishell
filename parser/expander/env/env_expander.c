@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 02:11:50 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 02:15:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ static int	is_only_dollar(t_env_expander *envexp, char *str, t_tokens *tks)
 
 static int	is_exit_expansion(t_env_expander *envexp, char *str, t_tokens *tks, t_exe_info *info)
 {
+	char	*exit_status;
+
 	if (is_same(str, "$?"))
 	{
-		push_buffer_str(envexp->buf, ft_itoa(info->last_exit));
+		exit_status = ft_itoa(info->last_exit);
+		push_buffer_str(envexp->buf, exit_status);
 		issue_token(tks, envexp->buf);
+		free(exit_status);
 		return (1);
 	}
 	return (0);
@@ -69,10 +73,12 @@ void	env_expander(t_tokens *tks, char *str, t_exe_info *info)
 	t_expansion_range	*range;
 
 	init_env_expander(&envexp, tks, &info->envp);
-	if (is_only_dollar(&envexp, str, tks))
+	if (is_only_dollar(&envexp, str, tks) \
+	|| is_exit_expansion(&envexp, str, tks, info))
+	{
+		reset_env_expander(&envexp);
 		return ;
-	if (is_exit_expansion(&envexp, str, tks, info))
-		return ;
+	}
 	while (*str)
 	{
 		envexp.actions[envexp.state](&envexp, *str);

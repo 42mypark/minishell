@@ -34,6 +34,7 @@
 		"unistd.h": "c",
 		"info.h": "c",
 		"execution.h": "c",
-		"heredoc.h": "c"
+		"heredoc.h": "c",
+		"constant.h": "c"
 	},
 }

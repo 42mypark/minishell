@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/08 18:57:08 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/09 00:27:57 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g #-fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -20,7 +20,7 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = $(shell brew --prefix readline)#/usr/include
+RL_DIR = /usr/include#$(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 

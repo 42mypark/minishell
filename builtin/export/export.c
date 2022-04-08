@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 02:32:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 04:11:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 #include "strict.h"
 #include "export.h"
 #include "test.h"
+#include "constant.h"
+
+int	is_valid_var(char *var)
+{
+	int	i;
+
+	if (ft_isdigit(var[0]))
+		return (0);
+	i = 0;
+	while (var[i])
+	{
+		if (!ft_isalnum(var[i]) && var[i] != '_')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static int	already_exist(char *var, char **envp)
 {
@@ -23,12 +40,17 @@ static int	already_exist(char *var, char **envp)
 
 	i= 0;
 	eq = ft_strchri(var, '=');
+	if (eq == -1)
+		eq = ft_strlen(var);
 	while (envp[i])
 	{
 		if (ft_strncmp(var, envp[i], eq) == 0)
 		{
-			free(envp[i]);
-			envp[i] = ft_strdup(var);
+			if (var[eq])
+			{
+				free(envp[i]);
+				envp[i] = ft_strdup(var);
+			}
 			return (1);
 		}
 		i++;
@@ -36,17 +58,15 @@ static int	already_exist(char *var, char **envp)
 	return (0);
 }
 
-static void	register_new_var(char *var, t_exe_info *info)
+static void	add_var(char *var, t_exe_info *info)
 {
-	int		count;
 	char	**new_envp;
+	int		wc;
 	int		i;
 
-	if (already_exist(var, info->envp))
-		return ;
-	count = ft_wordcount(info->envp) + 1;
-	new_envp = strict_malloc(sizeof(char *), count + 1);
-	new_envp[count] = NULL;
+	wc = ft_wordcount(info->envp) + 1;
+	new_envp = strict_malloc(sizeof(char *), wc + 1);
+	new_envp[wc] = NULL;
 	i = 0;
 	while (info->envp[i])
 	{
@@ -59,14 +79,32 @@ static void	register_new_var(char *var, t_exe_info *info)
 	info->envp = new_envp;
 }
 
+static int	register_new_var(char **args, t_exe_info *info)
+{
+	int		ai;
+	int		exit_status;
+
+	exit_status = 0;
+	ai = 0;
+	while (args[++ai])
+	{
+		if (!is_valid_var(args[ai]))
+		{
+			print_strerror("export", args[ai], ERRMSG_EXPORT_NOVALID);
+			exit_status = 1;
+			continue ;
+		}
+		if (already_exist(args[ai], info->envp))
+			continue ;
+		add_var(args[ai], info);
+	}
+	return (exit_status);
+}
+
 int	builtin_export(t_exetree_node *exe_node, t_exe_info *info)
 {
-	// print_exetree_node(exe_node, &count);
-	// print_exe_info(info);
-
-	// handle more than 2 args error
 	if (exe_node->cmd->args[1])
-		register_new_var(exe_node->cmd->args[1], info);
+		return (register_new_var(exe_node->cmd->args[1], info));
 	else
 		export_print(info->envp);
 	return (0);

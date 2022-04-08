@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 02:15:59 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 04:18:40 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string.h>
 #include "test.h"
 #include "executor.h"
+#include "constant.h"
 
 int	builtin_pwd()
 {
@@ -24,10 +25,11 @@ int	builtin_pwd()
 	dir_name = getcwd(NULL, 0);
 	if (dir_name == 0)
 	{
-		print_strerror("getcwd", "cannot get working directory.");
+		print_strerror("pwd", dir_name, ERRMSG_GETCWD);
 		return (1);
 	}
 	ft_putstr_fd(dir_name, 1);
 	ft_putstr_fd("\n", 1);
+	free(dir_name);
 	return (0);
 }

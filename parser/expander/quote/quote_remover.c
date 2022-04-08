@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 03:27:34 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 02:20:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	init_quote_remover(t_quote_remover *qrm)
 	qrm->actions[2] = quote_remover_single_quote;
 	qrm->buf = strict_malloc(sizeof(t_buffer), 1);
 	init_buffer(qrm->buf);
+	expand_buffer(qrm->buf);
 }
 
 static void	reset_quote_remover(t_quote_remover *qrm)
@@ -72,7 +73,7 @@ void	quote_remover(t_tokens *tks, t_token *tk)
 			qrm.buf->quoted = 1;
 		i = jump_expanded(qrm.buf, ++i, tk);
 	}
-	if (qrm.buf->len)
-		issue_token(tks, qrm.buf);
+	//if (qrm.buf->len)
+	issue_token(tks, qrm.buf);
 	reset_quote_remover(&qrm);
 }

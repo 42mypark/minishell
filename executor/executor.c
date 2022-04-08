@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 20:12:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 03:00:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	executor(t_parsetree_node *parse_tree, t_exe_info *info)
 {
 	t_exetree_node	*exe_tree;
 	static int		fd[2] = { 0, 1 };
-	int			cnt = 0;
 
 	exe_tree = make_exetree(parse_tree, info);
 	free_parsetree(parse_tree);
@@ -55,8 +54,6 @@ void	executor(t_parsetree_node *parse_tree, t_exe_info *info)
 		info->last_exit = 1;
 		return ;
 	}
-	//print_exetree(exe_tree, &cnt);
-	printf("\n***** cmd result *****\n");
 	info->last_exit = execute_node(exe_tree, fd, info);
 	free_exetree(exe_tree);
 }

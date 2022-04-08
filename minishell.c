@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 19:16:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 04:05:59 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	main(int argc, char **argv, char **envp)
 	t_parsetree_node	*parse_tree;
 	t_exe_info			*info;
 	char				*input;
-
-	int	pcnt = 0;
 
 	argc++;
 	argv++;
