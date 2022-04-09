@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 04:11:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 17:47:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,21 @@ static int	is_exit_number(char *str)
 
 int	builtin_exit(t_exetree_node *exnode, t_exe_info *info)
 {
-	t_cmd_info *cmd;
+	t_cmd_info	*cmd;
+	int			is_num;
 
 	ft_putstr_fd("exit\n", 2);
 	cmd = exnode->cmd;
 	if (cmd->args[1] == NULL)
 		exit(info->last_exit);
-	if (cmd->args[2] == NULL)
+	is_num = is_exit_number(cmd->args[1]);
+	if (is_num && cmd->args[2] == NULL)
+		exit((unsigned char)ft_atoi(cmd->args[1]));
+	if (is_num && cmd->args[2])
 	{
-		if (is_exit_number(cmd->args[1]))
-			exit((unsigned char)ft_atoi(cmd->args[1]));
-		print_strerror("exit", cmd->args[1], ERRMSG_EXIT_NOTNUM);
-		exit(2);
+		print_strerror("exit", NULL, ERRMSG_EXIT_MANYARGS);
+		return (1);
 	}
-	print_strerror("exit", NULL, ERRMSG_EXIT_MANYARGS);
-	exit(1);
+	print_strerror("exit", cmd->args[1], ERRMSG_EXIT_NOTNUM);
+	exit(255);
 }

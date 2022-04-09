@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 01:41:42 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:53:32 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <signal.h>
 #include "test.h"
 
-static int	exe_cmd(t_exetree_node *exnode)
+static int	exe_cmd(t_exetree_node *exnode, t_exe_info *info)
 {
 	pid_t	pid;
 	int		ws;
@@ -32,12 +32,14 @@ static int	exe_cmd(t_exetree_node *exnode)
 	if (pid)
 	{
 		strict_waitpid(pid, &ws, 0);
-		restore_std_fd();
+		restore_std_fd(info);
 		return (calc_exit_status(ws));
 	}
 	else
 	{
 		signal(SIGINT, SIG_DFL);
+		strict_close(info->std_in);
+		strict_close(info->std_out);
 		strict_execve(exnode->cmd->cmd, exnode->cmd->args, *exnode->cmd->envp);
 	}
 	return (0);
@@ -48,9 +50,10 @@ static int	exe_builtin(t_exetree_node *exnode, t_exe_info *info)
 	t_cmd_info	*cmd;
 	int			exit_status;
 
+	exit_status = 0;
 	cmd = exnode->cmd;
 	if (cmd == NULL)
-		exit_status = 0;
+		return (0);
 	else if (is_same(cmd->cmd, "echo"))
 		exit_status = builtin_echo(exnode);
 	else if (is_same(cmd->cmd, "export"))
@@ -60,12 +63,12 @@ static int	exe_builtin(t_exetree_node *exnode, t_exe_info *info)
 	else if (is_same(cmd->cmd, "cd"))
 		exit_status = builtin_cd(exnode, info);
 	else if (is_same(cmd->cmd, "pwd"))
-		exit_status = builtin_pwd(exnode);
+		exit_status = builtin_pwd();
 	else if (is_same(cmd->cmd, "unset"))
 		exit_status = builtin_unset(exnode, info);
 	else if (is_same(cmd->cmd, "exit"))
 		exit_status = builtin_exit(exnode, info);
-	restore_std_fd();
+	restore_std_fd(info);
 	return (exit_status);
 }
 
@@ -88,7 +91,7 @@ int	exe_redir(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 		close_myinout_fd(exnode);
 		if (exnode->cmd == NULL || is_builtin(exnode->cmd->cmd))
 			return (exe_builtin(exnode, info));
-		return (exe_cmd(exnode));
+		return (exe_cmd(exnode, info));
 	}
 	return (0);
 }

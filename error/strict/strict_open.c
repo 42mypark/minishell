@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strict_open.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:47:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/03 18:32:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 15:58:13 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	strict_open(char *filename, int oflag, int right)
 
 	ret = open(filename, oflag, right);
 	if (ret == -1)
-		print_strerror("open", strerror(errno));
+		print_strerror("open", filename, strerror(errno));
 	return (ret);
 }

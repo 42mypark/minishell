@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 04:14:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:20:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	change_pwd(char *dir, char **envp)
 {
 	int	i;
 
-	i= 0;
+	i = 0;
 	while (envp[i])
 	{
 		if (ft_strncmp("PWD", envp[i], 3) == 0)
@@ -71,7 +71,8 @@ static int	cd_with_arg(char *dir, char **envp)
 	new_dir = getcwd(NULL, 0);
 	if (new_dir == 0)
 	{
-		print_strerror("cd", new_dir, ERRMSG_GETCWD);
+		print_strerror("cd", new_dir, strerror(errno));
+		free(new_dir);
 		return (1);
 	}
 	change_pwd(new_dir, envp);

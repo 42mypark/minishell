@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 21:16:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 01:06:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 17:59:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	check_pipe_closed(int pipe_num, t_exe_info *info)
 		if (p[0] == pipe_num)
 		{
 			p[0] = -1;
-			break;
+			break ;
 		}
 		if (p[1] == pipe_num)
 		{
 			p[1] = -1;
-			break;
+			break ;
 		}
 		curr = curr->next;
 	}

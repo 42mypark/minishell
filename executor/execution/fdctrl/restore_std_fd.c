@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include "strict.h"
+#include "exe_tree.h"
 
-void	restore_std_fd()
+void	restore_std_fd(t_exe_info *info)
 {
-	strict_dup2(4, 1);
-	strict_dup2(3, 0);
+	strict_dup2(info->std_out, 1);
+	strict_dup2(info->std_in, 0);
 }

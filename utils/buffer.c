@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 01:32:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:26:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-#include "libft.h"
 #include "error.h"
 #include "expansion_record.h"
+#include "libft.h"
+#include "utils.h"
 
 void	init_buffer(t_buffer *buf)
 {
@@ -57,23 +57,5 @@ void	expand_buffer(t_buffer *buf)
 		buf->space = ft_realloc(buf->space, buf->cnt * BUFFER_SIZE);
 		if (buf->space == 0)
 			print_malloc_error();
-	}
-}
-
-void	push_buffer(t_buffer *buf, char input)
-{
-	if (input == '\0')
-		return ;
-	expand_buffer(buf);
-	buf->space[buf->len++] = input;
-	buf->space[buf->len] = '\0';
-}
-
-void	push_buffer_str(t_buffer *buf, char *str)
-{
-	while (*str)
-	{
-		push_buffer(buf, *str);
-		str++;
 	}
 }

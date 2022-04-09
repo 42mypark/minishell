@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 04:05:59 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:53:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	main(int argc, char **argv, char **envp)
 	argc++;
 	argv++;
 	info = new_exe_info(envp);
-	strict_dup2(0, 3);
-	strict_dup2(1, 4);
+	info->std_in = strict_dup(0);
+	info->std_out = strict_dup(1);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{

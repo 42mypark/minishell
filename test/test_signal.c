@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_signal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 17:05:23 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/03 01:27:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:30:51 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ void	ctrl_escape()
 	rl_replace_line("", 0);
 }
 
-void	ctrl_c()
+void	ctrl_c(int sig)
 {
+	(void)sig;
 	printf("\n");
 	rl_replace_line("", 1);
 	rl_on_new_line();

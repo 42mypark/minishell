@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strict_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:47:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 02:30:06 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 15:58:53 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	strict_pipe(int *pipefd)
 
 	ret = pipe(pipefd);
 	if (ret == -1)
-		print_strerror("pipe", strerror(errno));
+		print_strerror("pipe", NULL, strerror(errno));
 }

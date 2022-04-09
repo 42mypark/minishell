@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 04:11:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:28:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "error.h"
-#include "exe_tree.h"
-#include "executor.h"
-#include "strict.h"
-#include "error.h"
 #include "constant.h"
+#include "error.h"
+#include "info.h"
+#include "exe_tree.h"
 #include <string.h>
-#include "test.h"
-
+#include <unistd.h>
 
 int	builtin_env(t_exetree_node *exnode, t_exe_info *info)
 {

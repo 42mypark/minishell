@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 04:11:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:34:02 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "exe_tree.h"
-#include "strict.h"
-#include "export.h"
-#include "test.h"
 #include "constant.h"
+#include "error.h"
+#include "exe_tree.h"
+#include "export.h"
+#include "strict.h"
+#include <unistd.h>
 
 int	is_valid_var(char *var)
 {
@@ -38,7 +38,7 @@ static int	already_exist(char *var, char **envp)
 	int	i;
 	int	eq;
 
-	i= 0;
+	i = 0;
 	eq = ft_strchri(var, '=');
 	if (eq == -1)
 		eq = ft_strlen(var);
@@ -104,7 +104,7 @@ static int	register_new_var(char **args, t_exe_info *info)
 int	builtin_export(t_exetree_node *exe_node, t_exe_info *info)
 {
 	if (exe_node->cmd->args[1])
-		return (register_new_var(exe_node->cmd->args[1], info));
+		return (register_new_var(exe_node->cmd->args, info));
 	else
 		export_print(info->envp);
 	return (0);

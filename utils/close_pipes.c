@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:31:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 22:18:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 18:00:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	close_pipes(t_exe_info *info)
 {
 	int		*p;
 	t_list	*curr;
-	
+
 	curr = info->pipes;
 	while (curr)
 	{

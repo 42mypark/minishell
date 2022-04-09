@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/09 00:27:57 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/09 19:50:16 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = /usr/include#$(shell brew --prefix readline)
+RL_DIR = $(shell brew --prefix readline)#/usr/include
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -109,6 +109,7 @@ SRCS_BUILTINS		=	is_builtin.c\
 						unset.c\
 
 SRCS_UTILS			=	buffer.c\
+						push_buffer.c\
 						is_chars.c\
 						dupenv.c\
 						is_same.c\
@@ -118,6 +119,7 @@ SRCS_UTILS			=	buffer.c\
 SRCS_STRICT			=	strict_malloc.c\
 						strict_fork.c\
 						strict_dup2.c\
+						strict_dup.c\
 						strict_close.c\
 						strict_open.c\
 						strict_execve.c\

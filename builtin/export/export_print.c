@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   export_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:57:19 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 23:58:02 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:26:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <unistd.h>
 #include "error.h"
 #include "exe_tree.h"
 #include "executor.h"
 #include "strict.h"
 #include <errno.h>
 #include <string.h>
-#include "test.h"
+#include <unistd.h>
 
 static int	is_all_checked(char *check, int n)
 {
@@ -46,7 +44,7 @@ static char	*get_ordered_var(char **envp, char *check)
 		if (fast == -1 && check[i] == 0)
 			fast = i++;
 		if (fast == -1)
-			continue;
+			continue ;
 		if (ft_strncmp(envp[i], "_", 1) == 0)
 			check[i] = 1;
 		if (check[i] == 0 && ft_strncmp(envp[i], envp[fast], -1) < 0)
