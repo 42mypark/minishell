@@ -2,7 +2,7 @@
 RED='\033[0;31m'
 NC='\033[0m'
 NAME="minishell"
-TTY="/dev/"$(ps u | grep -E '[.]/'${NAME} | awk 'END {print $7}')
+TTY="/dev/tty"$(ps u | grep -E '[.]/'${NAME} | awk 'END {print $7}')
 while :
 do
 	PID=$(ps u | grep -E '[.]/'${NAME} | awk '{print $2}' | xargs echo )
