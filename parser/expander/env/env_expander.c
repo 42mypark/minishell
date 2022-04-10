@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 02:15:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:12:06 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ static int	is_only_dollar(t_env_expander *envexp, char *str, t_tokens *tks)
 	return (0);
 }
 
-static int	is_exit_expansion(t_env_expander *envexp, char *str, t_tokens *tks, t_exe_info *info)
+static int	is_exit_expansion(\
+	t_env_expander *envexp, \
+	char *str, \
+	t_tokens *tks, \
+	t_exe_info *info\
+)
 {
 	char	*exit_status;
 

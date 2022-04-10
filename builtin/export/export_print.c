@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:57:19 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:26:14 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:04:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void	export_print(char **envp)
 	{
 		var = get_ordered_var(envp, check);
 		eq = ft_strchri(var, '=');
-		ft_putstr_fd("declare -x ", 1);
-		write(1, var, eq + 1);
-		write(1, "\"", 1);
+		strict_putstr_fd("declare -x ", 1);
+		strict_write(1, var, eq + 1);
+		strict_write(1, "\"", 1);
 		if (var[eq + 1])
-			ft_putstr_fd(var + eq + 1, 1);
-		write(1, "\"\n", 2);
+			strict_putstr_fd(var + eq + 1, 1);
+		strict_write(1, "\"\n", 2);
 	}
 	free(check);
 }

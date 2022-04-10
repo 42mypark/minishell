@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_spliter.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 13:16:55 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:28:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ typedef struct s_wildcard_spliter
 }				t_wildcard_spliter;
 
 void	wildcard_spliter_chars(\
-	t_wildcard_spliter *spliter,
-	int index\
+	t_wildcard_spliter *spliter, \
+		int index\
 );
 void	wildcard_spliter_single_quote(\
-	t_wildcard_spliter *spliter,
-	int index\
+	t_wildcard_spliter *spliter, \
+		int index\
 );
 void	wildcard_spliter_double_quote(\
-	t_wildcard_spliter *spliter,
-	int index\
+	t_wildcard_spliter *spliter, \
+		int index\
 );
 
 #endif

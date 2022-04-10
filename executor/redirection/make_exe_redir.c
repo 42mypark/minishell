@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 19:48:50 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:08:08 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ static int	to_open_flag(enum e_parsetree_node type)
 	return (O_RDONLY);
 }
 
-static int	register_fd(t_exetree_node *e_nd, int *dst_fd, char *file_name, int flag)
+static int	register_fd(\
+	t_exetree_node *e_nd, \
+	int *dst_fd, \
+	char *file_name, \
+	int flag\
+)
 {
 	int	fd;
 
@@ -45,7 +50,11 @@ static int	register_fd(t_exetree_node *e_nd, int *dst_fd, char *file_name, int f
 	return (1);
 }
 
-static int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
+static int	meet_redir(\
+	t_parsetree_node *p_nd, \
+	t_exetree_node *e_nd, \
+	t_exe_info *info\
+)
 {
 	t_token	*tk;
 	int		flag;
@@ -63,10 +72,14 @@ static int	meet_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *
 	return (1);
 }
 
-static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
+static int	meet_not_redir(\
+	t_parsetree_node *p_nd, \
+	t_exetree_node *e_nd, \
+	t_exe_info *info\
+)
 {
 	if (p_nd->type == TOKENS && make_cmd(p_nd, e_nd, info))
-		return (1) ;
+		return (1);
 	if (p_nd->type & (NODE_OR | NODE_AND | NODE_PIPE))
 	{
 		e_nd->left = make_exetree_node(e_nd, p_nd, info);
@@ -75,12 +88,16 @@ static int	meet_not_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_in
 	return (0);
 }
 
-void	make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
+void	make_exe_redir(\
+	t_parsetree_node *p_nd, \
+	t_exetree_node *e_nd, \
+	t_exe_info *info\
+)
 {
 	while (p_nd)
 	{
 		if (meet_not_redir(p_nd, e_nd, info))
-			break;
+			break ;
 		if (count_token(p_nd->right->tokens) != 1)
 		{
 			e_nd->type = EXE_ERROR;

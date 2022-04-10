@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_matcher_actions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:18:12 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 12:42:04 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:24:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	wildcard_matcher_compare(\
 	else
 		matcher->state = WM_REJECT;
 }
-
 
 void	wildcard_matcher_wildcard(\
 	t_wildcard_matcher *matcher, \

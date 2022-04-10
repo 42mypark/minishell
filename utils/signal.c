@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:40:39 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:32:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:09:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "strict.h"
 
 void	ctrl_c(int sig)
 {
 	(void)sig;
-	write(1, "\n", 1);
+	strict_write(1, "\n", 1);
 	rl_replace_line("", 1);
 	rl_on_new_line();
 	rl_redisplay();

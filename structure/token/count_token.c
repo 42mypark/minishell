@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:44:55 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 16:45:11 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:22:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_token(t_tokens *tks)
 		return (0);
 	cnt = 1;
 	curr = tks->head;
-	while(curr != tks->tail)
+	while (curr != tks->tail)
 	{
 		cnt++;
 		curr = curr->next;

@@ -3,64 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_unexpected_token.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:46:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 02:08:04 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 17:42:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
-#include "utils.h"
 #include "error.h"
 #include "strict.h"
-
-static int	**copy_table(const char (*table)[11])
-{
-	int	i;
-	int	j;
-	int	**syn_tb;
-
-	syn_tb = strict_malloc(sizeof(int *), 11);
-	i = -1;
-	while (++i < 11)
-	{
-		syn_tb[i] = strict_malloc(sizeof(int), 11);
-		j = -1;
-		while (++j < 11)
-			syn_tb[i][j] = (int) table[i][j];
-	}
-	return (syn_tb);
-}
-
-static int	**get_syntax_table(void)
-{
-	static const char	table[11][11] = {
-									{1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0},
-									{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-									{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-									{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-									{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-									{1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0},
-									{1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0},
-									{1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0},
-									{1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0},
-									{0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0},
-									{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-									};
-
-	return (copy_table(table));
-}
-
-static void	free_syntax_table(int **syn_tb)
-{
-	int	i;
-
-	i = 0;
-	while (i < 11)
-		free(syn_tb[i++]);
-	free(syn_tb);
-}
+#include "syntax.h"
+#include "token.h"
+#include "utils.h"
 
 static int	check_head_tail(t_tokens *tks, int **syn_tb)
 {
@@ -84,35 +38,40 @@ static int	check_head_tail(t_tokens *tks, int **syn_tb)
 	return (0);
 }
 
+static int	check_unexpect_tk(enum e_token prev, enum e_token curr, \
+							int **syn_tb, char *content)
+{
+	if (syn_tb[prev][curr] == 0)
+	{
+		free_syntax_table(syn_tb);
+		print_unexpected_token(content);
+		return (1);
+	}
+	return (0);
+}
+
 int	syntax_unexpected_token(t_tokens *tks)
 {
 	t_tokens_node	*curr;
-	t_token			*tk_curr;
-	t_token			*tk_prev;
-	t_token			*tk_next;
+	t_token			*tk_c;
+	t_token			*tk_p;
+	t_token			*tk_n;
 	int				**syn_tb;
 
 	syn_tb = get_syntax_table();
-	if(check_head_tail(tks, syn_tb))
+	if (check_head_tail(tks, syn_tb))
 		return (1);
 	curr = tks->head;
 	while (curr != tks->tail)
 	{
-		tk_curr = curr->content;
-		tk_next = curr->next->content;
-		tk_prev = curr->prev->content;
-		if (syn_tb[tk_curr->type][tk_next->type] == 0)
-		{
-			free_syntax_table(syn_tb);
-			print_unexpected_token(tk_next->content);
+		tk_c = curr->content;
+		tk_n = curr->next->content;
+		tk_p = curr->prev->content;
+		if (check_unexpect_tk(tk_c->type, tk_n->type, syn_tb, tk_n->content))
 			return (1);
-		}
-		if (curr != tks->head && syn_tb[tk_prev->type][tk_curr->type] == 0)
-		{
-			free_syntax_table(syn_tb);
-			print_unexpected_token(tk_curr->content);
+		if (curr != tks->head \
+		&& check_unexpect_tk(tk_p->type, tk_c->type, syn_tb, tk_c->content))
 			return (1);
-		}
 		curr = curr->next;
 	}
 	free_syntax_table(syn_tb);

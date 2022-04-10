@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 18:53:47 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:10:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ void	make_heredoc(t_exetree_node *e_nd, t_token *tk, t_exe_info *info)
 		exit(0);
 	}
 }
-

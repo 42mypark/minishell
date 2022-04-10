@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 19:48:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:08:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_exetree_node	*make_exetree_node(\
 t_exetree_node	*make_exetree(t_parsetree_node *p_nd, t_exe_info *info)
 {
 	t_exetree_node	*e_nd;
-	
+
 	e_nd = make_exetree_node(NULL, p_nd, info);
 	return (e_nd);
 }

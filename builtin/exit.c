@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 17:47:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:05:39 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string.h>
 #include "test.h"
 #include "executor.h"
+#include "strict.h"
 #include "error.h"
 #include "constant.h"
 
@@ -51,7 +52,7 @@ int	builtin_exit(t_exetree_node *exnode, t_exe_info *info)
 	t_cmd_info	*cmd;
 	int			is_num;
 
-	ft_putstr_fd("exit\n", 2);
+	strict_putstr_fd("exit\n", 2);
 	cmd = exnode->cmd;
 	if (cmd->args[1] == NULL)
 		exit(info->last_exit);

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:45:08 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 16:28:32 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:23:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,17 @@ char	**dup_filenames(void)
 	DIR		*dir_ptr;
 	int		file_cnt;
 	char	**files;
-	int		ret;
 
 	files = NULL;
 	dir_name = getcwd(NULL, 0);
 	if (dir_name == 0)
 		print_strerror("getcwd", NULL, strerror(errno));
-	dir_ptr = opendir(dir_name);
-	if (dir_ptr == NULL)
-		print_strerror("open directory", NULL, "cannot be accessed.");
+	dir_ptr = strict_opendir(dir_name);
 	file_cnt = count_files(dir_ptr);
-	ret = closedir(dir_ptr);
-	if (ret == -1)
-		print_strerror("close directory", NULL, "is it opened?");
-	dir_ptr = opendir(dir_name);
-	if (dir_ptr == NULL)
-		print_strerror("open directory", NULL, "cannot be accessed.");
+	strict_closedir(dir_ptr);
+	dir_ptr = strict_opendir(dir_name);
 	files = make_files(dir_ptr, file_cnt);
-	closedir(dir_ptr);
-	if (ret == -1)
-		print_strerror("close directory", NULL, "is it opened?");
+	strict_closedir(dir_ptr);
 	free(dir_name);
 	return (files);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 03:00:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:18:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 void	executor(t_parsetree_node *parse_tree, t_exe_info *info)
 {
 	t_exetree_node	*exe_tree;
-	static int		fd[2] = { 0, 1 };
+	static int		fd[2] = {0, 1};
 
 	exe_tree = make_exetree(parse_tree, info);
 	free_parsetree(parse_tree);

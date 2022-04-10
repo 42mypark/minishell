@@ -6,15 +6,15 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 02:32:55 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:33:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:26:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANT_H
 # define CONSTANT_H
 
-# ifndef NULL
-#  define NULL	((void *)0)
+# ifndef FT_NULL
+#  define FT_NULL ((void *)0)
 # endif
 
 # define ERRMSG_UNSET_NOVALID	"not a valid identifier"

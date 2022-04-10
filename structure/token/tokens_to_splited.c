@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:42:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/01 15:02:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:19:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**tokens_to_splited(t_tokens *tks)
 	splited[wc] = 0;
 	curr = tks->head;
 	wc = 0;
-	while(curr != tks->tail)
+	while (curr != tks->tail)
 	{
 		tk = curr->content;
 		splited[wc++] = ft_strdup(tk->content);

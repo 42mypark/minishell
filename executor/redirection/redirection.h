@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 19:49:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:09:21 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,25 @@
 # include "parse_tree.h"
 # include "info.h"
 
-int				make_cmd(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info);
-void			make_exe_pipe(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info);
-void			make_exe_redir(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info);
-t_exetree_node	*make_exetree(t_parsetree_node *p_nd, t_exe_info *info);
+int				make_cmd(\
+	t_parsetree_node *p_nd, \
+	t_exetree_node *e_nd, \
+	t_exe_info *info\
+);
+void			make_exe_pipe(\
+	t_parsetree_node *p_nd, \
+	t_exetree_node *e_nd, \
+	t_exe_info *info\
+);
+void			make_exe_redir(\
+	t_parsetree_node *p_nd, \
+	t_exetree_node *e_nd, \
+	t_exe_info *info\
+);
+t_exetree_node	*make_exetree(\
+	t_parsetree_node *p_nd, \
+	t_exe_info *info\
+);
 t_exetree_node	*make_exetree_node(\
 	t_exetree_node *parent, \
 	t_parsetree_node *p_nd, \

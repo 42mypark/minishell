@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_matcher.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 13:14:28 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:24:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,24 @@ typedef struct s_wildcard_matcher
 	char						*pattern_raw;
 	char						**patterns;
 	int							pattern_index;
-	char						*(*get_curr_pattern)(struct s_wildcard_matcher *);
-	void						(*actions[2])(struct s_wildcard_matcher *, char *, int*);
+	char						*(*get_curr_pattern)(\
+									struct s_wildcard_matcher *\
+								);
+	void						(*actions[2])(\
+									struct s_wildcard_matcher *, \
+									char *, int*\
+								);
 }				t_wildcard_matcher;
 
 void	wildcard_matcher_compare(\
 	t_wildcard_matcher *matcher, \
 	char *word, \
-	int *wi
+	int *wi\
 );
 void	wildcard_matcher_wildcard(\
 	t_wildcard_matcher *matcher, \
 	char *word, \
-	int *wi
+	int *wi\
 );
 
 #endif

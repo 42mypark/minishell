@@ -6,11 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:28:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:53:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:20:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	INFO_H
+#ifndef INFO_H
 # define INFO_H
 # include "libft.h"
 

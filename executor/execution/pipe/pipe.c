@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:31:36 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 18:50:06 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:11:11 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "strict.h"
 #include "pipe.h"
 
-int	*generate_pipe()
+int	*generate_pipe(void)
 {
 	int	*pipefd;
 

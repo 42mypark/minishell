@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 21:16:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 19:04:57 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:12:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	close_myinout_fd(t_exetree_node *exnode)
 	i = 0;
 	while (i < 2)
 	{
-		is_root_redir = parent == NULL && exnode->fd[i] != i;
-		is_not_parent_fd = parent && parent->fd[i] != exnode->fd[i];
+		is_root_redir = (parent == NULL && exnode->fd[i] != i);
+		is_not_parent_fd = (parent && parent->fd[i] != exnode->fd[i]);
 		if (is_root_redir)
 			strict_close(exnode->fd[i]);
 		if (is_not_parent_fd)

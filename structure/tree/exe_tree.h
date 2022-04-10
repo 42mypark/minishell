@@ -6,11 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:28:21 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 16:17:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:23:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	EXE_TREE_H
+#ifndef EXE_TREE_H
 # define EXE_TREE_H
 # include "info.h"
 
@@ -37,7 +37,11 @@ typedef struct s_exetree_node
 	t_pipelines				*pipelines;
 }				t_exetree_node;
 
-t_exetree_node	*new_exetree_node(t_exetree_node *parent, enum e_exetree_node type, int infd, int outfd);
+t_exetree_node	*new_exetree_node(\
+	t_exetree_node *parent, \
+	enum e_exetree_node type, \
+	int infd, int outfd\
+);
 void			free_exetree_node(t_exetree_node *node);
 void			free_exetree(void *node);
 

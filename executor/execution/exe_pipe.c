@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 20:31:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:16:59 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@
 #include "pipe.h"
 #include "test.h"
 
-static void	exe_pipe_child(t_exetree_node *exchild, int infd, int outfd, t_exe_info *info)
+static void	exe_pipe_child(\
+	t_exetree_node *exchild, \
+	int infd, int outfd, \
+	t_exe_info *info\
+)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -29,7 +33,7 @@ static void	exe_pipe_child(t_exetree_node *exchild, int infd, int outfd, t_exe_i
 	fd[0] = infd;
 	fd[1] = outfd;
 	pid = strict_fork();
-	if(pid == 0)
+	if (pid == 0)
 		exit(execute_node(exchild, fd, info));
 	else
 	{
@@ -47,7 +51,7 @@ static void	wait_childs(t_exe_info *info)
 	int		ws;
 
 	pids = info->pids;
-	while(pids)
+	while (pids)
 	{
 		poped = ft_lstpop_front(&pids);
 		pid = ((int *)poped->content)[0];
@@ -67,7 +71,7 @@ int	exe_pipe(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 
 	receive_parent_fd(exnode, parent_fd);
 	pl_curr = exnode->pipelines;
-	set_pipe(&pipe_prev, PIPE_NOT_LAST , info);
+	set_pipe(&pipe_prev, PIPE_NOT_LAST, info);
 	exe_pipe_child(pl_curr->content, exnode->fd[0], pipe_prev[1], info);
 	pl_curr = pl_curr->next;
 	while (pl_curr->next)
@@ -84,6 +88,5 @@ int	exe_pipe(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 	wait_childs(info);
 	close_myinout_fd(exnode);
 	exit_status = ft_lstlast(info->exits)->content;
-	printf("exit_Status : %d\n", *exit_status);
 	return (*exit_status);
 }

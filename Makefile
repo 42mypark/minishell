@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/09 19:50:16 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/10 21:22:43 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,77 @@ INCS_EXECUTOR	=	-I./executor\
 					-I./executor/redirection\
 					-I./executor/redirection/heredoc\
 
-INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS) $(INCS_ERROR) $(INCS_EXECUTOR)
+INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS) \
+		$(INCS_ERROR) $(INCS_EXECUTOR)
 
+SRCS_STRICT			=	strict_malloc.c\
+						strict_close.c\
+						strict_closedir.c\
+						strict_dup.c\
+						strict_dup2.c\
+						strict_execve.c\
+						strict_fork.c\
+						strict_open.c\
+						strict_opendir.c\
+						strict_pipe.c\
+						strict_putstr_fd.c\
+						strict_waitpid.c\
+						strict_write.c
+SRCS_ERROR			=	print_syntax_error.c\
+						print_malloc_error.c\
+						print_strerror.c\
+						$(SRCS_STRICT)
+SRCS_INFO			=	cmd_info.c\
+						err_info.c\
+						exe_info.c\
+						exe_info_insert.c
+SRCS_TREE			=	exe_tree.c\
+						parse_tree.c
+SRCS_TOKEN			=	count_token.c\
+						tokens_to_splited.c\
+						token.c\
+						cut_tokens.c\
+						merge_tokens.c\
+						issue_token.c\
+						find_token_forward.c
+SRCS_STRUCTURE		=	$(SRCS_TREE)\
+						$(SRCS_INFO)\
+						$(SRCS_TOKEN)
+SRCS_TEST_PRINT		=	print_tokens.c\
+						print_parsetree.c\
+						print_exetree.c\
+						print_expansion_record.c\
+						print_splited.c\
+						print_exe_info.c
+SRCS_BUILTINS		=	is_builtin.c\
+						cd.c\
+						pwd.c\
+						env.c\
+						exit.c\
+						export.c\
+						export_print.c\
+						echo.c\
+						unset.c
+SRCS_UTILS			=	buffer.c\
+						push_buffer.c\
+						is_chars.c\
+						dupenv.c\
+						is_same.c\
+						set_state.c\
+						signal.c
+SRCS_TOKENIZER		=	tokenizer.c\
+						tokenizer_actions.c
+SRCS_SYNTAX			=	syntax_error_check.c\
+						syntax_unexpected_token.c\
+						syntax_incorrect_pairs.c\
+						syntax_table.c
+SRCS_LEXER			=	$(SRCS_SYNTAX)\
+						$(SRCS_TOKENIZER)
+SRCS_PARSING		=	parse_bool.c\
+						parse_pipe.c\
+						parse_redir.c\
+						pass_parentheses.c\
+						edge_parentheses.c
 SRCS_EXPANDER		=	quote_remover_actions.c\
 						quote_remover.c\
 						env_expander_actions.c\
@@ -70,112 +139,35 @@ SRCS_EXPANDER		=	quote_remover_actions.c\
 						expand_token.c\
 						expansion_record.c\
 						expansion_range.c
-
+SRCS_PARSER			=	parser.c\
+						$(SRCS_LEXER)\
+						$(SRCS_PARSING)\
+						$(SRCS_EXPANDER)
 SRCS_REDIRECTION	=	make_exetree.c\
 						listen_heredoc_quoted.c\
 						listen_heredoc.c\
+						make_heredoc.c\
 						make_cmd.c\
 						make_exe_redir.c\
-						make_exe_pipe.c\
-						make_heredoc.c
-
-SRCS_INFO			=	cmd_info.c\
-						err_info.c\
-						exe_info.c\
-						exe_info_insert.c
-
-SRCS_TREE			=	exe_tree.c\
-						parse_tree.c
-
-SRCS_PRINT			=	print_syntax_error.c\
-						print_malloc_error.c\
-						print_strerror.c
-
-SRCS_TEST_PRINT		=	print_tokens.c\
-						print_parsetree.c\
-						print_exetree.c\
-						print_expansion_record.c\
-						print_splited.c\
-						print_exe_info.c
-
-SRCS_BUILTINS		=	is_builtin.c\
-						cd.c\
-						pwd.c\
-						env.c\
-						exit.c\
-						export.c\
-						export_print.c\
-						echo.c\
-						unset.c\
-
-SRCS_UTILS			=	buffer.c\
-						push_buffer.c\
-						is_chars.c\
-						dupenv.c\
-						is_same.c\
-						set_state.c\
-						signal.c
-
-SRCS_STRICT			=	strict_malloc.c\
-						strict_fork.c\
-						strict_dup2.c\
-						strict_dup.c\
-						strict_close.c\
-						strict_open.c\
-						strict_execve.c\
-						strict_pipe.c\
-						strict_waitpid.c
-
-SRCS_EXECUTOR		=	calc_exit_status.c\
-						restore_std_fd.c\
-						close_pipes.c\
+						make_exe_pipe.c
+SRCS_FDCTRL			=	restore_std_fd.c\
 						close_unused_pipe.c\
 						close_myinout_fd.c\
-						close_fd.c\
+						receive_parent_fd.c
+SRCS_EXECUTION		=	exe_or.c\
 						exe_and.c\
-						exe_or.c\
 						exe_pipe.c\
 						exe_redir.c\
-						executor.c\
-						execute_node.c\
-						receive_parent_fd.c\
 						exe_error.c\
-						pipe.c
-
-SRCS_TOKEN			=	count_token.c\
-						tokens_to_splited.c\
-						token.c\
-						cut_tokens.c\
-						merge_tokens.c\
-						issue_token.c\
-						find_token_forward.c
-
-SRCS_TOKENIZER		=	tokenizer.c\
-						tokenizer_actions.c
-SRCS_PARSER			=	parse_bool.c\
-						parse_pipe.c\
-						parse_redir.c\
-						parser.c\
-						pass_parentheses.c\
-						edge_parentheses.c\
-						syntax_error_check.c\
-						syntax_unexpected_token.c\
-						syntax_incorrect_pairs.c
-
-SRCS =	minishell.c \
-		$(SRCS_TOKEN)\
-		$(SRCS_TOKENIZER)\
-		$(SRCS_PARSER)\
-		$(SRCS_EXPANDER) \
-		$(SRCS_REDIRECTION)\
-		$(SRCS_INFO)\
-		$(SRCS_TREE)\
-		$(SRCS_TEST_PRINT)\
-		$(SRCS_PRINT)\
-		$(SRCS_UTILS)\
-		$(SRCS_STRICT)\
-		$(SRCS_EXECUTOR)\
-		$(SRCS_BUILTINS)
+						execute_node.c\
+						pipe.c\
+						$(SRCS_FDCTRL)
+SRCS_EXECUTOR		=	calc_exit_status.c\
+						executor.c\
+						$(SRCS_REDIRECTION)\
+						$(SRCS_EXECUTION)
+SRCS =	minishell.c $(SRCS_STRUCTURE) $(SRCS_BUILTINS) $(SRCS_ERROR)\
+		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) $(SRCS_TEST_PRINT)
 
 OBJ_DIR = ./objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

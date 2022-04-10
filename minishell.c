@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:53:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:09:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	main(int argc, char **argv, char **envp)
 	t_exe_info			*info;
 	char				*input;
 
-	argc++;
-	argv++;
+	(void)argc;
+	(void)argv;
 	info = new_exe_info(envp);
 	info->std_in = strict_dup(0);
 	info->std_out = strict_dup(1);

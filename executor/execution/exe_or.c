@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 18:52:59 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:17:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	exe_or(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 
 	receive_parent_fd(exnode, parent_fd);
 	close_unused_pipe(exnode, info);
-
 	exit_status = execute_node(exnode->left, exnode->fd, info);
 	if (exit_status != 0)
 		exit_status = execute_node(exnode->right, exnode->fd, info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 00:50:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:04:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	write_expanded(int to, char *str, t_exe_info *info)
 	i = 0;
 	while (expanded[i])
 	{
-		write(to, expanded[i], ft_strlen(expanded[i]));
+		strict_write(to, expanded[i], ft_strlen(expanded[i]));
 		i++;
 	}
 	ft_splitfree(expanded);
@@ -58,7 +58,7 @@ static int	env_end_index(char *str)
 void	write_input(char *input, int to, t_exe_info *info)
 {
 	int		dollar;
-	int		env_end;;
+	int		env_end;
 	char	*env;
 
 	while (*input)
@@ -66,12 +66,12 @@ void	write_input(char *input, int to, t_exe_info *info)
 		dollar = ft_strchri(input, '$');
 		if (dollar == -1)
 		{
-			write(to, input, ft_strlen(input));
-			break;
+			strict_write(to, input, ft_strlen(input));
+			break ;
 		}
 		else
 		{
-			write(to, input, dollar);
+			strict_write(to, input, dollar);
 			input += dollar;
 			env_end = env_end_index(input);
 			env = ft_strndup(input, env_end);
@@ -93,10 +93,10 @@ void	listen_heredoc(char *limiter, int to, t_exe_info *info)
 		if (input == 0 || is_same(input, limiter))
 		{
 			free(input);
-			break;
+			break ;
 		}
 		write_input(input, to, info);
-		write(to, "\n", 1);
+		strict_write(to, "\n", 1);
 		free(input);
 	}
 	strict_close(to);

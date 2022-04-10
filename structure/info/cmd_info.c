@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:51:01 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 02:12:19 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:22:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 t_cmd_info	*new_cmd_info(char *cmd, char **args, char ***envp)
 {
-	t_cmd_info *info;
+	t_cmd_info	*info;
 
 	info = strict_malloc(sizeof(t_cmd_info), 1);
 	info->cmd = cmd;

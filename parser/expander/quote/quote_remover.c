@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_remover.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 02:20:23 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:13:28 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	quote_remover(t_tokens *tks, t_token *tk)
 			qrm.buf->quoted = 1;
 		i = jump_expanded(qrm.buf, ++i, tk);
 	}
-	//if (qrm.buf->len)
 	issue_token(tks, qrm.buf);
 	reset_quote_remover(&qrm);
 }

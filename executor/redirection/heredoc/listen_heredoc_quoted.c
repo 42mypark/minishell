@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 20:40:44 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 21:04:03 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ void	listen_heredoc_quoted(char *limiter, int to)
 		if (input == 0 || is_same(input, limiter))
 		{
 			free(input);
-			break;
+			break ;
 		}
-		ft_putstr_fd(input, to);
-		write(to, "\n", 1);
+		strict_putstr_fd(input, to);
+		strict_write(to, "\n", 1);
 		free(input);
 	}
 	strict_close(to);
 }
-

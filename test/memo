@@ -1,7 +1,0 @@
-bash$ export a="  1   2   3   "
-bash$ ./argcnt -$a-
-#6
-bash$ ./argcnt -$a-
-#6
-bash$ ./argcnt -$a-
-#6

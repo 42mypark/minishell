@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/31 22:05:26 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 18:26:12 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +27,8 @@
 # include "info.h"
 # include "../parser/expander/env/env_expander.h"
 # include "executor.h"
-#include <string.h>
-#include <errno.h>
-
+# include <string.h>
+# include <errno.h>
 
 void	print_tokens(t_tokens *tks);
 void	print_parsetree(t_parsetree_node *node, int *cnt);
