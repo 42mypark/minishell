@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/10 21:22:43 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/10 21:34:15 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,7 +167,7 @@ SRCS_EXECUTOR		=	calc_exit_status.c\
 						$(SRCS_REDIRECTION)\
 						$(SRCS_EXECUTION)
 SRCS =	minishell.c $(SRCS_STRUCTURE) $(SRCS_BUILTINS) $(SRCS_ERROR)\
-		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) $(SRCS_TEST_PRINT)
+		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) #$(SRCS_TEST_PRINT)
 
 OBJ_DIR = ./objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
