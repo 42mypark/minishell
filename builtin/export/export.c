@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:52:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 23:47:00 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ static int	register_new_var(char **args, t_exe_info *info)
 	return (exit_status);
 }
 
-int	builtin_export(t_exetree_node *exe_node, t_exe_info *info)
+int	builtin_export(t_exetree_node *exnode, t_exe_info *info)
 {
-	if (exe_node->cmd->args[1])
-		return (register_new_var(exe_node->cmd->args, info));
+	if (exnode->cmd->args[1])
+		return (register_new_var(exnode->cmd->args, info));
 	else
 		export_print(info->envp);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:11:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 23:54:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 int	builtin_env(t_exetree_node *exnode, t_exe_info *info)
 {
+	int		i;
 	char	**envp;
 
 	if (exnode->cmd->args[1])
@@ -28,11 +29,12 @@ int	builtin_env(t_exetree_node *exnode, t_exe_info *info)
 		return (127);
 	}
 	envp = info->envp;
-	while (*envp)
+	i = 0;
+	while (envp[i])
 	{
-		strict_putstr_fd(*envp, 1);
+		strict_putstr_fd(envp[i], 1);
 		strict_write(1, "\n", 1);
-		envp++;
+		i++;
 	}
 	return (0);
 }

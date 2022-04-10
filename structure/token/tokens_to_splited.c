@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_to_splited.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:42:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:19:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/10 23:52:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "error.h"
 #include "strict.h"
+#include "test.h"
 
 char	**tokens_to_splited(t_tokens *tks)
 {
