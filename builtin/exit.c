@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:05:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:30:46 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "error.h"
 #include <errno.h>
 #include <string.h>
-#include "test.h"
 #include "executor.h"
 #include "strict.h"
 #include "error.h"
 #include "constant.h"
+#include "exe_tree.h"
 
 static int	is_exit_number(char *str)
 {

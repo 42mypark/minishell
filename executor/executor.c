@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:18:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:35:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "execution.h"
 #include "fdctrl.h"
 #include "redirection.h"
-
-#include "test.h"
 
 static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 {

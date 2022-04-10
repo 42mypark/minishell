@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_matcher_actions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:18:12 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:24:54 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:35:04 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wildcard_matcher.h"
 #include "utils.h"
-#include "test.h"
 
 void	wildcard_matcher_compare(\
 	t_wildcard_matcher *matcher, \

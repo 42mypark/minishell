@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   make_exetree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:08:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:31:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
 #include "parse_tree.h"
 #include "utils.h"
-#include "test.h"
+#include "redirection.h"
 #include <fcntl.h>
 #include <signal.h>
 #include "info.h"

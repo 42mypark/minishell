@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_remover.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:13:28 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:36:35 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	jump_expanded(t_buffer *buf, int i, t_token *tk)
 	while (curr)
 	{
 		expansion_range = curr->content;
+		if (expansion_range->start == expansion_range->end)
+			return (i + 1);
 		if (expansion_range->start == i)
 		{
 			str = tk->content;
@@ -64,8 +66,7 @@ void	quote_remover(t_tokens *tks, t_token *tk)
 
 	init_quote_remover(&qrm);
 	str = tk->content;
-	i = 0;
-	i = jump_expanded(qrm.buf, i, tk);
+	i = jump_expanded(qrm.buf, 0, tk);
 	while (str[i])
 	{
 		qrm.actions[qrm.state](&qrm, str[i]);

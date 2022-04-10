@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:53:32 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:35:22 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
-#include "test.h"
 
 static int	exe_cmd(t_exetree_node *exnode, t_exe_info *info)
 {
@@ -59,7 +58,7 @@ static int	exe_builtin(t_exetree_node *exnode, t_exe_info *info)
 	else if (is_same(cmd->cmd, "export"))
 		exit_status = builtin_export(exnode, info);
 	else if (is_same(cmd->cmd, "env"))
-		exit_status = builtin_env(info);
+		exit_status = builtin_env(exnode, info);
 	else if (is_same(cmd->cmd, "cd"))
 		exit_status = builtin_cd(exnode, info);
 	else if (is_same(cmd->cmd, "pwd"))

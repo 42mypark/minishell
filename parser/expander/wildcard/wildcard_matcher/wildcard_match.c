@@ -6,13 +6,12 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 12:56:13 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:35:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "wildcard_matcher.h"
-#include "test.h"
 
 char	*get_curr_pattern(t_wildcard_matcher *matcher)
 {

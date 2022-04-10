@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:04:13 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:29:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "strict.h"
 #include <errno.h>
 #include <string.h>
-#include "test.h"
 
 int	is_opt(char *arg)
 {
@@ -25,7 +24,9 @@ int	is_opt(char *arg)
 
 	if (arg == NULL)
 		return (1);
-	if (arg[0] != '-' && arg[1] != 'n')
+	if (arg[1] == '\0')
+		return (0);
+	if (arg[0] != '-' || arg[1] != 'n')
 		return (0);
 	ai = 2;
 	while (arg[ai])
@@ -57,7 +58,7 @@ int	builtin_echo(t_exetree_node *exe_node)
 		strict_write(1, args[ai], ft_strlen(args[ai]));
 		ai++;
 	}
-	if (!opt)
+	if (!opt || args[1] == NULL)
 		strict_write(1, "\n", 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 02:49:51 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 02:46:36 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:18:44 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,23 @@ int	env_expander_dq_dollar(\
 
 static int	pass_blank(char *str, int i)
 {
-	i++;
-	while (str[i])
+	if (str[0] == '\0')
+		return (0);
+	while (str[++i])
 	{
 		if (!is_blank(str[i]))
 			break ;
-		i++;
 	}
 	return (i);
 }
 
-static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env)
+static void	env_to_token(t_tokens *tks, t_buffer *buf, char *env, char input)
 {
 	int					i;
 	t_expansion_range	*range;
 
 	i = 0;
-	if (is_blank(env[0]))
+	if ((env[0] == '\0' && input == '\0') || is_blank(env[0]))
 	{
 		if (buf->len)
 			issue_token(tks, buf);
@@ -104,7 +104,7 @@ int	env_expander_dollar(\
 	else
 	{
 		env = dupenv(env_name.space, *envexp->envp);
-		env_to_token(envexp->tokens, envexp->buf, env);
+		env_to_token(envexp->tokens, envexp->buf, env, input);
 		free(env);
 		reset_buffer(&env_name);
 		if (input == '$')

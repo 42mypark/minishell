@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listen_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 20:18:42 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:04:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:35:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "libft.h"
 #include "expander.h"
 #include "error.h"
-#include "test.h"
 #include "strict.h"
 
 static void	write_expanded(int to, char *str, t_exe_info *info)

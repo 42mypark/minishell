@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_and.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 18:53:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:36:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "test.h"
 
 int	exe_and(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 {

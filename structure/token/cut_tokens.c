@@ -6,12 +6,11 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:16:25 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/22 23:57:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:34:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
-#include "test.h"
 
 t_tokens	*cut_tokens_back(t_tokens *tks, t_tokens_node *curr)
 {

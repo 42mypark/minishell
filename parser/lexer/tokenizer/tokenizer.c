@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:52:29 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 16:21:45 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 01:34:42 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer_actions.h"
 #include "token.h"
 #include "utils.h"
-#include "test.h"
 #include "error.h"
 #include "libft.h"
 #include "strict.h"
