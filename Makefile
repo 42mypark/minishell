@@ -6,7 +6,7 @@
 #    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/12 02:30:43 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/12 03:45:20 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,10 +51,10 @@ INCS_EXECUTOR	=	-I./executor\
 					-I./executor/execution/pipe\
 					-I./executor/execution/fdctrl\
 					-I./executor/redirection\
-					-I./executor/redirection/heredoc\
-
+					-I./executor/redirection/heredoc
+INCS_TEST		=	-I./test_msh
 INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS) \
-		$(INCS_ERROR) $(INCS_EXECUTOR)
+		$(INCS_ERROR) $(INCS_EXECUTOR) #(INCS_TEST)
 
 SRCS_STRICT			=	strict_malloc.c\
 						strict_close.c\
@@ -167,7 +167,7 @@ SRCS_EXECUTOR		=	calc_exit_status.c\
 						$(SRCS_REDIRECTION)\
 						$(SRCS_EXECUTION)
 SRCS =	minishell.c $(SRCS_STRUCTURE) $(SRCS_BUILTINS) $(SRCS_ERROR)\
-		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) $(SRCS_TEST_PRINT)
+		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) #$(SRCS_TEST_PRINT)
 
 OBJ_DIR = ./objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
