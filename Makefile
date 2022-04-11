@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/11 21:05:59 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/12 02:30:43 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = $(shell brew --prefix readline)#/usr/include
+RL_DIR = /usr/include#$(shell brew --prefix readline)
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -130,7 +130,7 @@ SRCS_EXPANDER		=	quote_remover_actions.c\
 						env_expander_actions_dollar.c\
 						env_expander.c\
 						wildcard_match.c\
-						wildcard_matcher_actions.c\
+						new_pattern_record.c\
 						wildcard_spliter_actions.c\
 						wildcard_expander.c\
 						wildcard_split.c\

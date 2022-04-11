@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_expander.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 21:07:05 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:21:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ void	wildcard_expander(t_tokens *tks, t_token *tk)
 	char		**patterns;
 	char		*pattern_raw;
 
-	if (ft_strchri(tk->content, '*') == -1)
-		return ;
 	pattern_raw = tk->content;
 	patterns = wildcard_split(tk);
-	print_splited(patterns);
 	if (patterns == NULL)
 		print_malloc_error();
 	filenames = dup_filenames();

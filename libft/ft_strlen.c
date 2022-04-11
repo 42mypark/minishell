@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:16:16 by mypark            #+#    #+#             */
-/*   Updated: 2021/11/28 14:37:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 01:26:08 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	n;
 
+	if (s == 0)
+		return (0);
 	n = 0;
 	while (s[n])
 		n++;
