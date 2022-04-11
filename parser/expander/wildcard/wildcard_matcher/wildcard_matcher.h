@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 20:26:21 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 21:58:30 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ typedef enum e_wildcard_matcher_state
 {
 	WM_WILDCARD,
 	WM_COMPARE,
-	WM_REJECT
+	WM_REJECT,
+	WM_SUCCESS
 }			t_wildcard_matcher_state;
 
 typedef struct s_wildcard_matcher
 {
 	t_wildcard_matcher_state	state;
-	char						*pattern_raw;
 	char						**patterns;
 	int							pattern_index;
 	int							last_wildcard;

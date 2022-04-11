@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/11 01:29:04 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/11 21:05:59 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = /usr/include#$(shell brew --prefix readline)
+RL_DIR = $(shell brew --prefix readline)#/usr/include
 RL_INC = $(RL_DIR)/include
 RL_LIB = $(RL_DIR)/lib
 
@@ -167,7 +167,7 @@ SRCS_EXECUTOR		=	calc_exit_status.c\
 						$(SRCS_REDIRECTION)\
 						$(SRCS_EXECUTION)
 SRCS =	minishell.c $(SRCS_STRUCTURE) $(SRCS_BUILTINS) $(SRCS_ERROR)\
-		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR)# $(SRCS_TEST_PRINT)
+		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) $(SRCS_TEST_PRINT)
 
 OBJ_DIR = ./objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

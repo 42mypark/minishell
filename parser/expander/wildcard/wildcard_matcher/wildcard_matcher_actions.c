@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:18:12 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 20:47:29 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 21:53:34 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,18 @@ void	wildcard_matcher_compare(\
 	int		len;
 	char	*curr_pattern;
 	char	escape_char;
-	int		i;
 
 	curr_pattern = matcher->get_curr_pattern(matcher);
 	escape_char = curr_pattern[0];
 	len = ft_strlen(curr_pattern);
-	i = *wi;
-	while(word[i])
+	if (ft_strncmp(word + (*wi), curr_pattern, len) == 0)
 	{
-		if (word[i] == escape_char \
-		&& ft_strncmp(word + i, curr_pattern, len) == 0)
-		{
-			(*wi) += (len + i);
-			matcher->pattern_index++;
-			matcher->state = WM_WILDCARD;
-			return ;
-		}
-		i++;
+		(*wi) += len;
+		matcher->pattern_index++;
+		matcher->state = WM_WILDCARD;
+		return ;
 	}
 	matcher->state = WM_REJECT;
-	// else
-	// 	matcher->state = WM_REJECT;
 }
 
 void	wildcard_matcher_wildcard(\
