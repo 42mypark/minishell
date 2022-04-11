@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:35:22 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 19:08:23 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static int	exe_cmd(t_exetree_node *exnode, t_exe_info *info)
 	pid_t	pid;
 	int		ws;
 
-	pid = strict_fork();
+	if (exnode->parent && exnode->parent->type == EXE_PIPE)
+		pid = 0;
+	else
+		pid = strict_fork();
 	if (pid)
 	{
 		strict_waitpid(pid, &ws, 0);
@@ -36,6 +39,7 @@ static int	exe_cmd(t_exetree_node *exnode, t_exe_info *info)
 	}
 	else
 	{
+		signal(SIGQUIT, SIG_DFL);
 		signal(SIGINT, SIG_DFL);
 		strict_close(info->std_in);
 		strict_close(info->std_out);

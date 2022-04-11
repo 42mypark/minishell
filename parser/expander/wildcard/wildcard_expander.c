@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 16:29:00 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 20:55:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@ void	wildcard_expander(t_tokens *tks, t_token *tk)
 	char		**patterns;
 	char		*pattern_raw;
 
-	filenames = dup_filenames();
-	if (filenames == NULL)
+	if (ft_strchri(tk->content, '*') == -1)
 		return ;
 	pattern_raw = tk->content;
 	patterns = wildcard_split(tk);
+
 	if (patterns == NULL)
 		print_malloc_error();
+	filenames = dup_filenames();
+	if (filenames == NULL)
+		return ;
 	i = -1;
 	while (filenames[++i])
 	{

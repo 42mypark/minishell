@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 23:47:00 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 19:19:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_valid_var(char *var)
 {
 	int	i;
 
-	if (ft_isdigit(var[0]))
+	if (ft_isdigit(var[0]) || var[0] == '=')
 		return (0);
 	i = 0;
 	while (var[i] && var[i] != '=')

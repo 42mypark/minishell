@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_match.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:35:01 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 20:49:13 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ static void	init_wildcard_matcher(\
 	char **patterns\
 )
 {
-	if (pattern_raw[0] == '*')
+	int	last_char;
+	
+	matcher->first_wildcard = (pattern_raw[0] == '*');
+	last_char = ft_strlen(matcher->pattern_raw) - 1;
+	matcher->last_wildcard = (pattern_raw[last_char] == '*');
+	if (matcher->first_wildcard)
 		matcher->state = WM_WILDCARD;
 	else
 		matcher->state = WM_COMPARE;
@@ -38,20 +43,17 @@ static void	init_wildcard_matcher(\
 
 static int	is_success(t_wildcard_matcher *matcher, char *word, int wi)
 {
-	int	last_char;
-
 	if (matcher->get_curr_pattern(matcher) != NULL)
 		return (0);
-	last_char = ft_strlen(matcher->pattern_raw) - 1;
-	if (matcher->pattern_raw[last_char] != '*' && wi != (int)ft_strlen(word))
+	if (matcher->last_wildcard && wi != (int)ft_strlen(word))
 		return (0);
 	return (1);
 }
 
 int	wildcard_match(char *word, char *pattern_raw, char **patterns)
 {
-	int							wi;
-	t_wildcard_matcher			matcher;
+	int					wi;
+	t_wildcard_matcher	matcher;
 
 	init_wildcard_matcher(&matcher, pattern_raw, patterns);
 	wi = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:29:20 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 19:16:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_opt(char *arg)
 {
 	int	ai;
 
-	if (arg == NULL)
+	if (arg == NULL || arg[0] == '\0')
 		return (1);
 	if (arg[1] == '\0')
 		return (0);
@@ -58,7 +58,7 @@ int	builtin_echo(t_exetree_node *exe_node)
 		strict_write(1, args[ai], ft_strlen(args[ai]));
 		ai++;
 	}
-	if (!opt || args[1] == NULL)
+	if (!opt || args[1] == NULL || args[1][0] == '\0')
 		strict_write(1, "\n", 1);
 	return (0);
 }

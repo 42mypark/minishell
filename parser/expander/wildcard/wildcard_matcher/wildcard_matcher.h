@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:24:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/11 20:26:21 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_wildcard_matcher
 	char						*pattern_raw;
 	char						**patterns;
 	int							pattern_index;
+	int							last_wildcard;
+	int							first_wildcard;
 	char						*(*get_curr_pattern)(\
 									struct s_wildcard_matcher *\
 								);
