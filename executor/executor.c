@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:11:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:35:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:42:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 #include "execution.h"
 #include "fdctrl.h"
 #include "redirection.h"
+#include "constant.h"
 
 static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 {
 	t_pipelines	*curr;
 
-	if (exnode == NULL)
+	if (exnode == FT_NULL)
 		return ;
 	if (exnode->left)
 		close_all_fd(exnode->left, info);

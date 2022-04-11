@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   dupenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:20:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/03/30 17:29:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:41:26 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "constant.h"
 
 char	*dupenv(char *target, char **envp)
 {
 	int	ei;
 	int	len;
 
-	if (target == NULL || envp == NULL)
+	if (target == FT_NULL || envp == FT_NULL)
 		return (ft_strdup(""));
 	ei = 0;
 	len = ft_strlen(target);

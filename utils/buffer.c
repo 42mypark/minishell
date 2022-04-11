@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:26:23 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:41:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "expansion_record.h"
 #include "libft.h"
 #include "utils.h"
+#include "constant.h"
 
 void	init_buffer(t_buffer *buf)
 {
@@ -22,7 +23,7 @@ void	init_buffer(t_buffer *buf)
 	buf->len = 0;
 	buf->cnt = 0;
 	buf->quoted = 0;
-	buf->expansion_record = NULL;
+	buf->expansion_record = FT_NULL;
 }
 
 void	reset_buffer(t_buffer *buf)
@@ -39,7 +40,7 @@ void	clear_buffer(t_buffer *buf)
 	buf->start = 0;
 	buf->quoted = 0;
 	free_expansion_record(buf->expansion_record);
-	buf->expansion_record = NULL;
+	buf->expansion_record = FT_NULL;
 }
 
 void	expand_buffer(t_buffer *buf)

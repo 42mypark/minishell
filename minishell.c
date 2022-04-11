@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:30:30 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:43 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "exe_tree.h"
 #include "parser.h"
 #include "executor.h"
+#include "constant.h"
 
 char	*ft_readline(char *prompt, t_exe_info *info)
 {
@@ -37,7 +38,7 @@ char	*ft_readline(char *prompt, t_exe_info *info)
 	if (input[0] == '\0')
 	{
 		free(input);
-		return (NULL);
+		return (FT_NULL);
 	}
 	return (input);
 }
@@ -58,11 +59,11 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signal(SIGINT, ctrl_c);
 		input = ft_readline("msh ^ㅁ^/ $$ ", info);
-		if (input == NULL)
+		if (input == FT_NULL)
 			continue ;
 		signal(SIGINT, SIG_IGN);
 		parse_tree = parser(input, info);
-		if (parse_tree == NULL)
+		if (parse_tree == FT_NULL)
 			continue ;
 		executor(parse_tree, info);
 	}

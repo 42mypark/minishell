@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:31:55 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:42:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <signal.h>
 #include "info.h"
+#include "constant.h"
 
 static enum e_exetree_node	to_enum_exetree_node(enum e_parsetree_node type)
 {
@@ -56,6 +57,6 @@ t_exetree_node	*make_exetree(t_parsetree_node *p_nd, t_exe_info *info)
 {
 	t_exetree_node	*e_nd;
 
-	e_nd = make_exetree_node(NULL, p_nd, info);
+	e_nd = make_exetree_node(FT_NULL, p_nd, info);
 	return (e_nd);
 }

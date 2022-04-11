@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:21:47 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:42:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include "utils.h"
 #include "wildcard_expander.h"
 #include "expansion_record.h"
-
-#include "test.h"
+#include "constant.h"
 
 static void	filename_to_token(t_tokens *tks, char *filename)
 {
@@ -41,10 +40,10 @@ void	wildcard_expander(t_tokens *tks, t_token *tk)
 
 	pattern_raw = tk->content;
 	patterns = wildcard_split(tk);
-	if (patterns == NULL)
+	if (patterns == FT_NULL)
 		print_malloc_error();
 	filenames = dup_filenames();
-	if (filenames == NULL)
+	if (filenames == FT_NULL)
 		return ;
 	i = -1;
 	while (filenames[++i])

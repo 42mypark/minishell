@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:35:27 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:43:05 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "pipe.h"
+#include "constant.h"
 
 static void	exe_pipe_child(\
 	t_exetree_node *exchild, \
@@ -58,7 +59,7 @@ static void	wait_childs(t_exe_info *info)
 		insert_new_exit(info, calc_exit_status(ws));
 		ft_lstdelone(poped, free);
 	}
-	info->pids = NULL;
+	info->pids = FT_NULL;
 }
 
 int	exe_pipe(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)

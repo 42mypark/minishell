@@ -6,13 +6,14 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:16:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:41:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "strict.h"
 #include "wildcard_match.h"
+#include "constant.h"
 
 int	first_pattern(t_wildcard_info *info, char *word)
 {
@@ -89,7 +90,7 @@ void	init_wildcard_info(\
 	info->patterns = patterns;
 	info->pattern_counts = ft_wordcount(patterns);
 	info->stack = new_stack();
-	if (info->stack == NULL)
+	if (info->stack == FT_NULL)
 		print_malloc_error();
 	info->first_wildcard = (pattern_raw[0] == '*');
 	last_index = ft_strlen(pattern_raw) - 1;

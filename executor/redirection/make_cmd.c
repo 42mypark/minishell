@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:14:37 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 23:54:22 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*find_cmd(char *cmd, char **paths)
 			return (ft_strdup(paths[i]));
 		i++;
 	}
-	return (NULL);
+	return (FT_NULL);
 }
 
 int	make_cmd(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
@@ -50,7 +50,7 @@ int	make_cmd(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 	env_path = dupenv("PATH", info->envp);
 	paths = ft_split(env_path, ':');
 	cmd = find_cmd(args[0], paths);
-	if (cmd != NULL)
+	if (cmd != FT_NULL)
 		e_nd->cmd = new_cmd_info(cmd, args, &info->envp);
 	else
 	{

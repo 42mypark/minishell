@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 19:08:23 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:43:15 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "utils.h"
 #include "execution.h"
 #include "builtin.h"
+#include "constant.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -55,7 +56,7 @@ static int	exe_builtin(t_exetree_node *exnode, t_exe_info *info)
 
 	exit_status = 0;
 	cmd = exnode->cmd;
-	if (cmd == NULL)
+	if (cmd == FT_NULL)
 		return (0);
 	else if (is_same(cmd->cmd, "echo"))
 		exit_status = builtin_echo(exnode);
@@ -92,7 +93,7 @@ int	exe_redir(t_exetree_node *exnode, int *parent_fd, t_exe_info *info)
 		strict_dup2(exnode->fd[0], 0);
 		strict_dup2(exnode->fd[1], 1);
 		close_myinout_fd(exnode);
-		if (exnode->cmd == NULL || is_builtin(exnode->cmd->cmd))
+		if (exnode->cmd == FT_NULL || is_builtin(exnode->cmd->cmd))
 			return (exe_builtin(exnode, info));
 		return (exe_cmd(exnode, info));
 	}

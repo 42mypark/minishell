@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:35:11 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:41:40 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 #include "info.h"
 #include "error.h"
 #include "lexer.h"
+#include "constant.h"
 
 static void	make_parsetree_node(t_parsetree_node *node)
 {
-	if (node == NULL || node->tokens == NULL)
+	if (node == FT_NULL || node->tokens == FT_NULL)
 		return ;
 	if (is_edge_parentheses(node))
 		remove_edge_parentheses(node);
@@ -45,9 +46,9 @@ t_parsetree_node	*parser(char *input, t_exe_info *info)
 	{
 		free_tokens(tks);
 		info->last_exit = 258;
-		return (NULL);
+		return (FT_NULL);
 	}
-	head = new_parsetree_node(tks, NULL);
+	head = new_parsetree_node(tks, FT_NULL);
 	make_parsetree_node(head);
 	expander(head, info);
 	return (head);

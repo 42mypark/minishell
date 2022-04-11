@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exe_tree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:55:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:23:17 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
 #include "strict.h"
 #include "error.h"
+#include "constant.h"
 
 t_exetree_node	*new_exetree_node(\
 	t_exetree_node *parent, \
@@ -46,7 +47,7 @@ void	free_exetree_node(t_exetree_node *node)
 
 void	free_exetree_pipelines(t_pipelines **pipelines)
 {
-	if (pipelines == NULL)
+	if (pipelines == FT_NULL)
 		return ;
 	ft_lstclear(pipelines, free_exetree);
 }
@@ -56,7 +57,7 @@ void	free_exetree(void *node)
 	t_exetree_node	*e_node;
 
 	e_node = (t_exetree_node *)node;
-	if (e_node == NULL)
+	if (e_node == FT_NULL)
 		return ;
 	free_exetree(e_node->left);
 	free_exetree(e_node->right);

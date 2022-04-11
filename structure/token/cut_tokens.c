@@ -6,11 +6,12 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:16:25 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:34:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:40:31 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
+#include "constant.h"
 
 t_tokens	*cut_tokens_back(t_tokens *tks, t_tokens_node *curr)
 {
@@ -18,7 +19,7 @@ t_tokens	*cut_tokens_back(t_tokens *tks, t_tokens_node *curr)
 	t_token		*tk;
 
 	if (tks->tail == curr)
-		return (NULL);
+		return (FT_NULL);
 	new = new_tokens();
 	while (tks->tail != curr)
 	{
@@ -34,7 +35,7 @@ t_tokens	*cut_tokens_front(t_tokens *tks, t_tokens_node *curr)
 	t_token		*tk;
 
 	if (tks->head == curr)
-		return (NULL);
+		return (FT_NULL);
 	new = new_tokens();
 	while (tks->head != curr)
 	{

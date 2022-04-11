@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:51:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 01:32:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:40:13 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "expansion_record.h"
 #include "error.h"
 #include "strict.h"
+#include "constant.h"
 #include <stdlib.h>
 
 void	free_token(void *token)
@@ -37,11 +38,11 @@ t_token	*new_token(enum e_token type, char *content)
 	t_token	*tk;
 
 	tk = strict_malloc(sizeof(t_token), 1);
-	if (tk == NULL)
-		return (NULL);
+	if (tk == FT_NULL)
+		return (FT_NULL);
 	tk->content = ft_strdup(content);
 	tk->type = type;
-	tk->expansion_record = NULL;
+	tk->expansion_record = FT_NULL;
 	return (tk);
 }
 
@@ -50,7 +51,7 @@ t_tokens	*new_tokens(void)
 	t_tokens	*tks;
 
 	tks = new_deque();
-	if (tks == NULL)
+	if (tks == FT_NULL)
 		print_malloc_error();
 	return (tks);
 }

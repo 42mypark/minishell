@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:27:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	replace_envp(t_exe_info *info, int del_i)
 
 	wc = ft_wordcount(info->envp);
 	new_envp = strict_malloc(sizeof(char *), wc);
-	new_envp[wc - 1] = NULL;
+	new_envp[wc - 1] = FT_NULL;
 	ni = 0;
 	ei = -1;
 	while (info->envp[++ei])

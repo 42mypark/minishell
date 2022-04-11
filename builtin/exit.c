@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:30:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	builtin_exit(t_exetree_node *exnode, t_exe_info *info)
 
 	strict_putstr_fd("exit\n", 2);
 	cmd = exnode->cmd;
-	if (cmd->args[1] == NULL)
+	if (cmd->args[1] == FT_NULL)
 		exit(info->last_exit);
 	is_num = is_exit_number(cmd->args[1]);
-	if (is_num && cmd->args[2] == NULL)
+	if (is_num && cmd->args[2] == FT_NULL)
 		exit((unsigned char)ft_atoi(cmd->args[1]));
 	if (is_num && cmd->args[2])
 	{
-		print_strerror("exit", NULL, ERRMSG_EXIT_MANYARGS);
+		print_strerror("exit", FT_NULL, ERRMSG_EXIT_MANYARGS);
 		return (1);
 	}
 	print_strerror("exit", cmd->args[1], ERRMSG_EXIT_NOTNUM);

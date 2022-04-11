@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:55:44 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 16:22:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:57 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_tree.h"
 #include "strict.h"
+#include "constant.h"
 
 enum e_parsetree_node	to_enum_parsetree_node(enum e_token tk_type)
 {
@@ -37,11 +38,11 @@ t_parsetree_node	*new_parsetree_node(t_tokens *tks, t_parsetree_node *parent)
 	t_parsetree_node	*new;
 	t_token				*tk;
 
-	if (tks == NULL)
-		return (NULL);
+	if (tks == FT_NULL)
+		return (FT_NULL);
 	new = strict_malloc(sizeof(t_parsetree_node), 1);
-	new->left = NULL;
-	new->right = NULL;
+	new->left = FT_NULL;
+	new->right = FT_NULL;
 	new->parent = parent;
 	new->tokens = tks;
 	new->type = TOKENS;
@@ -61,11 +62,11 @@ void	free_parsetree_node(t_parsetree_node *node)
 
 void	free_parsetree(t_parsetree_node *node)
 {
-	if (node == NULL)
+	if (node == FT_NULL)
 		return ;
 	free_parsetree(node->left);
 	free_parsetree(node->right);
-	node->left = NULL;
-	node->right = NULL;
+	node->left = FT_NULL;
+	node->right = FT_NULL;
 	free_parsetree_node(node);
 }

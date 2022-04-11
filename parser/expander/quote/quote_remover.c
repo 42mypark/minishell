@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:36:35 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:41:47 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "strict.h"
 #include "quote_remover.h"
 #include "expansion_record.h"
+#include "constant.h"
 
 static int	jump_expanded(t_buffer *buf, int i, t_token *tk)
 {
@@ -21,7 +22,7 @@ static int	jump_expanded(t_buffer *buf, int i, t_token *tk)
 	t_expansion_range	*expansion_range;
 	t_expansion_record	*curr;
 
-	if (tk->expansion_record == NULL)
+	if (tk->expansion_record == FT_NULL)
 		return (i);
 	curr = tk->expansion_record;
 	while (curr)

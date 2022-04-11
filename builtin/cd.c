@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:20:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	change_pwd(char *dir, char **envp)
 		{
 			free(envp[i]);
 			envp[i] = ft_strjoin("PWD=", dir);
-			if (envp[i] == NULL)
+			if (envp[i] == FT_NULL)
 				print_malloc_error();
 			return (1);
 		}
@@ -68,7 +68,7 @@ static int	cd_with_arg(char *dir, char **envp)
 		print_strerror("cd", dir, strerror(errno));
 		return (1);
 	}
-	new_dir = getcwd(NULL, 0);
+	new_dir = getcwd(FT_NULL, 0);
 	if (new_dir == 0)
 	{
 		print_strerror("cd", new_dir, strerror(errno));
@@ -85,7 +85,7 @@ int	builtin_cd(t_exetree_node *exnode, t_exe_info *info)
 	char	*dir;
 
 	dir = exnode->cmd->args[1];
-	if (dir == NULL)
+	if (dir == FT_NULL)
 		return (cd_no_arg(info->envp));
 	else
 		return (cd_with_arg(dir, info->envp));

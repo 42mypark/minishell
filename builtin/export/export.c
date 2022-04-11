@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 19:19:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	add_var(char *var, t_exe_info *info)
 
 	wc = ft_wordcount(info->envp) + 1;
 	new_envp = strict_malloc(sizeof(char *), wc + 1);
-	new_envp[wc] = NULL;
+	new_envp[wc] = FT_NULL;
 	i = 0;
 	while (info->envp[i])
 	{

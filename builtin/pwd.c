@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:05:07 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 03:39:24 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	builtin_pwd(void)
 {
 	char	*dir_name;
 
-	dir_name = getcwd(NULL, 0);
+	dir_name = getcwd(FT_NULL, 0);
 	if (dir_name == 0)
 	{
 		print_strerror("pwd", dir_name, strerror(errno));
