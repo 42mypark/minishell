@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exe_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:05:01 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/08 01:29:45 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 16:39:09 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe_tree.h"
 #include "libft.h"
 #include "strict.h"
+#include "export.h"
 #include <stdlib.h>
 
 t_exe_info	*new_exe_info(char **envp)
@@ -24,6 +25,7 @@ t_exe_info	*new_exe_info(char **envp)
 	info->pipes = 0;
 	info->exits = 0;
 	info->envp = ft_splitdup(envp);
+	add_var("OLDPWD", info);
 	info->last_exit = 0;
 	info->pipefd_unused = -1;
 	return (info);

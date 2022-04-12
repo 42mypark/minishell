@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:39:24 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 16:38:20 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	already_exist(char *var, char **envp)
 	return (0);
 }
 
-static void	add_var(char *var, t_exe_info *info)
+void	add_var(char *var, t_exe_info *info)
 {
 	char	**new_envp;
 	int		wc;

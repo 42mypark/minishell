@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:57:19 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:04:03 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/12 16:45:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*get_ordered_var(char **envp, char *check)
 			fast = i++;
 		if (fast == -1)
 			continue ;
-		if (ft_strncmp(envp[i], "_", 1) == 0)
+		if (ft_strncmp(envp[i], "_=", 2) == 0)
 			check[i] = 1;
 		if (check[i] == 0 && ft_strncmp(envp[i], envp[fast], -1) < 0)
 			fast = i;
@@ -72,11 +72,19 @@ void	export_print(char **envp)
 		var = get_ordered_var(envp, check);
 		eq = ft_strchri(var, '=');
 		strict_putstr_fd("declare -x ", 1);
-		strict_write(1, var, eq + 1);
-		strict_write(1, "\"", 1);
-		if (var[eq + 1])
-			strict_putstr_fd(var + eq + 1, 1);
-		strict_write(1, "\"\n", 2);
+		if (eq != -1)
+		{
+			strict_write(1, var, eq + 1);
+			strict_write(1, "\"", 1);
+			if (var[eq + 1])
+				strict_putstr_fd(var + eq + 1, 1);
+			strict_write(1, "\"\n", 2);
+		}
+		else
+		{
+			strict_putstr_fd(var, 1);
+			strict_write(1, "\n", 1);
+		}
 	}
 	free(check);
 }
