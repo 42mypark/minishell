@@ -47,6 +47,9 @@
 		"string_view": "c",
 		"tuple": "c",
 		"stdio.h": "c",
-		"errno.h": "c"
+		"errno.h": "c",
+		"wildcard_expander.h": "c",
+		"buffer.h": "c",
+		"lexer.h": "c"
 	},
 }

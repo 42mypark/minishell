@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:41:20 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:29:25 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "expansion_record.h"
 #include "libft.h"
-#include "utils.h"
+#include "buffer.h"
 #include "constant.h"
 
 void	init_buffer(t_buffer *buf)

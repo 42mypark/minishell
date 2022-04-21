@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_match.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 02:44:39 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:08:00 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WILDCARD_MATCH_H
 # define WILDCARD_MATCH_H
 # include "libft.h"
+# include "strict.h"
 
 typedef struct s_pattern_record
 {

@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   make_exetree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:42:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:25:50 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
-#include "parse_tree.h"
-#include "utils.h"
+#include "constant.h"
 #include "redirection.h"
+#include "utils.h"
 #include <fcntl.h>
 #include <signal.h>
-#include "info.h"
-#include "constant.h"
 
 static enum e_exetree_node	to_enum_exetree_node(enum e_parsetree_node type)
 {

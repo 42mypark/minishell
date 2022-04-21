@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:06:59 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:34:49 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:19:26 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-#include "strict.h"
-#include "exe_tree.h"
-#include "env_expander_actions.h"
 #include "env_expander.h"
-#include "expansion_record.h"
+#include "env_expander_actions.h"
+#include "exe_tree.h"
+#include "strict.h"
+#include "utils.h"
 
 static void	init_env_expander(\
 	t_env_expander *envexp, \

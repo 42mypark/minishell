@@ -6,12 +6,10 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:08:08 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:25:58 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
-#include "parse_tree.h"
 #include "token.h"
 #include "strict.h"
 #include "heredoc.h"

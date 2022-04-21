@@ -6,14 +6,12 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:12:54 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:10:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:27:27 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
 #include "strict.h"
 #include "heredoc.h"
-#include "token.h"
 #include <sys/wait.h>
 #include <stdlib.h>
 

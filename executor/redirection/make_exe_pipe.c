@@ -6,14 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:54:46 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:04:40 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:26:07 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
-#include "parse_tree.h"
 #include "redirection.h"
-#include "info.h"
 
 void	make_exe_pipe(\
 	t_parsetree_node *p_nd, \

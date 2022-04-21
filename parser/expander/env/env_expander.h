@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:46:22 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/22 07:43:10 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:17:26 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ENV_EXPANDER_H
 # include "buffer.h"
 # include "token.h"
+# include "expansion_record.h"
 
 typedef enum e_env_expander_state
 {

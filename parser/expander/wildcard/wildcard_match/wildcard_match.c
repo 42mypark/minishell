@@ -6,14 +6,13 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/22 07:10:04 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:07:55 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "strict.h"
-#include "wildcard_match.h"
 #include "constant.h"
+#include "error.h"
+#include "wildcard_match.h"
 
 int	first_pattern(t_wildcard_info *info, char *word)
 {

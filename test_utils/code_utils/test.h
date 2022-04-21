@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:45:04 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/22 07:11:53 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:31:46 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "token.h"
-# include "../parser/lexer/tokenizer/tokenizer.h"
 # include "parse_tree.h"
 # include "parser.h"
 # include "error.h"

@@ -6,14 +6,15 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:28:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:06:21 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WILDCARD_SPLITER_H
 # define WILDCARD_SPLITER_H
 # include "token.h"
-# include "utils.h"
+# include "buffer.h"
+# include "expansion_record.h"
 
 typedef enum e_wildcard_spliter_state
 {

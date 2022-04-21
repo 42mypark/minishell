@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   exe_and.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:36:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:25:02 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
-#include "info.h"
 #include "strict.h"
 #include "fdctrl.h"
 #include "execution.h"

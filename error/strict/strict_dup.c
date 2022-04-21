@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:47:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 19:44:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:29:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string.h>
 #include <errno.h>
 #include "error.h"
+#include "libft.h"
 
 int	strict_dup(int fd)
 {

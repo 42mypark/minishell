@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:06 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:36:06 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:06:14 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include "libft.h"
-#include "expansion_record.h"
 #include "wildcard_spliter.h"
 #include "strict.h"
 

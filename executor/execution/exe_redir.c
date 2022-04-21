@@ -6,22 +6,20 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:02:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/14 20:00:48 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:24:33 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
-#include "info.h"
+#include "builtin.h"
+#include "constant.h"
+#include "execution.h"
 #include "fdctrl.h"
 #include "strict.h"
 #include "utils.h"
-#include "execution.h"
-#include "builtin.h"
-#include "constant.h"
-#include <unistd.h>
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <signal.h>
+#include <unistd.h>
 
 static int	exe_cmd(t_exetree_node *exnode, t_exe_info *info)
 {

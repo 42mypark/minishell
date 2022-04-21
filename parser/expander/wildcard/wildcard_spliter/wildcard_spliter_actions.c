@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_spliter_actions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:53:31 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/05 01:52:01 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:06:40 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wildcard_spliter.h"
-#include "expansion_record.h"
 
 static int	is_expanded(t_expansion_record *expansion_record, int i)
 {

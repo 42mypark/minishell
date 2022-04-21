@@ -6,13 +6,12 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:35:11 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/22 07:56:46 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:31:57 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
-# include "libft.h"
 
 char	*dupenv(char *target, char **envp);
 int		is_blank(char c);

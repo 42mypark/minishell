@@ -6,12 +6,10 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 23:46:16 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 18:17:33 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:24:49 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exe_tree.h"
-#include "info.h"
 #include "fdctrl.h"
 #include "strict.h"
 #include "execution.h"

@@ -6,12 +6,12 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 20:57:10 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/10 21:05:53 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:29:01 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "strict.h"
-#include "libft.h"
+#include <stdlib.h>
 
 void	print_malloc_error(void)
 {

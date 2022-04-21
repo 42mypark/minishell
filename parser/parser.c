@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:32:50 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:41:40 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:22:54 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "constant.h"
+#include "error.h"
 #include "expander.h"
 #include "info.h"
-#include "error.h"
 #include "lexer.h"
-#include "constant.h"
+#include "parsing.h"
 
 static void	make_parsetree_node(t_parsetree_node *node)
 {

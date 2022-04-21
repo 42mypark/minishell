@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strict_close.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:47:13 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:34:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 08:29:38 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <string.h>
 #include <errno.h>
 #include "error.h"
+#include "libft.h"
 
 void	strict_close(int fd)
 {
