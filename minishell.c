@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:23:28 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:39:43 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:52:17 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "constant.h"
+#include "exe_tree.h"
+#include "executor.h"
+#include "interrupt.h"
+#include "parser.h"
+#include "strict.h"
 #include <stdio.h>
-#include <readline/readline.h>
 #include <readline/history.h>
+#include <readline/readline.h>
 #include <signal.h>
 #include <sys/wait.h>
-#include "strict.h"
-#include "exe_tree.h"
-#include "parser.h"
-#include "executor.h"
-#include "constant.h"
 
 char	*ft_readline(char *prompt, t_exe_info *info)
 {

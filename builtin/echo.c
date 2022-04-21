@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:40:47 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:19:17 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	is_opt(char *arg)
 {
 	int	ai;
 
-	if (arg == FT_NULL || arg[0] == '\0')
-		return (1);
 	if (arg[1] == '\0')
 		return (0);
 	if (arg[0] != '-' || arg[1] != 'n')
@@ -47,16 +45,16 @@ int	builtin_echo(t_exetree_node *exe_node)
 	int		ai;
 
 	args = exe_node->cmd->args;
-	opt = is_opt(args[1]);
-	if (!opt)
-		strict_write(1, args[1], ft_strlen(args[1]));
+	opt = 0;
+	ai = 0;
+	while (args[++ai] && is_opt(args[ai]))
+		opt = 1;
 	wc = ft_wordcount(args);
-	ai = 2;
 	while (ai < wc)
 	{
-		if (ai != wc && !opt)
-			strict_write(1, " ", 1);
 		strict_write(1, args[ai], ft_strlen(args[ai]));
+		if (ai != wc - 1)
+			strict_write(1, " ", 1);
 		ai++;
 	}
 	if (!opt || args[1] == FT_NULL || args[1][0] == '\0')

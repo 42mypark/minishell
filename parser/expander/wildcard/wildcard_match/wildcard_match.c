@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wildcard_match.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:38:09 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:41:58 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:10:04 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	init_wildcard_info(\
 	last_index = ft_strlen(pattern_raw) - 1;
 	info->last_wildcard = (pattern_raw[last_index] == '*');
 }
-
 
 int	wildcard_match(char *word, char *pattern_raw, char **patterns)
 {

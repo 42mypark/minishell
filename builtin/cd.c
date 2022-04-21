@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 17:07:41 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 16:43:38 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:14:53 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <errno.h>
 #include <unistd.h>
 #include <string.h>
-
 
 static int	change_pwd(char *dir, char **envp)
 {

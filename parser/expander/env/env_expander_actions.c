@@ -6,12 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 02:55:07 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/02 16:03:15 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:45:56 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_expander.h"
-#include "token.h"
 #include "utils.h"
 
 int	env_expander_chars(\

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   quote_remover.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:41:47 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:44:32 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "strict.h"
 #include "quote_remover.h"
 #include "expansion_record.h"
@@ -61,9 +60,9 @@ static void	reset_quote_remover(t_quote_remover *qrm)
 
 void	quote_remover(t_tokens *tks, t_token *tk)
 {
-	t_quote_remover			qrm;
-	char					*str;
-	int						i;
+	t_quote_remover	qrm;
+	char			*str;
+	int				i;
 
 	init_quote_remover(&qrm);
 	str = tk->content;

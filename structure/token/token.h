@@ -6,14 +6,14 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:23:58 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 17:03:41 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:40:16 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 # include "libft.h"
-# include "utils.h"
+# include "buffer.h"
 
 enum e_token
 {

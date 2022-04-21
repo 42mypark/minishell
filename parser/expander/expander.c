@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 02:14:52 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 03:42:31 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:09:36 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	expand_tokens(\
 
 static void	tour_tree_for_expansion(t_parsetree_node *node, t_exe_info *info)
 {
-	if (node == FT_NULL || node->tokens == FT_NULL || node->tokens->head == FT_NULL)
+	if (node == FT_NULL || node->tokens == FT_NULL \
+		|| node->tokens->head == FT_NULL)
 		return ;
 	if (node->type == TOKENS)
 	{

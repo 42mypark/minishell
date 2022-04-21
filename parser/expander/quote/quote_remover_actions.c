@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   quote_remover_actions.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:21:57 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 00:28:55 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:44:46 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "quote_remover.h"
 
 void	quote_remover_chars(t_quote_remover *qrm, char input)

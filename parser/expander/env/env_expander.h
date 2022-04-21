@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:46:22 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/07 02:10:56 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:43:10 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_EXPANDER_H
 # define ENV_EXPANDER_H
-# include "utils.h"
+# include "buffer.h"
 # include "token.h"
 
 typedef enum e_env_expander_state

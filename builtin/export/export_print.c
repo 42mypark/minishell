@@ -6,7 +6,7 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 23:57:19 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/12 16:45:36 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:24:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "exe_tree.h"
 #include "executor.h"
 #include "strict.h"
+#include "libft.h"
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
@@ -54,37 +55,40 @@ static char	*get_ordered_var(char **envp, char *check)
 	return (envp[fast]);
 }
 
+static void	print_var(char *var)
+{
+	int	eq;
+
+	eq = ft_strchri(var, '=');
+	strict_putstr_fd("declare -x ", 1);
+	if (eq != -1)
+	{
+		strict_write(1, var, eq + 1);
+		strict_write(1, "\"", 1);
+		if (var[eq + 1])
+			strict_putstr_fd(var + eq + 1, 1);
+		strict_write(1, "\"\n", 2);
+	}
+	else
+	{
+		strict_putstr_fd(var, 1);
+		strict_write(1, "\n", 1);
+	}
+}
+
 void	export_print(char **envp)
 {
-	int		i;
-	int		eq;
 	int		wc;
 	char	*check;
 	char	*var;
 
 	wc = ft_wordcount(envp);
 	check = strict_malloc(sizeof(char), wc);
-	i = 0;
-	while (i < wc)
-		check[i++] = 0;
+	ft_memset(check, 0, wc);
 	while (!is_all_checked(check, wc))
 	{
 		var = get_ordered_var(envp, check);
-		eq = ft_strchri(var, '=');
-		strict_putstr_fd("declare -x ", 1);
-		if (eq != -1)
-		{
-			strict_write(1, var, eq + 1);
-			strict_write(1, "\"", 1);
-			if (var[eq + 1])
-				strict_putstr_fd(var + eq + 1, 1);
-			strict_write(1, "\"\n", 2);
-		}
-		else
-		{
-			strict_putstr_fd(var, 1);
-			strict_write(1, "\n", 1);
-		}
+		print_var(var);
 	}
 	free(check);
 }

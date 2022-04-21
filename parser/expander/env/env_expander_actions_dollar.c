@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_expander_actions_dollar.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mypark <mypark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 02:49:51 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/11 01:18:44 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:46:34 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_expander.h"
 #include "expansion_record.h"
-#include "token.h"
 #include "utils.h"
 
 static void	push_env_to_buffer(t_buffer *env_name, t_buffer *buf, char **envp)

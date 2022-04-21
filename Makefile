@@ -6,12 +6,12 @@
 #    By: mypark <mypark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 23:56:16 by mypark            #+#    #+#              #
-#    Updated: 2022/04/12 16:01:17 by mypark           ###   ########.fr        #
+#    Updated: 2022/04/22 07:54:39 by mypark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 AR = ar rcs
 RM = rm -rf
 NAME = minishell
@@ -41,9 +41,11 @@ INCS_PARSER		=	-I./parser\
 INCS_BUILTIN	=	-I./builtin\
 					-I./builtin/export
 INCS_UTILS		=	-I./utils
+INCS_INTTERRUPT	=	-I./interrupt
 INCS_STRUCTURE	=	-I./structure/info\
 					-I./structure/token\
-					-I./structure/tree
+					-I./structure/tree\
+					-I./structure/buffer
 INCS_ERROR		=	-I./error\
 					-I./error/strict
 INCS_EXECUTOR	=	-I./executor\
@@ -52,9 +54,9 @@ INCS_EXECUTOR	=	-I./executor\
 					-I./executor/execution/fdctrl\
 					-I./executor/redirection\
 					-I./executor/redirection/heredoc
-INCS_TEST		=	-I./test_msh
+INCS_TEST		=	-I./test_utils/code_utils
 INCS =	$(INCS_BUILTIN) $(INCS_PARSER) $(INCS_STRUCTURE) $(INCS_UTILS) \
-		$(INCS_ERROR) $(INCS_EXECUTOR) #(INCS_TEST)
+		$(INCS_ERROR) $(INCS_EXECUTOR) $(INCS_INTTERRUPT)#(INCS_TEST)
 
 SRCS_STRICT			=	strict_malloc.c\
 						strict_close.c\
@@ -86,7 +88,8 @@ SRCS_TOKEN			=	count_token.c\
 						merge_tokens.c\
 						issue_token.c\
 						find_token_forward.c
-SRCS_STRUCTURE		=	$(SRCS_TREE)\
+SRCS_STRUCTURE		=	buffer.c\
+						$(SRCS_TREE)\
 						$(SRCS_INFO)\
 						$(SRCS_TOKEN)
 SRCS_TEST_PRINT		=	print_tokens.c\
@@ -104,13 +107,12 @@ SRCS_BUILTINS		=	is_builtin.c\
 						export_print.c\
 						echo.c\
 						unset.c
-SRCS_UTILS			=	buffer.c\
-						push_buffer.c\
+SRCS_UTILS			=	push_buffer.c\
 						is_chars.c\
 						dupenv.c\
 						is_same.c\
-						set_state.c\
-						signal.c
+						set_state.c
+SRCS_INTERRUPT		=	interrupt.c
 SRCS_TOKENIZER		=	tokenizer.c\
 						tokenizer_actions.c
 SRCS_SYNTAX			=	syntax_error_check.c\
@@ -167,7 +169,8 @@ SRCS_EXECUTOR		=	calc_exit_status.c\
 						$(SRCS_REDIRECTION)\
 						$(SRCS_EXECUTION)
 SRCS =	minishell.c $(SRCS_STRUCTURE) $(SRCS_BUILTINS) $(SRCS_ERROR)\
-		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) #$(SRCS_TEST_PRINT)
+		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) $(SRCS_INTERRUPT)\
+		#$(SRCS_TEST_PRINT)
 
 OBJ_DIR = ./objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -196,13 +199,15 @@ re : fclean all
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCS) -I $(LIBFT_DIR) -I $(RL_INC) -I$(INC_DIR) -c $< -o $@ -g
+	@$(CC) $(CFLAGS) $(INCS) \
+	-I$(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) \
+	-c $< -o $@ -g
 
 .PHONY : all clean fclean wclean re rr \
 	$(LIBFT_NAME)_clean $(LIBFT_NAME)_fclean
 
 $(LIBFT) :
-	@make -C $(LIBFT_DIR)
+	@make bonus -C $(LIBFT_DIR)
 
 $(LIBFT_NAME)_clean :
 	@make -C $(LIBFT_DIR) clean

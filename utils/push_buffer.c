@@ -6,11 +6,11 @@
 /*   By: mypark <mypark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:36:47 by mypark            #+#    #+#             */
-/*   Updated: 2022/04/09 17:55:47 by mypark           ###   ########.fr       */
+/*   Updated: 2022/04/22 07:40:45 by mypark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "buffer.h"
 
 void	push_buffer(t_buffer *buf, char input)
 {
