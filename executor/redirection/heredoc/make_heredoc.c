@@ -12,6 +12,7 @@
 
 #include "strict.h"
 #include "heredoc.h"
+#include "interrupt.h"
 #include <sys/wait.h>
 #include <stdlib.h>
 
@@ -28,7 +29,7 @@ void	make_heredoc(t_exetree_node *e_nd, t_token *tk, t_exe_info *info)
 	if (pid)
 	{
 		strict_waitpid(pid, &ws, 0);
-		info->last_exit = calc_exit_status(ws);
+		info->heredoc_fail = calc_exit_status(ws);
 		strict_close(p[1]);
 		e_nd->fd[0] = p[0];
 	}

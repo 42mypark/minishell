@@ -14,6 +14,8 @@
 # define INTERRUPT_H
 
 void	ctrl_c(int sig);
+void	ctrl_c2(int sig);
 void	ctrl_c_heredoc(int sig);
+void	ctrl_quit(int sig);
 
 #endif

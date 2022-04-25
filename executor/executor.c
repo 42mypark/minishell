@@ -16,6 +16,7 @@
 #include "fdctrl.h"
 #include "redirection.h"
 #include "constant.h"
+#include "interrupt.h"
 
 static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 {
@@ -45,14 +46,16 @@ void	executor(t_parsetree_node *parse_tree, t_exe_info *info)
 	t_exetree_node	*exe_tree;
 	static int		fd[2] = {0, 1};
 
+	signal(SIGINT, ctrl_c2);
 	exe_tree = make_exetree(parse_tree, info);
 	free_parsetree(parse_tree);
-	if (info->last_exit == 131)
+	if (info->heredoc_fail)
 	{
 		close_all_fd(exe_tree, info);
-		info->last_exit = 1;
+		info->heredoc_fail = 0;
 		return ;
 	}
+	signal(SIGQUIT, ctrl_quit);
 	info->last_exit = execute_node(exe_tree, fd, info);
 	free_exetree(exe_tree);
 }

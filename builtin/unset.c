@@ -47,6 +47,8 @@ static void	delete_var(char *var, t_exe_info *info)
 	int	ei;
 	int	eq;
 
+	if (ft_strncmp(var, "_", 1) == 0)
+		return ;
 	ei = 0;
 	while (info->envp[ei])
 	{

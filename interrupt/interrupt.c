@@ -26,8 +26,22 @@ void	ctrl_c(int sig)
 	rl_redisplay();
 }
 
+void	ctrl_c2(int sig)
+{
+	(void)sig;
+	strict_write(1, "\n", 1);
+	rl_replace_line("", 1);
+	rl_on_new_line();
+}
+
 void	ctrl_c_heredoc(int sig)
 {
 	(void)sig;
-	exit(131);
+	exit(1);
+}
+
+void	ctrl_quit(int sig)
+{
+	(void)sig;
+	strict_write(1, "Quit: 3\n", 8);
 }

@@ -34,6 +34,7 @@ typedef struct s_exe_info
 	t_list	*exits;
 	char	**envp;
 	int		last_exit;
+	int		heredoc_fail;
 	int		pipefd_unused;
 	int		std_in;
 	int		std_out;

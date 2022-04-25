@@ -27,6 +27,7 @@ t_exe_info	*new_exe_info(char **envp)
 	info->envp = ft_splitdup(envp);
 	add_var("OLDPWD", info);
 	info->last_exit = 0;
+	info->heredoc_fail = 0;
 	info->pipefd_unused = -1;
 	return (info);
 }

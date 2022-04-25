@@ -21,13 +21,29 @@
 #include <readline/readline.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <termios.h>
 
-char	*ft_readline(char *prompt, t_exe_info *info)
+static int	is_all_blank(char *input)
 {
-	char	*input;
+	while (*input)
+	{
+		if (*input != ' ')
+			return (0);
+		input++;
+	}
+	return (1);
+}
 
-	if (info->last_exit == 128 + SIGINT)
-		strict_putstr_fd("\n", 1);
+static char	*ft_readline(char *prompt)
+{
+	char			*input;
+	struct termios	termios;
+
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ctrl_c);
+	tcgetattr(STDIN_FILENO, &termios);
+	termios.c_lflag &= ~(ECHOCTL);
+	tcsetattr(STDIN_FILENO, TCSANOW, &termios);
 	input = readline(prompt);
 	if (input && *input)
 		add_history(input);
@@ -36,11 +52,14 @@ char	*ft_readline(char *prompt, t_exe_info *info)
 		strict_putstr_fd(" exit\n", 2);
 		exit(0);
 	}
-	if (input[0] == '\0')
+	if (input[0] == '\0' || is_all_blank(input))
 	{
 		free(input);
 		return (FT_NULL);
 	}
+	signal(SIGINT, SIG_IGN);
+	termios.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &termios);
 	return (input);
 }
 
@@ -55,14 +74,11 @@ int	main(int argc, char **argv, char **envp)
 	info = new_exe_info(envp);
 	info->std_in = strict_dup(0);
 	info->std_out = strict_dup(1);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		signal(SIGINT, ctrl_c);
-		input = ft_readline("msh ^ㅁ^/ $$ ", info);
+		input = ft_readline("msh ^ㅁ^/ $$ ");
 		if (input == FT_NULL)
 			continue ;
-		signal(SIGINT, SIG_IGN);
 		parse_tree = parser(input, info);
 		if (parse_tree == FT_NULL)
 			continue ;

@@ -52,7 +52,8 @@ int	builtin_exit(t_exetree_node *exnode, t_exe_info *info)
 	t_cmd_info	*cmd;
 	int			is_num;
 
-	strict_putstr_fd("exit\n", 2);
+	if (isatty(exnode->fd[1]) && isatty(exnode->fd[0]))
+		strict_putstr_fd("exit\n", 2);
 	cmd = exnode->cmd;
 	if (cmd->args[1] == FT_NULL)
 		exit(info->last_exit);

@@ -25,6 +25,7 @@ void	listen_heredoc_quoted(char *limiter, int to)
 {
 	char	*input;
 
+	signal(SIGQUIT, ctrl_quit);
 	signal(SIGINT, ctrl_c_heredoc);
 	while (1)
 	{

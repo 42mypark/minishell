@@ -50,6 +50,7 @@
 		"errno.h": "c",
 		"wildcard_expander.h": "c",
 		"buffer.h": "c",
-		"lexer.h": "c"
+		"lexer.h": "c",
+		"termios.h": "c"
 	},
 }

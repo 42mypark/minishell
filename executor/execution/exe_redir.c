@@ -16,6 +16,7 @@
 #include "fdctrl.h"
 #include "strict.h"
 #include "utils.h"
+#include "interrupt.h"
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -38,8 +39,6 @@ static int	exe_cmd(t_exetree_node *exnode, t_exe_info *info)
 	}
 	else
 	{
-		signal(SIGQUIT, SIG_DFL);
-		signal(SIGINT, SIG_DFL);
 		strict_close(info->std_in);
 		strict_close(info->std_out);
 		strict_execve(exnode->cmd->cmd, exnode->cmd->args, *exnode->cmd->envp);
