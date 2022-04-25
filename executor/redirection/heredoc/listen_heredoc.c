@@ -82,8 +82,6 @@ void	write_input(char *input, int to, t_exe_info *info)
 	}
 }
 
-#include <termios.h>
-
 void	listen_heredoc(char *limiter, int to, t_exe_info *info)
 {
 	char	*input;
