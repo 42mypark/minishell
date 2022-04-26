@@ -22,7 +22,7 @@
 static int	to_open_flag(enum e_parsetree_node type)
 {
 	if (type == NODE_ARD)
-		return (O_WRONLY |O_APPEND | O_CREAT);
+		return (O_WRONLY | O_APPEND | O_CREAT);
 	if (type == NODE_ORD)
 		return (O_WRONLY | O_CREAT | O_TRUNC);
 	return (O_RDONLY);
