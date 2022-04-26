@@ -49,7 +49,7 @@ static char	*ft_readline(char *prompt)
 		add_history(input);
 	if (input == 0)
 	{
-		strict_putstr_fd(" exit\n", 2);
+		strict_putstr_fd("exit\n", 2);
 		exit(0);
 	}
 	if (input[0] == '\0' || is_all_blank(input))
