@@ -25,6 +25,8 @@ static char	*find_cmd(char *cmd, char **paths)
 	struct stat	file_status;
 	int			i;
 
+	if (cmd[0] == '\0')
+		return (FT_NULL);
 	if (is_builtin(cmd) || lstat(cmd, &file_status) == 0)
 		return (ft_strdup(cmd));
 	i = 0;
@@ -55,7 +57,7 @@ int	make_cmd(t_parsetree_node *p_nd, t_exetree_node *e_nd, t_exe_info *info)
 	else
 	{
 		e_nd->type = EXE_ERROR;
-		e_nd->err = new_err_info(strerror(errno), 127);
+		e_nd->err = new_err_info(strerror(2), args[0], 127);
 		ft_splitfree(args);
 	}
 	ft_splitfree(paths);

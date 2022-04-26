@@ -20,7 +20,5 @@ int	strict_open(char *filename, int oflag, int right)
 	int	ret;
 
 	ret = open(filename, oflag, right);
-	if (ret == -1)
-		print_strerror("open", filename, strerror(errno));
 	return (ret);
 }

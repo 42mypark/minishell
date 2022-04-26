@@ -48,7 +48,7 @@ static int	cd_no_arg(char **envp)
 	ret = chdir(home);
 	if (ret == -1)
 	{
-		print_strerror("cd", home, strerror(errno));
+		print_strerror("cd", home, "HOME is not valid");
 		free(home);
 		return (1);
 	}

@@ -14,6 +14,8 @@
 #include "strict.h"
 #include "heredoc.h"
 #include "redirection.h"
+#include <errno.h>
+#include <string.h>
 #include <fcntl.h>
 #include <sys/wait.h>
 
@@ -41,7 +43,7 @@ static int	register_fd(\
 	if (fd == -1)
 	{
 		e_nd->type = EXE_ERROR;
-		e_nd->err = new_err_info("minishell : No such file or directory", 1);
+		e_nd->err = new_err_info(strerror(errno), file_name, 1);
 		return (0);
 	}
 	*dst_fd = fd;
@@ -99,7 +101,7 @@ void	make_exe_redir(\
 		if (count_token(p_nd->right->tokens) != 1)
 		{
 			e_nd->type = EXE_ERROR;
-			e_nd->err = new_err_info("minishell : ambiguous redirect", 1);
+			e_nd->err = new_err_info("ambiguous redirect", "", 1);
 			break ;
 		}
 		if (meet_redir(p_nd, e_nd, info) == 0)

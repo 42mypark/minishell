@@ -22,7 +22,7 @@ int	exe_error(t_exetree_node *exnode, t_exe_info *info)
 {
 	close_unused_pipe(exnode, info);
 	close_myinout_fd(exnode);
-	print_strerror("file", FT_NULL, (char *)exnode->err->msg);
+	print_strerror("file", exnode->err->filename, (char *)exnode->err->msg);
 	if (exnode->parent && exnode->parent->type == EXE_PIPE)
 		exit(exnode->err->exit_status);
 	return (exnode->err->exit_status);
