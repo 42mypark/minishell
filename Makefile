@@ -20,10 +20,6 @@ LIBFT_DIR = ./libft
 LIBFT_NAME = ft
 LIBFT = $(LIBFT_DIR)/lib$(LIBFT_NAME).a
 
-RL_DIR = $(shell brew --prefix readline)#/usr/include
-RL_INC = $(RL_DIR)/include
-RL_LIB = $(RL_DIR)/lib
-
 INCS_LEXER		=	-I./parser/lexer\
 					-I./parser/lexer/tokenizer\
 					-I./parser/lexer/syntax
@@ -169,8 +165,8 @@ SRCS_EXECUTOR		=	calc_exit_status.c\
 						$(SRCS_REDIRECTION)\
 						$(SRCS_EXECUTION)
 SRCS =	minishell.c $(SRCS_STRUCTURE) $(SRCS_BUILTINS) $(SRCS_ERROR)\
-		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) $(SRCS_INTERRUPT)\
-		#$(SRCS_TEST_PRINT)
+		$(SRCS_UTILS) $(SRCS_PARSER) $(SRCS_EXECUTOR) $(SRCS_INTERRUPT)
+#$(SRCS_TEST_PRINT)
 
 OBJ_DIR = ./objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -182,8 +178,8 @@ all : $(NAME)
 $(NAME) : $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) \
 	-L $(LIBFT_DIR) -l$(LIBFT_NAME) \
-	-L $(RL_LIB) -lreadline \
-	-L $(RL_LIB) -lhistory \
+	-lreadline \
+	-lhistory \
 	-o $@
 	@printf "💡 Make $(NAME) Done\n"
 
@@ -191,7 +187,7 @@ clean :
 	@$(RM) $(OBJ_DIR)
 	@echo "🗑 Remove $(NAME)'s OBJs Done"
 
-fclean : clean
+fclean : clean $(LIBFT_NAME)_fclean
 	@$(RM) $(NAME)
 	@echo "🗑 Remove $(NAME) Done"
 
@@ -200,7 +196,7 @@ re : fclean all
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCS) \
-	-I$(LIBFT_DIR) -I$(RL_INC) -I$(INC_DIR) \
+	-I$(LIBFT_DIR) -I$(INC_DIR) \
 	-c $< -o $@ -g
 
 .PHONY : all clean fclean wclean re rr \

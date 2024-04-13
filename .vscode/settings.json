@@ -52,6 +52,7 @@
 		"buffer.h": "c",
 		"lexer.h": "c",
 		"termios.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"interrupt.h": "c"
 	},
 }

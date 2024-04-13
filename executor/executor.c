@@ -17,13 +17,14 @@
 #include "redirection.h"
 #include "constant.h"
 #include "interrupt.h"
+#include <signal.h>
 
-static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
+static void close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 {
-	t_pipelines	*curr;
+	t_pipelines *curr;
 
 	if (exnode == FT_NULL)
-		return ;
+		return;
 	if (exnode->left)
 		close_all_fd(exnode->left, info);
 	if (exnode->right)
@@ -41,10 +42,10 @@ static void	close_all_fd(t_exetree_node *exnode, t_exe_info *info)
 		close_myinout_fd(exnode);
 }
 
-void	executor(t_parsetree_node *parse_tree, t_exe_info *info)
+void executor(t_parsetree_node *parse_tree, t_exe_info *info)
 {
-	t_exetree_node	*exe_tree;
-	static int		fd[2] = {0, 1};
+	t_exetree_node *exe_tree;
+	static int fd[2] = {0, 1};
 
 	signal(SIGINT, ctrl_c2);
 	exe_tree = make_exetree(parse_tree, info);
@@ -53,7 +54,7 @@ void	executor(t_parsetree_node *parse_tree, t_exe_info *info)
 	{
 		close_all_fd(exe_tree, info);
 		info->heredoc_fail = 0;
-		return ;
+		return;
 	}
 	signal(SIGQUIT, ctrl_quit);
 	info->last_exit = execute_node(exe_tree, fd, info);
