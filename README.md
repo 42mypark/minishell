@@ -16,6 +16,15 @@ make
 
 ![image](https://github.com/42mypark/minishell/assets/56795942/239d60c2-03de-4373-928f-c2d7486a80b4)
 
+## Implemented built-in commands
+- cd
+- echo
+- env
+- export
+- exit
+- pwd
+- unset
+
 ## Used syscall & libc functions
 - close
 - closedir
